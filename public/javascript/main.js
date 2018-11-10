@@ -1,4 +1,113 @@
-$(document).ready(function () {
+const questions=[
+    {
+        Q:'What is the supreme law of the land?',
+        A:['The Constitution'],
+        N:1
+    },
+    {
+        Q:'What does the Constitution do?',
+        A:['Sets up the government','Defines the government','Protects basic rights of Americans'],
+        N:3
+    },
+    {
+        Q:'The idea of self-government is in the first three words of the Constitution. What are these words?',
+        A:['We the People'],
+        N:1
+    },
+    {
+        Q:'What is an amendment?',
+        A:['A change to the Constitution','An addition to the Constitution','A change', 'An addition'],
+        N:2
+    },
+    {//5
+        Q:'What do we call the first ten amendments to the Constitution?',
+        A:['The Bill of Rights'],
+        N:1
+    },
+    {
+        Q:'What is one right or freedom from the first ammendment?',
+        A:['Speech','Religion','Assembly','Press','Petition the Government'],
+        N:1
+    },
+       {
+        Q:'How many amendments does the Constitution have?',
+        A:['27', 'Twendy-Seven', 'Twenty Seven'],
+        N:1
+    },
+    {
+        Q:'What did the Declaration of Inependence do?',
+        A:['Announced our Independence from Great Britain', 'Declared our Independence from Great Britain','Stated that the United States is free from Great Britain'],
+        N:1
+    },
+    {
+        Q:'What are two rights in the Declaration of Independence?',
+        A:['Life','Liberty','Pursuit of happiness'],
+        N:2
+    },
+     {//10
+        Q:'What is freedom of religion?',
+        A:['You can practice any religion or not practice a religion'],
+        N:1
+    },
+     {
+        Q:'What is the economic system in the United States?',
+        A:['Capitalism', 'Capitalist economy', 'Market economy','Capitalist', 'Market'],
+        N:2
+    },
+    {
+        Q:'What is the "rule of the law"?',
+        A:['Everyone must follow the law','Leaders must obery the law','Government must obery the law', 'No one is above the law'],
+        N:1
+    },
+    {
+        Q:'Name one branch or part of the govenment',
+        A:['Congress', 'Legislative','President', 'Executive','The Courts','Judicial'],
+        N:1
+    },
+    {//15
+        Q:'What stops one branch of government from becoming too powerful?',
+        A:['Checks and balances','Separation of powers'],
+        N:2
+    },
+    {
+        Q:'Who is in charge of the executive branch?',
+        A:['The President', 'President'],
+        N:1
+    },
+    {
+        Q:'Who makes federal laws?',
+        A:['Congress', 'Senate and House', 'Senate and House of Representatives', 'United States Legislature'],
+        N:3
+    },
+    {
+        Q:'What are the two parts of the US Congress?',
+        A:['The Senate', 'Senate', 'House of Representatives', 'House'],
+        N:2
+    },
+    {
+        Q:'How many US Senators are there?',
+        A:['100', 'One hundred', 'One-hundred'],
+        N:1
+    },
+    {
+        Q:'We elect a US Senator for how many years?',
+        A:['6', 'Six years', 'Six-years'],
+        N:1
+    },
+    {//20
+        Q:'Who is one of your states Senators now?',
+        A:['Amy Klobuchar', 'Tina Smith'],
+        N:1
+    },
 
-});
 
+// https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
+
+    // {
+    //     Q:'',
+    //     A:[],
+    //     N:0
+    // },
+
+    
+];
