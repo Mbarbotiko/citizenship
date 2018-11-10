@@ -111,3 +111,27 @@ const questions=[
 
     
 ];
+let countUp= function(){
+let count = 0
+let quickTest = document.querySelector('.question-section h1').innerHTML= questions[count].Q
+console.log(quickTest);
+
+count++
+quickTest = document.querySelector('.question-section h1').innerHTML= questions[count].Q
+console.log(count);
+console.log(quickTest);
+
+
+count++
+quickTest = document.querySelector('.question-section h1').innerHTML= questions[count].Q
+console.log(quickTest);
+console.log(count);
+
+count++
+quickTest = document.querySelector('.question-section h1').innerHTML= questions[count].Q
+console.log(quickTest);
+console.log(count);
+}();
+
+
+
