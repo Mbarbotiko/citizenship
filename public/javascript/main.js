@@ -150,10 +150,10 @@ function createForm() {
     }
 
 }
-count++
-newQuestion();//tested, works
-createForm();//tested, works
-getUserInput();//tested works gets all three values from dynamically created form fields
+
+//newQuestion();//tested, works
+//createForm();//tested, works
+//getUserInput//tested works gets all three values from dynamically created form fields commenting out because its firing at load of page only want oncClick
 
 function getUserInput(){
     let fieldCountNum = 0
@@ -161,8 +161,26 @@ function getUserInput(){
         fieldCountNum++
         let userSaidWhat = document.getElementById('field'+fieldCountNum).value
         console.log(userSaidWhat);
-
+        userInput.push(userSaidWhat);
+        console.log(userInput);
     }
+    count++
+    letsGo();
 }
+
+function resetFields(){
+    userInput = [];
+    //add dom change to remove child from .answer section
+
+}
+
+function letsGo(){
+    newQuestion();
+    createForm();    
+    resetFields();
+}
+
+letsGo();
+
 
 
