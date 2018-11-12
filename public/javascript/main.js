@@ -150,14 +150,19 @@ function createForm() {
     }
 
 }
-
+count++
 newQuestion();//tested, works
 createForm();//tested, works
-getUserInput();//tested works, needs a reset after submission as well, do this function with a parameter instead?
+getUserInput();//tested works gets all three values from dynamically created form fields
 
 function getUserInput(){
-    let userSaidWhat = document.getElementById('field'+fieldCount).value
-    console.log(userSaidWhat);
+    let fieldCountNum = 0
+    for (var i = 0; i<fieldCount; i++){
+        fieldCountNum++
+        let userSaidWhat = document.getElementById('field'+fieldCountNum).value
+        console.log(userSaidWhat);
+
+    }
 }
 
 
