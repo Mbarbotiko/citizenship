@@ -123,8 +123,8 @@ let userInput = [];
 
 let numQuestion = questions[count].Q
 let numFields = questions[count].N
-
-
+//count for number of fields to create for the question
+let fieldCount = 0;
 //function writes new question to the DOM
 function newQuestion() {
     document.querySelector('.question-section h1').innerHTML = questions[count].Q
@@ -133,7 +133,7 @@ function newQuestion() {
 
 //function to create a form, add attributes for retrieving user input later to push into user input array
 function createForm() {
-    let fieldCount = 0;
+   
     
     //user a loop to create multiple times based on the numQuestion variable, 
     for (var i = 0; i < questions[count].N; i++) {
@@ -143,13 +143,21 @@ function createForm() {
         let answerSection = document.querySelector('.answer-section')
         let input = document.createElement("input")
         input.setAttribute('type', 'text')
+        input.setAttribute('value', '')
         input.setAttribute('id', 'field' + fieldCount)
         answerSection.appendChild(input);
 
     }
 
 }
-count++
+
 newQuestion();//tested, works
 createForm();//tested, works
+getUserInput();//tested works, needs a reset after submission as well, do this function with a parameter instead?
+
+function getUserInput(){
+    let userSaidWhat = document.getElementById('field'+fieldCount).value
+    console.log(userSaidWhat);
+}
+
 
