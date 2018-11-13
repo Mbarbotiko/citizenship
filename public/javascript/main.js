@@ -112,34 +112,36 @@ const questions = [
 
 ];
 
-//count will keep count of what question we are on as we move through the test
-let count = 0
+
+
+    //count will keep count of what question we are on as we move through the test
+    let count = 0
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
 let userInput = [];
-//may need another array to hold user answer with all spaces trimmed and to lower case
+    //may need another array to hold user answer with all spaces trimmed and to lower case
 
 
-//shorter named variables to hold the place of the object in which we are in
+    //shorter named variables to hold the place of the object in which we are in
 
-let numQuestion = questions[count].Q
+    let numQuestion = questions[count].Q
 let numFields = questions[count].N
 //count for number of fields to create for the question
 let fieldCount = 0;
-//function writes new question to the DOM
-function newQuestion() {
+    //function writes new question to the DOM
+    function newQuestion() {
     document.querySelector('.question-section h1').innerHTML = questions[count].Q
 }
 
 
 //function to create a form, add attributes for retrieving user input later to push into user input array
 function createForm() {
-   
-    
+
+
     //user a loop to create multiple times based on the numQuestion variable, 
     for (var i = 0; i < questions[count].N; i++) {
-    
+
         fieldCount++;
-        
+
         let answerSection = document.querySelector('.answer-section')
         let input = document.createElement("input")
         input.setAttribute('type', 'text')
@@ -155,11 +157,11 @@ function createForm() {
 //createForm();//tested, works
 //getUserInput//tested works gets all three values from dynamically created form fields commenting out because its firing at load of page only want oncClick
 
-function getUserInput(){
+function getUserInput() {
     let fieldCountNum = 0
-    for (var i = 0; i<fieldCount; i++){
+    for (var i = 0; i < fieldCount; i++) {
         fieldCountNum++
-        let userSaidWhat = document.getElementById('field'+fieldCountNum).value
+        let userSaidWhat = document.getElementById('field' + fieldCountNum).value
         console.log(userSaidWhat);
         userInput.push(userSaidWhat);
         console.log(userInput);
@@ -173,7 +175,7 @@ function getUserInput(){
 
 //write a test for cross referencing the two arrays
 
-function resetFields(){
+function resetFields() {
     userInput = [];
     //add dom change to remove child from .answer section
     //https://www.w3schools.com/js/js_htmldom_nodes.asp
@@ -181,9 +183,9 @@ function resetFields(){
 
 }
 
-function letsGo(){
+function letsGo() {
     newQuestion();
-    createForm();    
+    createForm();
     resetFields();
 }
 
