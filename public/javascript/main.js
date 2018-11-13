@@ -168,9 +168,16 @@ function getUserInput(){
     letsGo();
 }
 
+
+//limit user input in field to # of characters
+
+//write a test for cross referencing the two arrays
+
 function resetFields(){
     userInput = [];
     //add dom change to remove child from .answer section
+    //https://www.w3schools.com/js/js_htmldom_nodes.asp
+    //can use replace if you want instead of overwriting each time
 
 }
 
