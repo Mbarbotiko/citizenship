@@ -99,9 +99,59 @@ const questions = [
         A: ['Amy Klobuchar', 'Tina Smith'],
         N: 1
     },
+    {
+        Q:'The House of Representatives has how many voting members',
+        A:['435','Four hundred thirty five', 'Four hundred thirty-five'],
+        N:1
+    },
+    {
+        Q:'We elect a US representiative for how many years?',
+        A:['2', 'Two'],
+        N:1
+    },
+    {
+        Q:'Name your US Representative',
+        A:['Keith Ellison'],
+        N:1
+    },
+    {
+        Q:'Who does a US Senator represent?',
+        A:['All people of the state', 'People of the state', 'People in the state', 'Everyone in the state'],
+        N:1
+    },
+    {
+        Q:'Why do some states have more Representatives than other states?',
+        A:['The states population', 'They have more people', 'Some states have more people', 'Based on population', "Population"],
+        N:1
+    },
+    {
+        Q:'We elect a President for how many years?',
+        A:['4','Four'],
+        N:1
+    },
+    {
+        Q:'In what month do we vote for President?',
+        A:['November', 'Nov'],
+        N:1
+    },
+    {
+        Q:'What is the name of the President of the United States now?',
+        A:['Donald Trump', 'Trump', "Donald J Trump"],
+        N:1
+    },
+    {
+        Q:'What is the name of the Vice President of the United States now?',
+        A:['Mike Pence', 'Pence', 'Michael R Pence', 'Michael Pence'],
+        N:1
+    },
+    {//30
+        Q:'If the President can no longer serve, who becomes President?',
+        A:['The Vice President', 'Vice President', 'Mike Pence', 'Michael Pence', 'Michael R Pence', 'Pence'],
+        N:1
+    },
 
 
-    // https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
+   
 
     // {
     //     Q:'',
@@ -111,6 +161,9 @@ const questions = [
 
 
 ];
+
+
+ // https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
 
 
 
