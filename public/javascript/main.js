@@ -365,3 +365,5 @@ button.setAttribute('onClick', "alert('whoa!')")
 console.log(button);
 }
 
+//use this function after initial screen to change the buttons attributes, change HTML first to say start the test then change the button from start to submit
+
