@@ -304,6 +304,7 @@ function createForm() {
         input.setAttribute('id', 'field' + fieldCount)
         answerSection.appendChild(input);
         console.log(input)
+        changeButtonAttr();
     }
 }
 
@@ -320,9 +321,10 @@ function getUserInput() {
         userInput.push(userSaidWhat);
         console.log(userInput);
     }
-    
+    console.log(currentQuestion)
     runQuestion();
     currentQuestion++
+    console.log(currentQuestion)
 }
 
 
@@ -344,9 +346,7 @@ function resetFields() {
     for (var i = 0; i < questions[currentQuestion].N; i++) {
         fieldDeleteCount++
         let fieldToRemove = document.getElementById('field'+fieldDeleteCount)
-        console.log(fieldToRemove);
         fieldToRemove.parentNode.removeChild(fieldToRemove)
-        console.log(answerSection);
     }
 }
 
@@ -358,5 +358,10 @@ function runQuestion() {
 }
 
 
-
+function changeButtonAttr(){
+let button = document.getElementById('submit')
+console.log(button);
+button.setAttribute('onClick', "alert('whoa!')")
+console.log(button);
+}
 
