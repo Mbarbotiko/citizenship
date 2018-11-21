@@ -1,4 +1,5 @@
 const questions = [
+    //run a spell check plug in :
     {
         Q: 'What is the supreme law of the land?',
         A: ['The Constitution'],
@@ -26,7 +27,7 @@ const questions = [
     },
     {
         Q: 'What is one right or freedom from the first ammendment?',
-        A: ['Speech', 'Religion', 'Assembly', 'Press', 'Petition the Government'],
+        A: ['Speech', 'Religion', 'Assembly', 'Press', 'Petition the Government', 'Freedom of speech', 'Freedom of religion', 'Freedom of the press', 'Freedom to petition'], //freedom of...
         N: 1
     },
     {
@@ -100,58 +101,163 @@ const questions = [
         N: 1
     },
     {
-        Q:'The House of Representatives has how many voting members',
-        A:['435','Four hundred thirty five', 'Four hundred thirty-five'],
-        N:1
+        Q: 'The House of Representatives has how many voting members',
+        A: ['435', 'Four hundred thirty five', 'Four hundred thirty-five'],
+        N: 1
     },
     {
-        Q:'We elect a US representiative for how many years?',
-        A:['2', 'Two'],
-        N:1
+        Q: 'We elect a US representiative for how many years?',
+        A: ['2', 'Two'],
+        N: 1
     },
     {
-        Q:'Name your US Representative',
-        A:['Keith Ellison'],
-        N:1
+        Q: 'Name your US Representative',
+        A: ['Keith Ellison'],
+        N: 1
     },
     {
-        Q:'Who does a US Senator represent?',
-        A:['All people of the state', 'People of the state', 'People in the state', 'Everyone in the state'],
-        N:1
+        Q: 'Who does a US Senator represent?',
+        A: ['All people of the state', 'People of the state', 'People in the state', 'Everyone in the state'],
+        N: 1
     },
     {
-        Q:'Why do some states have more Representatives than other states?',
-        A:['The states population', 'They have more people', 'Some states have more people', 'Based on population', "Population"],
-        N:1
+        Q: 'Why do some states have more Representatives than other states?',
+        A: ['The states population', 'They have more people', 'Some states have more people', 'Based on population', "Population"],
+        N: 1
     },
     {
-        Q:'We elect a President for how many years?',
-        A:['4','Four'],
-        N:1
+        Q: 'We elect a President for how many years?',
+        A: ['4', 'Four'],
+        N: 1
     },
     {
-        Q:'In what month do we vote for President?',
-        A:['November', 'Nov'],
-        N:1
+        Q: 'In what month do we vote for President?',
+        A: ['November', 'Nov'],
+        N: 1
     },
     {
-        Q:'What is the name of the President of the United States now?',
-        A:['Donald Trump', 'Trump', "Donald J Trump"],
-        N:1
+        Q: 'What is the name of the President of the United States now?',
+        A: ['Donald Trump', 'Trump', "Donald J Trump"],
+        N: 1
     },
     {
-        Q:'What is the name of the Vice President of the United States now?',
-        A:['Mike Pence', 'Pence', 'Michael R Pence', 'Michael Pence'],
-        N:1
+        Q: 'What is the name of the Vice President of the United States now?',
+        A: ['Mike Pence', 'Pence', 'Michael R Pence', 'Michael Pence'],
+        N: 1
     },
     {//30
-        Q:'If the President can no longer serve, who becomes President?',
-        A:['The Vice President', 'Vice President', 'Mike Pence', 'Michael Pence', 'Michael R Pence', 'Pence'],
-        N:1
+        Q: 'If the President can no longer serve, who becomes President?',
+        A: ['The Vice President', 'Vice President', 'Mike Pence', 'Michael Pence', 'Michael R Pence', 'Pence'],
+        N: 1
+    },
+    {
+        Q: 'If both the President and the Vice President can no longer serve, who becomes President?',
+        A: ['Speaker of the House', 'The speaker of the House'],
+        N: 1
+    },
+    {
+        Q: 'Who is the Commander in Chief of the military?',
+        A: ['The President', 'President'],
+        N: 1
+    },
+    {
+        Q: 'Who signs bills to become laws?',
+        A: ['The President', 'President'],
+        N: 1
+    },
+    {
+        Q: 'Who vetoes bills?',
+        A: ['The President', 'President'],
+        N: 1
+    },
+    {
+        Q: 'What does the Presidents Cabinet do?',
+        A: ['Advises the President'],
+        N: 1
+    },
+    {
+        Q: 'What are two Cabinet-level positions?',
+        A: ['Secretary of Agriculture', 'Secretary of Commerce', 'Secretary of Defense', 'Secretary of Education', 'Secretary of Energy', 'Secretary of Health and Human Services', 'Secretary of Homeland Security', 'Secretary of Housing and Urban Development', 'Secretary of the Interior', 'Secretary of Labor', 'Secretary of State', 'Secretary of Transportation', 'Secretary of Treasury', 'Secretary of Veterans Affairs', 'Attorney General', 'Vice President'],
+        N: 2
+    },
+    {
+        Q: 'What does the judicial branch do?',
+        A: ['reviews laws', 'explains laws', 'resolves disputes', 'resolves disagreements', 'decides if a law goes against the Constitution'],
+        N: 3
+    },
+    {
+        Q: 'What is the highest court in the United States?',
+        A: ['The Supreme Court', "Supreme Court"],
+        N: 1
+    },
+    {
+        Q: 'How many justices are on the Supreme Court?',
+        A: ['9', 'Nine'],
+        N: 1
+    },
+    {//40
+        Q: 'Who is the Chief Justice of the United States now?',
+        A: ['John Roberts', 'John G Roberts Jr'],
+        N: 1
+    },
+    {
+        Q: 'Under our Constitution, some powers belong to the federal government. What is one power of the federal government?',
+        A: ['Print money', 'Declare war', 'Create an army', 'Make treaties', ' To print money', 'To declare war', 'To create an army', 'To make treaties'],
+        N: 1
+    },
+    {
+        Q: 'Under our Constituion, some powers belong to the states. What is one power of the states?',
+        A: ['Provide schooling and education', 'Provide protection', 'Police', 'Provide safety', 'Fire deparments', 'Give a drivers license', 'Approve zoning and land use'],
+        N: 1
+    },
+    {
+        Q: 'Who is the Governor of your state now?',
+        A: ['Mark Dayton'],
+        N: 1
+    },
+    {
+        Q: 'What is the capital of your state?',
+        A: ['St Paul', 'Saint Paul'],
+        N: 1
+    },
+    {
+        Q: 'What are two major political parties in the United States',
+        A: ['Democratic', 'Republican', 'Democrat'],
+        N: 2
+    },
+    {
+        Q: 'What is the political party of the President now?',
+        A: ['Republican','Republican Party'],
+        N: 1
+    },
+    {
+        Q: 'What is the name of the Speaker of the House of Representatives now?',
+        A: ['Paul Ryan','Paul D Ryan'],
+        N: 1
+    },
+
+    {//48
+        Q: 'There are four ammendements to the Constitution aout who can vote. Describe one of them',
+        A: [],
+        N: 0
+    },
+
+    {
+        Q: '',
+        A: [],
+        N: 0
+    },
+
+    {
+        Q: '',
+        A: [],
+        N: 0
     },
 
 
-   
+
+
+
 
     // {
     //     Q:'',
@@ -163,25 +269,25 @@ const questions = [
 ];
 
 
- // https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
+// https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
 
 
 
-    //count will keep count of what question we are on as we move through the test
-    let count = 0
+//count will keep count of what question we are on as we move through the test
+let count = 0
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
 let userInput = [];
-    //may need another array to hold user answer with all spaces trimmed and to lower case
+//may need another array to hold user answer with all spaces trimmed and to lower case
 
 
-    //shorter named variables to hold the place of the object in which we are in
+//shorter named variables to hold the place of the object in which we are in
 
-    let numQuestion = questions[count].Q
+let numQuestion = questions[count].Q
 let numFields = questions[count].N
 //count for number of fields to create for the question
 let fieldCount = 0;
-    //function writes new question to the DOM
-    function newQuestion() {
+//function writes new question to the DOM
+function newQuestion() {
     document.querySelector('.question-section h1').innerHTML = questions[count].Q
 }
 
@@ -226,7 +332,13 @@ function getUserInput() {
 
 //limit user input in field to # of characters
 
+//ensure user doesnt enter duplicate answer in all fields
+
+//prevent user from using any punctuation or filter it out once it hits the user answer array
+
 //write a test for cross referencing the two arrays
+
+//For answers that are the same but phrased differently: put them within their own array so that duplicates arent entered or a different version of the same answer isnt given by the user
 
 function resetFields() {
     userInput = [];
