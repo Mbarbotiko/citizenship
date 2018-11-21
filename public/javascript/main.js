@@ -242,17 +242,17 @@ const questions = [
         N: 0
     },
 
-    {
-        Q: '',
-        A: [],
-        N: 0
-    },
+    // {
+    //     Q: '',
+    //     A: [],
+    //     N: 0
+    // },
 
-    {
-        Q: '',
-        A: [],
-        N: 0
-    },
+    // {
+    //     Q: '',
+    //     A: [],
+    //     N: 0
+    // },
 
 
 
@@ -273,8 +273,8 @@ const questions = [
 
 
 
-//count will keep count of what question we are on as we move through the test
-let count = 0
+//currentQuestion will keep currentQuestion of what question we are on as we move through the test
+let currentQuestion = 0
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
 let userInput = [];
 //may need another array to hold user answer with all spaces trimmed and to lower case
@@ -282,34 +282,29 @@ let userInput = [];
 
 //shorter named variables to hold the place of the object in which we are in
 
-let numQuestion = questions[count].Q
-let numFields = questions[count].N
-//count for number of fields to create for the question
+// let numQuestion = questions[currentQuestion].Q
+// let numFields = questions[currentQuestion].N
+//currentQuestion for number of fields to create for the question
 let fieldCount = 0;
 //function writes new question to the DOM
 function newQuestion() {
-    document.querySelector('.question-section h1').innerHTML = questions[count].Q
+    document.querySelector('.question-section h1').innerHTML = questions[currentQuestion].Q
 }
 
-
 //function to create a form, add attributes for retrieving user input later to push into user input array
+
 function createForm() {
-
-
-    //user a loop to create multiple times based on the numQuestion variable, 
-    for (var i = 0; i < questions[count].N; i++) {
-
+    //user a loop to create multiple times based on the  variable, 
+    for (var i = 0; i < questions[currentQuestion].N; i++) {
         fieldCount++;
-
         let answerSection = document.querySelector('.answer-section')
         let input = document.createElement("input")
         input.setAttribute('type', 'text')
         input.setAttribute('value', '')
         input.setAttribute('id', 'field' + fieldCount)
         answerSection.appendChild(input);
-
+        console.log(input)
     }
-
 }
 
 //newQuestion();//tested, works
@@ -325,8 +320,9 @@ function getUserInput() {
         userInput.push(userSaidWhat);
         console.log(userInput);
     }
-    count++
-    letsGo();
+    
+    runQuestion();
+    currentQuestion++
 }
 
 
@@ -343,18 +339,24 @@ function getUserInput() {
 function resetFields() {
     userInput = [];
     //add dom change to remove child from .answer section
-    //https://www.w3schools.com/js/js_htmldom_nodes.asp
-    //can use replace if you want instead of overwriting each time
-
+    let fieldDeleteCount = 0;
+    let answerSection = document.querySelector('.answer-section')
+    for (var i = 0; i < questions[currentQuestion].N; i++) {
+        fieldDeleteCount++
+        let fieldToRemove = document.getElementById('field'+fieldDeleteCount)
+        console.log(fieldToRemove);
+        fieldToRemove.parentNode.removeChild(fieldToRemove)
+        console.log(answerSection);
+    }
 }
 
-function letsGo() {
+// do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
+
+function runQuestion() {
     newQuestion();
     createForm();
-    resetFields();
 }
 
-letsGo();
 
 
 
