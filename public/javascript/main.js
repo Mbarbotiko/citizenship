@@ -227,12 +227,12 @@ const questions = [
     },
     {
         Q: 'What is the political party of the President now?',
-        A: ['Republican','Republican Party'],
+        A: ['Republican', 'Republican Party'],
         N: 1
     },
     {
         Q: 'What is the name of the Speaker of the House of Representatives now?',
-        A: ['Paul Ryan','Paul D Ryan'],
+        A: ['Paul Ryan', 'Paul D Ryan'],
         N: 1
     },
 
@@ -296,47 +296,26 @@ function newQuestion() {
 function createForm() {
     //user a loop to create multiple times based on the  variable, 
     for (var i = 0; i < questions[currentQuestion].N; i++) {
-        fieldCount++;
+        fieldCount++
         let answerSection = document.querySelector('.answer-section')
         let input = document.createElement("input")
         input.setAttribute('type', 'text')
         input.setAttribute('value', '')
         input.setAttribute('id', 'field' + fieldCount)
         answerSection.appendChild(input);
-        console.log(input)
-        changeButtonAttr();
     }
 }
-
-//newQuestion();//tested, works
-//createForm();//tested, works
-//getUserInput//tested works gets all three values from dynamically created form fields commenting out because its firing at load of page only want oncClick
 
 function getUserInput() {
     let fieldCountNum = 0
     for (var i = 0; i < fieldCount; i++) {
         fieldCountNum++
         let userSaidWhat = document.getElementById('field' + fieldCountNum).value
-        console.log(userSaidWhat);
         userInput.push(userSaidWhat);
-        console.log(userInput);
     }
-    console.log(currentQuestion)
-    runQuestion();
-    currentQuestion++
-    console.log(currentQuestion)
+    // runQuestion();
+    // currentQuestion++
 }
-
-
-//limit user input in field to # of characters
-
-//ensure user doesnt enter duplicate answer in all fields
-
-//prevent user from using any punctuation or filter it out once it hits the user answer array
-
-//write a test for cross referencing the two arrays
-
-//For answers that are the same but phrased differently: put them within their own array so that duplicates arent entered or a different version of the same answer isnt given by the user
 
 function resetFields() {
     userInput = [];
@@ -345,7 +324,7 @@ function resetFields() {
     let answerSection = document.querySelector('.answer-section')
     for (var i = 0; i < questions[currentQuestion].N; i++) {
         fieldDeleteCount++
-        let fieldToRemove = document.getElementById('field'+fieldDeleteCount)
+        let fieldToRemove = document.getElementById('field' + fieldDeleteCount)
         fieldToRemove.parentNode.removeChild(fieldToRemove)
     }
 }
@@ -357,13 +336,25 @@ function runQuestion() {
     createForm();
 }
 
-
-function changeButtonAttr(){
-let button = document.getElementById('submit')
-console.log(button);
-button.setAttribute('onClick', "alert('whoa!')")
-console.log(button);
+function newButton() {
+    let deleteButton = document.getElementById('start')
+    let buttonSection = document.querySelector('.enter-buttons')
+    deleteButton.parentNode.removeChild(deleteButton)
+    let button = document.createElement('button')
+    button.setAttribute('type', 'button')
+    button.setAttribute('id', 'submit')
+    button.setAttribute('onClick','createFunction()')
+    button.innerHTML = 'Submit'
+    buttonSection.appendChild(button)
+    console.log(button)
 }
 
-//use this function after initial screen to change the buttons attributes, change HTML first to say start the test then change the button from start to submit
+//limit user input in field to # of characters
 
+//ensure user doesnt enter duplicate answer in all fields
+
+//prevent user from using any punctuation or filter it out once it hits the user answer array
+
+//write a test for cross referencing the two arrays
+
+//For answers that are the same but phrased differently: put them within their own array so that duplicates arent entered or a different version of the same answer isnt given by the user
