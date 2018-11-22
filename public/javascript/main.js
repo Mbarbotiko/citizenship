@@ -288,41 +288,42 @@ function createForm() {
     //user a loop to create multiple times based on the  variable, 
     for (var i = 0; i < questions[currentQuestion].N; i++) {
         fieldCount++
-        console.log(fieldCount)
         let answerSection = document.querySelector('.answer-section')
         let input = document.createElement("input")
-        console.log(input)
         input.setAttribute('type', 'text')
         input.setAttribute('value', '')
         input.setAttribute('id', 'field' + fieldCount)
         answerSection.appendChild(input);
-        console.log(input)
     }
-    fieldCount = 0;
+
 }
 
 function getUserInput() {
-    let fieldCountNum = 0
     for (var i = 0; i < fieldCount; i++) {
+        console.log(fieldCount)
         fieldCountNum++
+        console.log(fieldCountNum)
         let userSaidWhat = document.getElementById('field' + fieldCountNum).value
         userInput.push(userSaidWhat);
         console.log(userInput)
+    }
+
+}
+
+function evaluateUserInput() {
+    console.log(userInput)
+    for (var i = 0; i < userInput; i++) {
+        console.log(userInput[i]);
     }
 }
 
 function resetFields() {
     userInput = [];
     let fieldDeleteCount = 0;
-    console.log(fieldDeleteCount)
-    let answerSection = document.querySelector('.answer-section')
     let offsetCurrentQ = currentQuestion - 1
-    console.log(offsetCurrentQ)
     for (var i = 0; i < questions[offsetCurrentQ].N; i++) {
         fieldDeleteCount++
-        console.log(fieldDeleteCount)
         let fieldToRemove = document.getElementById('field' + fieldDeleteCount)
-        console.log(fieldToRemove)
         fieldToRemove.parentNode.removeChild(fieldToRemove)
     }
 }
@@ -342,12 +343,13 @@ function newButton() {
     button.setAttribute('onClick', 'nextQuestion()')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
-    console.log(button)
 }
 
 function nextQuestion() {
     currentQuestion++
     getUserInput();
+    fieldCount = 0
+    evaluateUserInput();
     resetFields()
     newQuestion();
     createForm();
