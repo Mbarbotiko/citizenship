@@ -277,33 +277,28 @@ const questions = [
 let currentQuestion = 0
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
 let userInput = [];
-//may need another array to hold user answer with all spaces trimmed and to lower case
-
-
-//shorter named variables to hold the place of the object in which we are in
-
-// let numQuestion = questions[currentQuestion].Q
-// let numFields = questions[currentQuestion].N
-//currentQuestion for number of fields to create for the question
 let fieldCount = 0;
+
 //function writes new question to the DOM
 function newQuestion() {
     document.querySelector('.question-section h1').innerHTML = questions[currentQuestion].Q
 }
 
-//function to create a form, add attributes for retrieving user input later to push into user input array
-
 function createForm() {
     //user a loop to create multiple times based on the  variable, 
     for (var i = 0; i < questions[currentQuestion].N; i++) {
         fieldCount++
+        console.log(fieldCount)
         let answerSection = document.querySelector('.answer-section')
         let input = document.createElement("input")
+        console.log(input)
         input.setAttribute('type', 'text')
         input.setAttribute('value', '')
         input.setAttribute('id', 'field' + fieldCount)
         answerSection.appendChild(input);
+        console.log(input)
     }
+    fieldCount = 0;
 }
 
 function getUserInput() {
@@ -312,41 +307,50 @@ function getUserInput() {
         fieldCountNum++
         let userSaidWhat = document.getElementById('field' + fieldCountNum).value
         userInput.push(userSaidWhat);
+        console.log(userInput)
     }
-    // runQuestion();
-    // currentQuestion++
 }
 
 function resetFields() {
     userInput = [];
-    //add dom change to remove child from .answer section
     let fieldDeleteCount = 0;
+    console.log(fieldDeleteCount)
     let answerSection = document.querySelector('.answer-section')
-    for (var i = 0; i < questions[currentQuestion].N; i++) {
+    let offsetCurrentQ = currentQuestion - 1
+    console.log(offsetCurrentQ)
+    for (var i = 0; i < questions[offsetCurrentQ].N; i++) {
         fieldDeleteCount++
+        console.log(fieldDeleteCount)
         let fieldToRemove = document.getElementById('field' + fieldDeleteCount)
+        console.log(fieldToRemove)
         fieldToRemove.parentNode.removeChild(fieldToRemove)
     }
 }
 
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
 
-function runQuestion() {
-    newQuestion();
-    createForm();
-}
 
 function newButton() {
+    newQuestion();
+    createForm();
     let deleteButton = document.getElementById('start')
     let buttonSection = document.querySelector('.enter-buttons')
     deleteButton.parentNode.removeChild(deleteButton)
     let button = document.createElement('button')
     button.setAttribute('type', 'button')
     button.setAttribute('id', 'submit')
-    button.setAttribute('onClick','createFunction()')
+    button.setAttribute('onClick', 'nextQuestion()')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
     console.log(button)
+}
+
+function nextQuestion() {
+    currentQuestion++
+    getUserInput();
+    resetFields()
+    newQuestion();
+    createForm();
 }
 
 //limit user input in field to # of characters
