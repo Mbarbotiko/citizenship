@@ -299,23 +299,36 @@ function createForm() {
 }
 
 function getUserInput() {
+    let fieldCountNum = 0
     for (var i = 0; i < fieldCount; i++) {
-        console.log(fieldCount)
         fieldCountNum++
-        console.log(fieldCountNum)
         let userSaidWhat = document.getElementById('field' + fieldCountNum).value
         userInput.push(userSaidWhat);
-        console.log(userInput)
     }
 
 }
 
 function evaluateUserInput() {
-    console.log(userInput)
-    for (var i = 0; i < userInput; i++) {
-        console.log(userInput[i]);
+    for (var i = 0; i < userInput.length; i++) {
+        let string = userInput[i]
+        let stringLow = string.toLowerCase().trim();
+        console.log(stringLow)
+        for (var j = 0; j < stringLow.length; j++) {
+            console.log(stringLow[j]);
+            //in this code evaluate what is kept and thrown out characters like '+-. white space use same logic for the correct answers to check against
+        }
+
+        //   https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+
     }
 }
+
+
+function correctAnswer(){
+    return correct;
+}
+
+console.log(correctAnswer('yes'))
 
 function resetFields() {
     userInput = [];
@@ -350,9 +363,9 @@ function nextQuestion() {
     getUserInput();
     fieldCount = 0
     evaluateUserInput();
-    resetFields()
-    newQuestion();
-    createForm();
+    //resetFields()
+    //newQuestion();
+    //createForm();
 }
 
 //limit user input in field to # of characters
