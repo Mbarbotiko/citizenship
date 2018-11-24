@@ -362,10 +362,10 @@ function nextQuestion() {
     currentQuestion++
     getUserInput();
     fieldCount = 0
-    evaluateUserInput();
-    //resetFields()
-    //newQuestion();
-    //createForm();
+    // evaluateUserInput();
+    resetFields()
+    newQuestion();
+    createForm();
 }
 
 //limit user input in field to # of characters
