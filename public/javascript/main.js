@@ -532,6 +532,9 @@ let fieldCount = 0;
 let userString = [];
 let answerString = [];
 let ansToEval = questions[currentQuestion].A
+const invalid = ['`','~','!','@','#','$','%','^','&','*','(',')','-','_','=','+','{','[','}',']','|',';',':',"'",'"','<',',','>','.','/','?',' ']
+
+//\
 
 //function writes new question to the DOM
 function newQuestion() {
@@ -564,15 +567,22 @@ function getUserInput() {
 }
 
 function filterString(a) {
+    let space = ' '
     for (var i = 0; i < a.length; i++) {
         let string = a[i]
         let stringLow = string.toLowerCase().trim();
         let cleanString = ''
-        for (var j = 0; j < stringLow.length; j++) {
-            cleanString += stringLow[j];
-            // console.log(cleanString)
 
-            //in this code evaluate what is kept and thrown out characters like '+-. white space use same logic for the correct answers to check against
+        for (var j = 0; j < stringLow.length; j++) {
+            if (stringLow[j] === space) {
+                console.log('threw out this space')
+            } else {
+                cleanString += stringLow[j];
+                console.log(cleanString)
+                // console.log(cleanString)
+
+                //in this code evaluate what is kept and thrown out characters like '+-. white space use same logic for the correct answers to check against
+            }
 
         }
 
