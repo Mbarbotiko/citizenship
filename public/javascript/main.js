@@ -532,8 +532,10 @@ let fieldCount = 0;
 let userString = [];
 let answerString = [];
 let ansToEval = questions[currentQuestion].A
-const invalid = ['`','~','!','@','#','$','%','^','&','*','(',')','-','_','=','+','{','[','}',']','|',';',':',"'",'"','<',',','>','.','/','?',' ']
+const invalid = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '{', '[', '}', ']', '|', ';', ':', "'", '"', '<', ',', '>', '.', '/', '?', ' ']
 
+let cleanString = '';
+let eval = null;
 //\
 
 //function writes new question to the DOM
@@ -566,34 +568,44 @@ function getUserInput() {
 
 }
 
+function invalidFilter(x) {
+    for (var i = 0; i < invalid.length; i++) {
+        if (x === invalid[i]) {
+            eval = false;
+            break;
+            
+        } else {
+            eval = true;
+        }
+    }
+    if (eval === true) {
+        cleanString += x
+        console.log(cleanString)
+    }
+}
+
 function filterString(a) {
-    let space = ' '
     for (var i = 0; i < a.length; i++) {
         let string = a[i]
         let stringLow = string.toLowerCase().trim();
-        let cleanString = ''
-
         for (var j = 0; j < stringLow.length; j++) {
-            if (stringLow[j] === space) {
-                console.log('threw out this space')
-            } else {
-                cleanString += stringLow[j];
-                console.log(cleanString)
-                // console.log(cleanString)
+            invalidFilter(stringLow[j])
 
-                //in this code evaluate what is kept and thrown out characters like '+-. white space use same logic for the correct answers to check against
-            }
 
+            // console.log(stringLow[i])
+            // cleanString += stringLow[j];
+            // console.log(cleanString)
+            //this code runs through every letter in the userentry field as well as the answer key after we evaluate these strings we will push into another array below to evaluate the answers against eachother.  FILTER then EVAL.
         }
 
         if (a === userInput) {
             userString.push(cleanString)
-            console.log(userString);
+            // console.log(userString);
 
         } else if (a === ansToEval) {
 
             answerString.push(cleanString)
-            console.log(answerString);
+            // console.log(answerString);
 
         } else {
             console.log('Something went wrong, input argument isnt userInput or answerInput')
@@ -622,6 +634,7 @@ function resetFields() {
     userInput = [];
     userString = [];
     answerString = [];
+    cleanString = '';
     let fieldDeleteCount = 0;
     let offsetCurrentQ = currentQuestion - 1
     for (var i = 0; i < questions[offsetCurrentQ].N; i++) {
@@ -655,7 +668,7 @@ function nextQuestion() {
     getUserInput();
     fieldCount = 0
     filterString(userInput);
-    filterString(ansToEval);
+    // filterString(ansToEval);
     resetFields()
     newQuestion();
     createForm();
