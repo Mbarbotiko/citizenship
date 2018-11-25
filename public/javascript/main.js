@@ -591,15 +591,15 @@ function filterString(a) {
         }
         if (a === userInput) {
             userString.push(cleanString)
-            console.log(userString);
             cleanString = '';
         } else if (a === ansToEval) {
             answerString.push(cleanString)
-            console.log(answerString);
             cleanString = '';
         } else {
             console.log('Something went wrong, input argument isnt userInput or answerInput')
         }
+       
+
     }
 }
 
@@ -658,6 +658,8 @@ function nextQuestion() {
     fieldCount = 0
     filterString(userInput);
     filterString(ansToEval);
+    alert(userString+' this was your answer');
+    alert(answerString+' These are acceptable answers');
     resetFields()
     newQuestion();
     createForm();
