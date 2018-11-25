@@ -7,7 +7,7 @@ const questions = [
     },
     {
         Q: 'What does the Constitution do?',
-        A: ['Sets up the government', 'Defines the government', 'Protects basic rights of Americans'],
+        A: ['Sets up the government', 'Defines the government', 'Protects basic rights of Americans', 'Protects rights of citizens', 'Protects rights of Americans'],
         N: 3
     },
     {
@@ -22,7 +22,7 @@ const questions = [
     },
     {//5
         Q: 'What do we call the first ten amendments to the Constitution?',
-        A: ['The Bill of Rights'],
+        A: ['The Bill of Rights', 'Bill of Rights'],
         N: 1
     },
     {
@@ -553,8 +553,11 @@ function createForm() {
         input.setAttribute('value', '')
         input.setAttribute('id', 'field' + fieldCount)
         answerSection.appendChild(input);
+        //access text node here and check for user input whether or not in field, eval fields will be the function this is added to later
     }
 }
+
+
 
 function getUserInput() {
     let fieldCountNum = 0
@@ -631,11 +634,23 @@ function newButton() {
     button.setAttribute('type', 'button')
     button.setAttribute('id', 'submit')
     button.setAttribute('onClick', 'nextQuestion()')
+    button.setAttribute('disabled', 'true')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
+    evalFields();
 }
 
+function evalFields() {
+    let button = document.getElementById('submit').disabled = false;
+
+    console.log(button)
+
+}
+
+
+
 function nextQuestion() {
+
     currentQuestion++;
     printQuestionNum++
     ansToEval = questions[currentQuestion - 1].A
@@ -646,6 +661,7 @@ function nextQuestion() {
     resetFields()
     newQuestion();
     createForm();
+ 
 }
 
 //limit user input in field to # of characters
