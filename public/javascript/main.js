@@ -554,7 +554,6 @@ function createForm() {
         input.setAttribute('id', 'field' + fieldCount)
         answerSection.appendChild(input);
     }
-
 }
 
 function getUserInput() {
@@ -563,9 +562,7 @@ function getUserInput() {
         fieldCountNum++
         let userSaidWhat = document.getElementById('field' + fieldCountNum).value
         userInput.push(userSaidWhat);
-
     }
-
 }
 
 function invalidFilter(x) {
@@ -573,62 +570,38 @@ function invalidFilter(x) {
         if (x === invalid[i]) {
             eval = false;
             break;
-            
         } else {
             eval = true;
         }
     }
     if (eval === true) {
-        cleanString += x
-        console.log(cleanString)
+        cleanString += x;
     }
 }
 
 function filterString(a) {
+    cleanString = '';
     for (var i = 0; i < a.length; i++) {
         let string = a[i]
         let stringLow = string.toLowerCase().trim();
         for (var j = 0; j < stringLow.length; j++) {
             invalidFilter(stringLow[j])
-
-
-            // console.log(stringLow[i])
-            // cleanString += stringLow[j];
-            // console.log(cleanString)
-            //this code runs through every letter in the userentry field as well as the answer key after we evaluate these strings we will push into another array below to evaluate the answers against eachother.  FILTER then EVAL.
         }
-
         if (a === userInput) {
             userString.push(cleanString)
-            // console.log(userString);
-
+            console.log(userString);
         } else if (a === ansToEval) {
-
             answerString.push(cleanString)
-            // console.log(answerString);
-
+            console.log(answerString);
         } else {
             console.log('Something went wrong, input argument isnt userInput or answerInput')
         }
-
-
-
-        //   https://www.w3schools.com/jsref/jsref_obj_regexp.asp
-        // userString.push(stringLow[j])
-        // console.log(userString)
     }
 }
 
 function evaluateAnswer(a, b) {
 
 }
-
-
-// function correctAnswer() {
-//     return correct;
-// }
-
-// console.log(correctAnswer('yes'))
 
 function resetFields() {
     userInput = [];
@@ -668,7 +641,7 @@ function nextQuestion() {
     getUserInput();
     fieldCount = 0
     filterString(userInput);
-    // filterString(ansToEval);
+    filterString(ansToEval);
     resetFields()
     newQuestion();
     createForm();
@@ -678,7 +651,6 @@ function nextQuestion() {
 
 //ensure user doesnt enter duplicate answer in all fields
 
-//prevent user from using any punctuation or filter it out once it hits the user answer array
 
 //write a test for cross referencing the two arrays
 
