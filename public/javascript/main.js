@@ -65,12 +65,12 @@ const questions = [
         A: ['Congress', 'Legislative', 'President', 'Executive', 'The Courts', 'Judicial'],
         N: 1
     },
-    {//15
+    {
         Q: 'What stops one branch of government from becoming too powerful?',
         A: ['Checks and balances', 'Separation of powers'],
         N: 2
     },
-    {
+    {//15
         Q: 'Who is in charge of the executive branch?',
         A: ['The President', 'President'],
         N: 1
@@ -102,7 +102,7 @@ const questions = [
     },
     {
         Q: 'The House of Representatives has how many voting members',
-        A: ['435', 'Four hundred thirty five', 'Four hundred thirty-five'],
+        A: ['435', 'Four hundred thirty five'],
         N: 1
     },
     {
@@ -120,7 +120,7 @@ const questions = [
         A: ['All people of the state', 'People of the state', 'People in the state', 'Everyone in the state'],
         N: 1
     },
-    {
+    {//25
         Q: 'Why do some states have more Representatives than other states?',
         A: ['The states population', 'They have more people', 'Some states have more people', 'Based on population', "Population"],
         N: 1
@@ -170,7 +170,7 @@ const questions = [
         A: ['The President', 'President'],
         N: 1
     },
-    {
+    {//35
         Q: 'What does the Presidents Cabinet do?',
         A: ['Advises the President'],
         N: 1
@@ -220,7 +220,7 @@ const questions = [
         A: ['St Paul', 'Saint Paul'],
         N: 1
     },
-    {
+    {//45
         Q: 'What are two major political parties in the United States',
         A: ['Democratic', 'Republican', 'Democrat'],
         N: 2
@@ -236,7 +236,7 @@ const questions = [
         N: 1
     },
 
-    {//48
+    {
         Q: 'There are four ammendements to the Constitution about who can vote. Describe one of them',
         A: ['Citizens 18 and older', 'Citizens eighteen and older', 'You dont have to pay to vote', 'You dont have to pay a poll tax to vote', 'Any citizen can vote', 'A male citizen of any race can vote', 'Women and men can vote'],
         N: 1
@@ -246,7 +246,7 @@ const questions = [
         A: ['Serve on a jury', 'Vote in a federal election'],
         N: 1
     },
-    {
+    {//50
         Q: 'Name one right only for United States citizens',
         A: ['Vote in a federal election', 'Run for federal office'],
         N: 1
@@ -271,7 +271,7 @@ const questions = [
         A: ['18', 'Eighteen', '18 or older', 'Eighteen or older'],
         N: 1
     },
-    {
+    {//55
         Q: 'What are two ways that Americans can participate in their democracy?',
         A: ['Vote', 'Join a political party', 'Help with a campaign', 'Join a civic group', 'Join a community group', 'Give an elected official your opinion on an issue', 'Call Senators and Representatives', 'Publicly support or oppose an issue or policy', 'Run for office', 'Write to a newspaper'],
         N: 2
@@ -323,7 +323,7 @@ const questions = [
         A: ['New Hampshire', 'Massachusetts', 'Rhode Island', 'Connecticut', 'New York', 'New Jersey', 'Pennsylvania', 'Delaware', 'Maryland', 'Virginia', 'North Carolina', 'South Carolina', 'Georgia'],
         N: 3
     },
-    {
+    {//65
         Q: 'What happened at the Constitutional Convention?',
         A: ['The Constitution was written', 'The Founding Fathers wrote the Constitution'],
         N: 1
@@ -348,7 +348,7 @@ const questions = [
         A: ['George Washington', 'Washington'],
         N: 1
     },
-    {
+    {//70
         Q: 'Who was the first President?',
         A: ['George Washington', 'Washington'],
         N: 1
@@ -373,13 +373,19 @@ const questions = [
         A: ['Slavery', 'Economic reasons', 'States rights'],
         N: 1
     },
-    {
+    {//75
         Q: 'What was one important thing that Abraham Lincoln did?',
         A: ['Freed the slaves', 'Emancipation Proclamation', 'Saved the Union', 'Preserved the Union', 'Led the United States during the Civil War', 'Let the US during the Civil War'],
         N: 1
     },
     {
-        Q: 'What did Susan B ANthony do?',
+        Q: 'What did the Emancipation Proclamation do?',
+        A: ['Freed the slaves', 'Freed slaves in the Confederacy', 'Fred slaved in the Confederate states', 'Freed slaves in most Southern states'],
+        N: 1
+
+    },
+    {
+        Q: 'What did Susan B Anthony do?',
         A: ['Fought for womens rights', 'Fought for Civil rights'],
         N: 2
     },
@@ -419,7 +425,7 @@ const questions = [
         A: ['Civil rights movement', 'Civil rights'],
         N: 1
     },
-    {
+    {//85
         Q: 'What did Martin Luther King Jr do?',
         A: ['Fought for civil rights', 'Worked for equality for all Americans'],
         N: 2
@@ -444,7 +450,7 @@ const questions = [
         A: ['Pacific', 'Pacific Ocean'],
         N: 1
     },
-    {
+    {//90
         Q: 'What ocean is on the East Coast of the United States?',
         A: ['Atlantic', 'Atlantic Ocean'],
         N: 1
@@ -469,7 +475,7 @@ const questions = [
         A: ['Washington DC'],
         N: 1
     },
-    {
+    {//95
         Q: 'Where is the Status of Liberty?',
         A: ['New York', 'New York Harbor', 'Liberty Island', 'New Jersey', 'Near New York City', 'On the Hudson River'],
         N: 1
@@ -501,7 +507,7 @@ const questions = [
         Q: 'Name two national US holidays',
         A: ['New Years Day', 'Martin Luther King Jr Day', 'Presidents Day', 'Memorial Day', 'Independence Day', 'Labor Day', 'Columbus Day', 'Veterans Day', 'Thanksgiving', 'Christmas'],
         N: 2
-    },
+    }
 
     // {
     //     Q:'',
@@ -517,14 +523,16 @@ const questions = [
 
 
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
-let currentQuestion = 0
+let currentQuestion = 0;
+let printQuestionNum = 1;
+
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
 let userInput = [];
 let fieldCount = 0;
 
 //function writes new question to the DOM
 function newQuestion() {
-    document.querySelector('.question-section h1').innerHTML = questions[currentQuestion].Q
+    document.querySelector('.question-section h1').innerHTML = printQuestionNum+'. '+ questions[currentQuestion].Q
 }
 
 function createForm() {
@@ -602,7 +610,9 @@ function newButton() {
 }
 
 function nextQuestion() {
-    currentQuestion++
+    currentQuestion++;
+    printQuestionNum++
+    console.log(printQuestionNum);
     getUserInput();
     fieldCount = 0
     // evaluateUserInput();
