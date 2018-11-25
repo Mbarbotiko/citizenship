@@ -580,7 +580,6 @@ function invalidFilter(x) {
 }
 
 function filterString(a) {
-    cleanString = '';
     for (var i = 0; i < a.length; i++) {
         let string = a[i]
         let stringLow = string.toLowerCase().trim();
@@ -590,9 +589,11 @@ function filterString(a) {
         if (a === userInput) {
             userString.push(cleanString)
             console.log(userString);
+            cleanString = '';
         } else if (a === ansToEval) {
             answerString.push(cleanString)
             console.log(answerString);
+            cleanString = '';
         } else {
             console.log('Something went wrong, input argument isnt userInput or answerInput')
         }
