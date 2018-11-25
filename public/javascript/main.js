@@ -530,11 +530,12 @@ let printQuestionNum = 1;
 let userInput = [];
 let fieldCount = 0;
 let userString = [];
-let answerString =[];
+let answerString = [];
+
 
 //function writes new question to the DOM
 function newQuestion() {
-    document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q
+    document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
 }
 
 function createForm() {
@@ -557,14 +558,14 @@ function getUserInput() {
         fieldCountNum++
         let userSaidWhat = document.getElementById('field' + fieldCountNum).value
         userInput.push(userSaidWhat);
-        console.log(userInput)
+       
     }
 
 }
 
-function filterString() {
-    for (var i = 0; i < userInput.length; i++) {
-        let string = userInput[i]
+function filterString(a) {
+    for (var i = 0; i < a.length; i++) {
+        let string = a[i]
         let stringLow = string.toLowerCase().trim();
         let cleanString = ''
         for (var j = 0; j < stringLow.length; j++) {
@@ -575,8 +576,19 @@ function filterString() {
 
         }
 
-        userString.push(cleanString)
-        console.log(userString);
+        if (a === userInput) {
+            userString.push(cleanString)
+ 
+        } else if (a === questions[currentQuestion-1].A) {
+
+            answerString.push(cleanString)
+            console.log(answerString);
+
+        } else {
+            console.log('Something went wrong, input argument isnt userInput or answerInput')
+        }
+
+
 
         //   https://www.w3schools.com/jsref/jsref_obj_regexp.asp
         // userString.push(stringLow[j])
@@ -598,6 +610,7 @@ function evaluateAnswer(a, b) {
 function resetFields() {
     userInput = [];
     userString = [];
+    answerString = [];
     let fieldDeleteCount = 0;
     let offsetCurrentQ = currentQuestion - 1
     for (var i = 0; i < questions[offsetCurrentQ].N; i++) {
@@ -629,7 +642,8 @@ function nextQuestion() {
     printQuestionNum++
     getUserInput();
     fieldCount = 0
-    filterString();
+    filterString(userInput);
+    filterString(questions[currentQuestion-1].A);
     resetFields()
     newQuestion();
     createForm();
