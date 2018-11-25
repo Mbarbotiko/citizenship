@@ -529,10 +529,12 @@ let printQuestionNum = 1;
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
 let userInput = [];
 let fieldCount = 0;
+let userString = [];
+let answerString =[];
 
 //function writes new question to the DOM
 function newQuestion() {
-    document.querySelector('.question-section h1').innerHTML = printQuestionNum+'. '+ questions[currentQuestion].Q
+    document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q
 }
 
 function createForm() {
@@ -555,34 +557,47 @@ function getUserInput() {
         fieldCountNum++
         let userSaidWhat = document.getElementById('field' + fieldCountNum).value
         userInput.push(userSaidWhat);
+        console.log(userInput)
     }
 
 }
 
-function evaluateUserInput() {
+function filterString() {
     for (var i = 0; i < userInput.length; i++) {
         let string = userInput[i]
         let stringLow = string.toLowerCase().trim();
-        console.log(stringLow)
+        let cleanString = ''
         for (var j = 0; j < stringLow.length; j++) {
-            console.log(stringLow[j]);
+            cleanString += stringLow[j];
+            // console.log(cleanString)
+
             //in this code evaluate what is kept and thrown out characters like '+-. white space use same logic for the correct answers to check against
+
         }
 
-        //   https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+        userString.push(cleanString)
+        console.log(userString);
 
+        //   https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+        // userString.push(stringLow[j])
+        // console.log(userString)
     }
 }
 
+function evaluateAnswer(a, b) {
 
-function correctAnswer() {
-    return correct;
 }
 
-console.log(correctAnswer('yes'))
+
+// function correctAnswer() {
+//     return correct;
+// }
+
+// console.log(correctAnswer('yes'))
 
 function resetFields() {
     userInput = [];
+    userString = [];
     let fieldDeleteCount = 0;
     let offsetCurrentQ = currentQuestion - 1
     for (var i = 0; i < questions[offsetCurrentQ].N; i++) {
@@ -612,10 +627,9 @@ function newButton() {
 function nextQuestion() {
     currentQuestion++;
     printQuestionNum++
-    console.log(printQuestionNum);
     getUserInput();
     fieldCount = 0
-    // evaluateUserInput();
+    filterString();
     resetFields()
     newQuestion();
     createForm();
