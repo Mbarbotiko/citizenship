@@ -531,7 +531,7 @@ let userInput = [];
 let fieldCount = 0;
 let userString = [];
 let answerString = [];
-
+let ansToEval = questions[currentQuestion].A
 
 //function writes new question to the DOM
 function newQuestion() {
@@ -558,7 +558,7 @@ function getUserInput() {
         fieldCountNum++
         let userSaidWhat = document.getElementById('field' + fieldCountNum).value
         userInput.push(userSaidWhat);
-       
+
     }
 
 }
@@ -578,8 +578,9 @@ function filterString(a) {
 
         if (a === userInput) {
             userString.push(cleanString)
- 
-        } else if (a === questions[currentQuestion-1].A) {
+            console.log(userString);
+
+        } else if (a === ansToEval) {
 
             answerString.push(cleanString)
             console.log(answerString);
@@ -640,10 +641,11 @@ function newButton() {
 function nextQuestion() {
     currentQuestion++;
     printQuestionNum++
+    ansToEval = questions[currentQuestion - 1].A
     getUserInput();
     fieldCount = 0
     filterString(userInput);
-    filterString(questions[currentQuestion-1].A);
+    filterString(ansToEval);
     resetFields()
     newQuestion();
     createForm();
