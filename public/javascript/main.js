@@ -227,281 +227,281 @@ const questions = [
     },
     {
         Q: 'What is the political party of the President now?',
-        A: ['Republican','Republican Party'],
+        A: ['Republican', 'Republican Party'],
         N: 1
     },
     {
         Q: 'What is the name of the Speaker of the House of Representatives now?',
-        A: ['Paul Ryan','Paul D Ryan'],
+        A: ['Paul Ryan', 'Paul D Ryan'],
         N: 1
     },
 
     {//48
         Q: 'There are four ammendements to the Constitution about who can vote. Describe one of them',
-        A: ['Citizens 18 and older','Citizens eighteen and older','You dont have to pay to vote','You dont have to pay a poll tax to vote','Any citizen can vote','A male citizen of any race can vote','Women and men can vote'],
+        A: ['Citizens 18 and older', 'Citizens eighteen and older', 'You dont have to pay to vote', 'You dont have to pay a poll tax to vote', 'Any citizen can vote', 'A male citizen of any race can vote', 'Women and men can vote'],
         N: 1
     },
-{
+    {
         Q: 'What is one responsibility that is only for Unites States citizens?',
-        A: ['Serve on a jury','Vote in a federal election'],
+        A: ['Serve on a jury', 'Vote in a federal election'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Name one right only for United States citizens',
-        A: ['Vote in a federal election','Run for federal office'],
+        A: ['Vote in a federal election', 'Run for federal office'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What are two rights of everyone living in the Unites States?',
-        A: ['Freedom of expression','Freedom of speech','Freedom of assembly','Freedom to petition the government','Freedom of religion','The right to bear arms'],
+        A: ['Freedom of expression', 'Freedom of speech', 'Freedom of assembly', 'Freedom to petition the government', 'Freedom of religion', 'The right to bear arms'],
         N: 2
-     },
-{
+    },
+    {
         Q: 'What do we show loyalty to when we say the Pledge of Allegiance?',
-        A: ['The United States','America','United States','The flag','Flag'],
+        A: ['The United States', 'America', 'United States', 'The flag', 'Flag'],
         N: 2
-     },
-{
+    },
+    {
         Q: 'What is one promise you make when you become a Unites States citizen?',
-        A: ['Give up loyalty to other countries','Obey the laws of the Unites States','Defend the Constitution and the laws of the United States','Serve in the US Military','Serve the nation','Be loyal to the United States'],
+        A: ['Give up loyalty to other countries', 'Obey the laws of the Unites States', 'Defend the Constitution and the laws of the United States', 'Serve in the US Military', 'Serve the nation', 'Be loyal to the United States'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'How old do citizens have to be to vote for President?',
-        A: ['18','Eighteen','18 or older','Eighteen or older'],
+        A: ['18', 'Eighteen', '18 or older', 'Eighteen or older'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What are two ways that Americans can participate in their democracy?',
-        A: ['Vote','Join a political party','Help with a campaign','Join a civic group','Join a community group','Give an elected official your opinion on an issue','Call Senators and Representatives','Publicly support or oppose an issue or policy','Run for office','Write to a newspaper'],
+        A: ['Vote', 'Join a political party', 'Help with a campaign', 'Join a civic group', 'Join a community group', 'Give an elected official your opinion on an issue', 'Call Senators and Representatives', 'Publicly support or oppose an issue or policy', 'Run for office', 'Write to a newspaper'],
         N: 2
-     },
+    },
 
-{
+    {
         Q: 'When is the last day you can send in federal income tax forms?',
-        A: ['April 15','April 15th'],
+        A: ['April 15', 'April 15th'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'When must all men register for the Selective Service?',
-        A: ['Age of 18','Age of eighteen','Between 18 and 26','Between eighteen and twenty six'],
+        A: ['Age of 18', 'Age of eighteen', 'Between 18 and 26', 'Between eighteen and twenty six'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What is one reason colonists came to America?',
-        A: ['Freedom','Political liberty','Religious freedom','Economic opportunity','Practice their religion','Escape persecution'],
+        A: ['Freedom', 'Political liberty', 'Religious freedom', 'Economic opportunity', 'Practice their religion', 'Escape persecution'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Who lived in America before the Europeans arrived?',
-        A: ['Native Americans',' American Indians'],
+        A: ['Native Americans', ' American Indians'],
         N: 1
-     },
+    },
 
-{//60
+    {//60
         Q: 'What group of people was taken to America and sold as slaves?',
-        A: ['Africans','People from Africa'],
+        A: ['Africans', 'People from Africa'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Why did the colonists fight the British?',
-        A: ['Because of high taxes','Taxation without representation','Because the British army stated in their houses','Boarding Quartering','Because they didnt have self government','High taxes'],
+        A: ['Because of high taxes', 'Taxation without representation', 'Because the British army stated in their houses', 'Boarding Quartering', 'Because they didnt have self government', 'High taxes'],
         N: 3
-     },
-{
+    },
+    {
         Q: 'Who wrote the Declaration of Independence?',
-        A: ['Thomas Jefferson','Jefferson'],
+        A: ['Thomas Jefferson', 'Jefferson'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'When was the Declaration of Independence adopted?',
-        A: ['July 4 1776','July 4th 1776'],
+        A: ['July 4 1776', 'July 4th 1776'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'There were 13 original states, name three.',
-        A: ['New Hampshire','Massachusetts','Rhode Island','Connecticut','New York','New Jersey','Pennsylvania','Delaware','Maryland','Virginia','North Carolina','South Carolina','Georgia'],
+        A: ['New Hampshire', 'Massachusetts', 'Rhode Island', 'Connecticut', 'New York', 'New Jersey', 'Pennsylvania', 'Delaware', 'Maryland', 'Virginia', 'North Carolina', 'South Carolina', 'Georgia'],
         N: 3
-     },
-{
+    },
+    {
         Q: 'What happened at the Constitutional Convention?',
-        A: ['The Constitution was written','The Founding Fathers wrote the Constitution'],
+        A: ['The Constitution was written', 'The Founding Fathers wrote the Constitution'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'When was the constitution written?',
         A: ['1787'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'The Federalist Papers supported the passage of the US Constitution.  Name one of the writers',
-        A: ['James Madison','Madison','Alexander Hamilton','Hamilton','John Jay','Jay','Publius'],
+        A: ['James Madison', 'Madison', 'Alexander Hamilton', 'Hamilton', 'John Jay', 'Jay', 'Publius'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What is one thing Benjamin Franklin is famous for?',
-        A: ['US diplomat','Oldest member of the Constitutional Convention','First Postmaster General of the United States','First Postmaster General','Write of Poor Richards Almanac','Started the first free libraries'],
+        A: ['US diplomat', 'Oldest member of the Constitutional Convention', 'First Postmaster General of the United States', 'First Postmaster General', 'Write of Poor Richards Almanac', 'Started the first free libraries'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Who is the "Father of Our Country?"',
-        A: ['George Washington','Washington'],
+        A: ['George Washington', 'Washington'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Who was the first President?',
-        A: ['George Washington','Washington'],
+        A: ['George Washington', 'Washington'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What territory did the United States buy from France in 1803',
-        A: ['The Louisiana Territory','Louisiana Territory','Louisiana'],
+        A: ['The Louisiana Territory', 'Louisiana Territory', 'Louisiana'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Name one war fought by thye United States in the 1800s',
-        A: ['War of 1812','The War of 1812','Mexican American War','The Mexican American War','Civil War','The Civil War','Spanish American War','The Spanish American War'],
+        A: ['War of 1812', 'The War of 1812', 'Mexican American War', 'The Mexican American War', 'Civil War', 'The Civil War', 'Spanish American War', 'The Spanish American War'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Name the US war between the North and the South',
-        A: ['The Civil War','Civil War','War between the States'],
+        A: ['The Civil War', 'Civil War', 'War between the States'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Name one problem that led to the Civil War',
-        A: ['Slavery','Economic reasons','States rights'],
+        A: ['Slavery', 'Economic reasons', 'States rights'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What was one important thing that Abraham Lincoln did?',
-        A: ['Freed the slaves','Emancipation Proclamation','Saved the Union','Preserved the Union','Led the United States during the Civil War','Let the US during the Civil War'],
+        A: ['Freed the slaves', 'Emancipation Proclamation', 'Saved the Union', 'Preserved the Union', 'Led the United States during the Civil War', 'Let the US during the Civil War'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What did Susan B ANthony do?',
-        A: ['Fought for womens rights','Fought for Civil rights'],
+        A: ['Fought for womens rights', 'Fought for Civil rights'],
         N: 2
-     },
-{
+    },
+    {
         Q: 'Name one war fought by the United States in the 1900s',
-        A: ['World War I','World War II','Korean War','Vietnam War','Gulf War','Persian Gulf War','World War One','World War Two','World War 1','World War 2'],
+        A: ['World War I', 'World War II', 'Korean War', 'Vietnam War', 'Gulf War', 'Persian Gulf War', 'World War One', 'World War Two', 'World War 1', 'World War 2'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Who was the President during World War I?',
-        A: ['Woodrow Wilson','Wilson'],
+        A: ['Woodrow Wilson', 'Wilson'],
         N: 1
-     },
+    },
 
-{//80
+    {//80
         Q: 'Who was the President during the Great Depression and World War II?',
-        A: ['Franklin Roosevelt','Roosevelt'],
+        A: ['Franklin Roosevelt', 'Roosevelt'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Who did the United States fight in World War II?',
-        A: ['Japan','Germany','Italy'],
+        A: ['Japan', 'Germany', 'Italy'],
         N: 3
-     },
-{
+    },
+    {
         Q: 'Before he was President, Eisenhower was a General.  What war was he in?',
-        A: ['World War II','World War Two','World War 2'],
+        A: ['World War II', 'World War Two', 'World War 2'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'During the Cold War what was the main concern of the United States?',
         A: ['Communism'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What movement tried to end racial discrimination?',
-        A: ['Civil rights movement','Civil rights'],
+        A: ['Civil rights movement', 'Civil rights'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What did Martin Luther King Jr do?',
-        A: ['Fought for civil rights','Worked for equality for all Americans'],
+        A: ['Fought for civil rights', 'Worked for equality for all Americans'],
         N: 2
-     },
-{
+    },
+    {
         Q: 'What major event happened on September 11, 2001 in the United States?',
-        A: ['Terrorists attacked the United States','Terrorists attached the twin towers','United states was attacked by Terrorists'],
+        A: ['Terrorists attacked the United States', 'Terrorists attached the twin towers', 'United states was attacked by Terrorists'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Name one American Indian tribe in the United States',
-        A: ['Cherokee','Navajo','Sioux','Chippewa','Choctaw','Pueblo','Apache','Iroquois','Creek','Blackfeet','Seminole','Cheyenne','Arawak','Shawnee','Mohegan','Huron','Oneida','Lakota','Crow','Teton','Hopi','Inuit'],
+        A: ['Cherokee', 'Navajo', 'Sioux', 'Chippewa', 'Choctaw', 'Pueblo', 'Apache', 'Iroquois', 'Creek', 'Blackfeet', 'Seminole', 'Cheyenne', 'Arawak', 'Shawnee', 'Mohegan', 'Huron', 'Oneida', 'Lakota', 'Crow', 'Teton', 'Hopi', 'Inuit'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Name one of the two longest rivers in the United States',
-        A: ['Missouri','Mississippi','Missouri River','Mississippi River'],
+        A: ['Missouri', 'Mississippi', 'Missouri River', 'Mississippi River'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What ocean is on the West coast of the United States?',
-        A: ['Pacific','Pacific Ocean'],
+        A: ['Pacific', 'Pacific Ocean'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What ocean is on the East Coast of the United States?',
-        A: ['Atlantic','Atlantic Ocean'],
+        A: ['Atlantic', 'Atlantic Ocean'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Name one US territory',
-        A: ['Puerto Rico','US Virgin Islands','American Samoa','Northern Mariana Islands','Guam'],
+        A: ['Puerto Rico', 'US Virgin Islands', 'American Samoa', 'Northern Mariana Islands', 'Guam'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Name one state that borders Canada',
-        A: ['Maine','New Hampshire','Vermont','New York','Pennsylvania','Ohio','Michigan','Minnesota','North Dakota','Montana','Idaho','Washington','Alaska'],
+        A: ['Maine', 'New Hampshire', 'Vermont', 'New York', 'Pennsylvania', 'Ohio', 'Michigan', 'Minnesota', 'North Dakota', 'Montana', 'Idaho', 'Washington', 'Alaska'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Name one state that borders Mexico',
-        A: ['Texas','New Mexico','Arizona','California'],
+        A: ['Texas', 'New Mexico', 'Arizona', 'California'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'What is the capital of the United States?',
         A: ['Washington DC'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Where is the Status of Liberty?',
-        A: ['New York','New York Harbor','Liberty Island','New Jersey','Near New York City', 'On the Hudson River'],
+        A: ['New York', 'New York Harbor', 'Liberty Island', 'New Jersey', 'Near New York City', 'On the Hudson River'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Why does the flag have 13 stripes?',
-        A: ['Represents the original 13 colonies','There were 13 original colonies','The stripes represent the original colonies','Represents the original thirteen colonies','There were thirteen original colonies'],
+        A: ['Represents the original 13 colonies', 'There were 13 original colonies', 'The stripes represent the original colonies', 'Represents the original thirteen colonies', 'There were thirteen original colonies'],
         N: 1
-     },
-{
+    },
+    {
         Q: 'Why does the flag have 50 stars?',
-        A: ['There is one star for each state','Each star represents a state','There are 50 states'],
+        A: ['There is one star for each state', 'Each star represents a state', 'There are 50 states'],
         N: 1
-     },
+    },
 
-{
+    {
         Q: 'What is the name of the national anthem?',
-        A: ['The Star Spangled Banner','Star Spangled Banner'],
+        A: ['The Star Spangled Banner', 'Star Spangled Banner'],
         N: 1
-     },
+    },
 
-{
+    {
         Q: 'When do we celebrate Independence Day?',
-        A: ['July4','July 4th'],
+        A: ['July4', 'July 4th'],
         N: 1
-     },
+    },
 
-{
+    {
         Q: 'Name two national US holidays',
-        A: ['New Years Day','Martin Luther King Jr Day','Presidents Day','Memorial Day','Independence Day','Labor Day','Columbus Day','Veterans Day','Thanksgiving','Christmas'],
+        A: ['New Years Day', 'Martin Luther King Jr Day', 'Presidents Day', 'Memorial Day', 'Independence Day', 'Labor Day', 'Columbus Day', 'Veterans Day', 'Thanksgiving', 'Christmas'],
         N: 2
-     },
+    },
 
     // {
     //     Q:'',
@@ -567,7 +567,7 @@ function evaluateUserInput() {
 }
 
 
-function correctAnswer(){
+function correctAnswer() {
     return correct;
 }
 
