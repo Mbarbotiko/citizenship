@@ -551,6 +551,7 @@ function createForm() {
         let input = document.createElement("input")
         input.setAttribute('type', 'text')
         input.setAttribute('value', '')
+        input.setAttribute('class', 'answer-fields')
         input.setAttribute('id', 'field' + fieldCount)
         answerSection.appendChild(input);
         //access text node here and check for user input whether or not in field, eval fields will be the function this is added to later
@@ -628,13 +629,14 @@ function newButton() {
     newQuestion();
     createForm();
     let deleteButton = document.getElementById('start')
-    let buttonSection = document.querySelector('.enter-buttons')
+    let buttonSection = document.querySelector('.enter')
     deleteButton.parentNode.removeChild(deleteButton)
     let button = document.createElement('button')
     button.setAttribute('type', 'button')
     button.setAttribute('id', 'submit')
     button.setAttribute('onClick', 'nextQuestion()')
     button.setAttribute('disabled', 'true')
+    button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
     evalFields();
@@ -658,8 +660,7 @@ function nextQuestion() {
     fieldCount = 0
     filterString(userInput);
     filterString(ansToEval);
-    alert(userString+' this was your answer');
-    alert(answerString+' These are acceptable answers');
+    alert('This was your answer:  '+userString+'\nThese are acceptable answers:  ' +answerString);
     resetFields()
     newQuestion();
     createForm();
