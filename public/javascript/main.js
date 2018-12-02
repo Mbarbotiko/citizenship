@@ -621,21 +621,45 @@ function filterString(a) {
 
 function evaluateAnswer() {
     //userInput vs answerString
-    for (var i = 0; i < userInput.length; i++) {
+    for (var i = 0; i < answerString.length; i++) {
+        console.log(answerString)
+        console.log(userInput)
+        if (userInput.indexOf(answerString[i]) !== -1) {
+            console.log(userInput[i]);
+            console.log(answerString[i]);
 
-        console.log(userInput[i]);
-        console.log(answerString[i]);
-        if (answerString.indexOf(userInput[i]) != -1) {
-            
             console.log('wehaveamatch')
 
         } else {
+            
+            console.log(userInput[i]);//logging as undefined
+            console.log(answerString[i]);
             console.log('thesedontmatch')
         }
     }
-
-
 }
+
+
+// (4) ["achangetotheconstitution", "anadditiontotheconstitution", "achange", "anaddition"]
+// 12:08:31.941 main.js:626 (2) ["2", "5"]
+// 12:08:31.941 main.js:635 2
+// 12:08:31.941 main.js:636 achangetotheconstitution
+// 12:08:31.942 main.js:637 thesedontmatch
+// 12:08:31.942 main.js:625 (4) ["achangetotheconstitution", "anadditiontotheconstitution", "achange", "anaddition"]
+// 12:08:31.942 main.js:626 (2) ["2", "5"]
+// 12:08:31.943 main.js:635 5
+// 12:08:31.943 main.js:636 anadditiontotheconstitution
+// 12:08:31.943 main.js:637 thesedontmatch
+// 12:08:31.943 main.js:625 (4) ["achangetotheconstitution", "anadditiontotheconstitution", "achange", "anaddition"]
+// 12:08:31.944 main.js:626 (2) ["2", "5"]
+// 12:08:31.944 main.js:635 undefined
+// 12:08:31.945 main.js:636 achange
+// 12:08:31.945 main.js:637 thesedontmatch
+// 12:08:31.945 main.js:625 (4) ["achangetotheconstitution", "anadditiontotheconstitution", "achange", "anaddition"]
+// 12:08:31.945 main.js:626 (2) ["2", "5"]
+// 12:08:31.946 main.js:635 undefined
+// 12:08:31.946 main.js:636 anaddition
+// 12:08:31.946 main.js:637 thesedontmatch
 
 
 
