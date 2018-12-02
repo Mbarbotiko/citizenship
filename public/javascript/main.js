@@ -6,8 +6,8 @@ const questions = [
         N: 1
     },
     {
-        Q: 'What does the Constitution do?',
-        A: ['Sets up the government', 'Defines the government', 'Protects basic rights of Americans', 'Protects rights of citizens', 'Protects rights of Americans'],
+        Q: 'What does the Constitution do?\nComplete the sentences:\n_______ up the Government.\n_______ the government.\n_______ basic rights of Americans',
+        A: ['Sets', 'Defines', 'Protects'],
         N: 3
     },
     {
@@ -36,8 +36,8 @@ const questions = [
         N: 1
     },
     {
-        Q: 'What did the Declaration of Independence do?',
-        A: ['Announced our Independence from Great Britain', 'Declared our Independence from Great Britain', 'Stated that the United States is free from Great Britain'],
+        Q: 'What did the Declaration of Independence do?\nComplete the sentence:\nIt _______ our Independence from Great Britain',
+        A: ['Announced', 'Declared'],
         N: 1
     },
     {
@@ -46,9 +46,9 @@ const questions = [
         N: 2
     },
     {//10
-        Q: 'What is freedom of religion?',
-        A: ['You can practice any religion or not practice a religion'],
-        N: 1
+        Q: 'What is freedom of religion?\nComplete the sentence:\nYou can practice _______ religion or _______ practice a religion',
+        A: ['Any', 'Not'],
+        N: 2
     },
     {
         Q: 'What is the economic system in the United States?',
@@ -56,8 +56,8 @@ const questions = [
         N: 2
     },
     {
-        Q: 'What is the "rule of the law"?',
-        A: ['Everyone must follow the law', 'Leaders must obey the law', 'Government must obey the law', 'No one is above the law'],
+        Q: 'What is the "rule of the law"?\nComplete the sentences:\n_______ must follow the law.\n_______ and _______ must obey the law.\nNo one is _______ the law',
+        A: ['Everyone', 'Leaders', 'Government', 'Above'],
         N: 1
     },
     {
@@ -314,7 +314,7 @@ const questions = [
         N: 1
     },
     {
-        Q: 'When was the Declaration of Independence adopted?',
+        Q: 'When was the Declaration of Independence adopted? (Include Month/ Day/ Year',
         A: ['July 4 1776', 'July 4th 1776'],
         N: 1
     },
@@ -329,7 +329,7 @@ const questions = [
         N: 1
     },
     {
-        Q: 'When was the constitution written?',
+        Q: 'When was the constitution written? (Include only the year)',
         A: ['1787'],
         N: 1
     },
@@ -426,8 +426,8 @@ const questions = [
         N: 1
     },
     {//85
-        Q: 'What did Martin Luther King Jr do?',
-        A: ['Fought for civil rights', 'Worked for equality for all Americans'],
+        Q: 'What did Martin Luther King Jr do?\nComplete the sentences:\nFought for _______ rights.\nWorked for _______ for all Americans',
+        A: ['Civil', 'Equality'],
         N: 2
     },
     {
@@ -520,6 +520,17 @@ const questions = [
 
 // https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
 
+//https://www.uscis.gov/citizenship/learners/study-test
+
+//https://www.uscis.gov/citizenship/learners/study-test/study-materials-civics-test
+
+//https://www.uscis.gov/citizenship/learners/study-test/study-materials-civics-test/100-civics-questions-and-answers-mp3-audio-english-version
+
+
+//https://www.uscis.gov/sites/default/files/files/nativedocuments/Track%2001.mp3
+
+//can include track from USCIS website as well
+
 
 
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
@@ -556,7 +567,7 @@ function createForm() {
         input.setAttribute('class', 'answer-fields');
         input.setAttribute('id', 'field' + fieldCount);
         answerSection.appendChild(input);
-        console.log(answerSection);
+        // console.log(answerSection);
         //access text node here and check for user input whether or not in field, eval fields will be the function this is added to later
     }
 }
@@ -608,9 +619,25 @@ function filterString(a) {
     }
 }
 
-function evaluateAnswer(a, b) {
+function evaluateAnswer() {
+    //userInput vs answerString
+    for (var i = 0; i < userInput.length; i++) {
+
+        console.log(userInput[i]);
+        console.log(answerString[i]);
+        if (answerString.indexOf(userInput[i]) != -1) {
+            
+            console.log('wehaveamatch')
+
+        } else {
+            console.log('thesedontmatch')
+        }
+    }
+
 
 }
+
+
 
 function resetFields() {
     userInput = [];
@@ -643,7 +670,7 @@ function newButton() {
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
-    console.log(button)
+    // console.log(button)
 
 }
 
@@ -663,6 +690,7 @@ function nextQuestion() {
     fieldCount = 0
     filterString(userInput);
     filterString(ansToEval);
+    evaluateAnswer()
     alert('This was your answer:  ' + userString + '\nThese are acceptable answers:  ' + answerString);
     resetFields()
     newQuestion();
@@ -678,3 +706,5 @@ function nextQuestion() {
 //write a test for cross referencing the two arrays
 
 //For answers that are the same but phrased differently: put them within their own array so that duplicates arent entered or a different version of the same answer isnt given by the user
+
+//need end to test to summarize what was right and wrong
