@@ -26,17 +26,17 @@ const questions = [
         N: 1
     },
     {
-        Q: 'What is one right or freedom from the first ammendment?',
-        A: ['Speech', 'Religion', 'Assembly', 'Press', 'Petition the Government', 'Freedom of speech', 'Freedom of religion', 'Freedom of the press', 'Freedom to petition'], 
+        Q: 'What is one right or freedom from the first amendment?',
+        A: ['Speech', 'Religion', 'Assembly', 'Press', 'Petition the Government', 'Freedom of speech', 'Freedom of religion', 'Freedom of the press', 'Freedom to petition'],
         N: 1
     },
     {
         Q: 'How many amendments does the Constitution have?',
-        A: ['27', 'Twendy-Seven', 'Twenty Seven'],
+        A: ['27', 'Twenty-Seven', 'Twenty Seven'],
         N: 1
     },
     {
-        Q: 'What did the Declaration of Inependence do?',
+        Q: 'What did the Declaration of Independence do?',
         A: ['Announced our Independence from Great Britain', 'Declared our Independence from Great Britain', 'Stated that the United States is free from Great Britain'],
         N: 1
     },
@@ -57,11 +57,11 @@ const questions = [
     },
     {
         Q: 'What is the "rule of the law"?',
-        A: ['Everyone must follow the law', 'Leaders must obery the law', 'Government must obery the law', 'No one is above the law'],
+        A: ['Everyone must follow the law', 'Leaders must obey the law', 'Government must obey the law', 'No one is above the law'],
         N: 1
     },
     {
-        Q: 'Name one branch or part of the govenment',
+        Q: 'Name one branch or part of the Government',
         A: ['Congress', 'Legislative', 'President', 'Executive', 'The Courts', 'Judicial'],
         N: 1
     },
@@ -242,7 +242,7 @@ const questions = [
         N: 1
     },
     {
-        Q: 'What is one responsibility that is only for Unites States citizens?',
+        Q: 'What is one responsibility that is only for United States citizens?',
         A: ['Serve on a jury', 'Vote in a federal election'],
         N: 1
     },
@@ -252,7 +252,7 @@ const questions = [
         N: 1
     },
     {
-        Q: 'What are two rights of everyone living in the Unites States?',
+        Q: 'What are two rights of everyone living in the United States?',
         A: ['Freedom of expression', 'Freedom of speech', 'Freedom of assembly', 'Freedom to petition the government', 'Freedom of religion', 'The right to bear arms'],
         N: 2
     },
@@ -262,8 +262,8 @@ const questions = [
         N: 2
     },
     {
-        Q: 'What is one promise you make when you become a Unites States citizen?',
-        A: ['Give up loyalty to other countries', 'Obey the laws of the Unites States', 'Defend the Constitution and the laws of the United States', 'Serve in the US Military', 'Serve the nation', 'Be loyal to the United States'],
+        Q: 'What is one promise you make when you become a United States citizen?',
+        A: ['Give up loyalty to other countries', 'Obey the laws of the United States', 'Defend the Constitution and the laws of the United States', 'Serve in the US Military', 'Serve the nation', 'Be loyal to the United States'],
         N: 1
     },
     {
@@ -283,9 +283,9 @@ const questions = [
         N: 1
     },
     {
-        Q: 'When must all men register for the Selective Service?',
-        A: ['Age of 18', 'Age of eighteen', 'Between 18 and 26', 'Between eighteen and twenty six'],
-        N: 1
+        Q: 'When must all men register for the Selective Service? Complete the sentence:  Between the ages of _______ and _______',
+        A: ['18', '26', 'Eighteen', 'Twenty Six'],
+        N: 2
     },
     {
         Q: 'What is one reason colonists came to America?',
@@ -304,8 +304,8 @@ const questions = [
         N: 1
     },
     {
-        Q: 'Why did the colonists fight the British?',
-        A: ['Because of high taxes', 'Taxation without representation', 'Because the British army stated in their houses', 'Boarding Quartering', 'Because they didnt have self government', 'High taxes'],
+        Q: 'Why did the colonists fight the British? Complete these sentences: Because of high _______  The British army stationed their _______  Because they didnt have self _______',
+        A: ['Taxes', 'Houses', 'Government'],
         N: 3
     },
     {
@@ -375,18 +375,18 @@ const questions = [
     },
     {//75
         Q: 'What was one important thing that Abraham Lincoln did?',
-        A: ['Freed the slaves', 'Emancipation Proclamation', 'Saved the Union', 'Preserved the Union', 'Led the United States during the Civil War', 'Let the US during the Civil War'],
+        A: ['Freed the slaves', 'Emancipation Proclamation', 'Saved the Union', 'Preserved the Union', 'Led the United States during the Civil War', 'Led the US during the Civil War'],
         N: 1
     },
     {
-        Q: 'What did the Emancipation Proclamation do?',
-        A: ['Freed the slaves', 'Freed slaves in the Confederacy', 'Fred slaved in the Confederate states', 'Freed slaves in most Southern states'],
+        Q: 'What did the Emancipation Proclamation do? Complete the sentence: Freed the _______',
+        A: ['Slaves'],
         N: 1
 
     },
     {
-        Q: 'What did Susan B Anthony do?',
-        A: ['Fought for womens rights', 'Fought for Civil rights'],
+        Q: 'What did Susan B Anthony do? Complete the sentence: Fought for _______ rights and _______ rights',
+        A: ['Civil', ' Womens'],
         N: 2
     },
     {
@@ -431,8 +431,8 @@ const questions = [
         N: 2
     },
     {
-        Q: 'What major event happened on September 11, 2001 in the United States?',
-        A: ['Terrorists attacked the United States', 'Terrorists attached the twin towers', 'United states was attacked by Terrorists'],
+        Q: 'What major event happened on September 11, 2001 in the United States? Complete the sentence: The United States was attacked by _______',
+        A: ['Terrorists'],
         N: 1
     },
     {
@@ -481,14 +481,14 @@ const questions = [
         N: 1
     },
     {
-        Q: 'Why does the flag have 13 stripes?',
-        A: ['Represents the original 13 colonies', 'There were 13 original colonies', 'The stripes represent the original colonies', 'Represents the original thirteen colonies', 'There were thirteen original colonies'],
-        N: 1
+        Q: 'Why does the flag have 13 stripes? Complete the sentence:  The stripes represent the _______ _______ _______',
+        A: ['Original', '13', 'Thirteen', 'Colonies'],
+        N: 3
     },
     {
-        Q: 'Why does the flag have 50 stars?',
-        A: ['There is one star for each state', 'Each star represents a state', 'There are 50 states'],
-        N: 1
+        Q: 'Why does the flag have 50 stars?  Complete the sentence:  Each _______ represents a _______',
+        A: ['Star', 'State'],
+        N: 2
     },
 
     {
@@ -546,14 +546,17 @@ function newQuestion() {
 function createForm() {
     //user a loop to create multiple times based on the  variable, 
     for (var i = 0; i < questions[currentQuestion].N; i++) {
-        fieldCount++
-        let answerSection = document.querySelector('.answer-section')
-        let input = document.createElement("input")
-        input.setAttribute('type', 'text')
-        input.setAttribute('value', '')
-        input.setAttribute('class', 'answer-fields')
-        input.setAttribute('id', 'field' + fieldCount)
+        fieldCount++;
+        let answerSection = document.querySelector('.answer-section');
+        let input = document.createElement("input");
+        input.setAttribute('type', 'text');
+        input.setAttribute('minlength', '1');
+        input.setAttribute('maxlength', '75');//form field eval
+        input.setAttribute('value', '');
+        input.setAttribute('class', 'answer-fields');
+        input.setAttribute('id', 'field' + fieldCount);
         answerSection.appendChild(input);
+        console.log(answerSection);
         //access text node here and check for user input whether or not in field, eval fields will be the function this is added to later
     }
 }
@@ -566,6 +569,7 @@ function getUserInput() {
         fieldCountNum++
         let userSaidWhat = document.getElementById('field' + fieldCountNum).value
         userInput.push(userSaidWhat);
+
     }
 }
 
@@ -599,7 +603,7 @@ function filterString(a) {
         } else {
             console.log('Something went wrong, input argument isnt userInput or answerInput')
         }
-       
+
 
     }
 }
@@ -635,24 +639,23 @@ function newButton() {
     button.setAttribute('type', 'button')
     button.setAttribute('id', 'submit')
     button.setAttribute('onClick', 'nextQuestion()')
-    button.setAttribute('disabled', 'true')
+    // button.setAttribute('disabled', 'true')//set this to true when the evalFields function is written
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
-    evalFields();
-}
-
-function evalFields() {
-    let button = document.getElementById('submit').disabled = false;
-
     console.log(button)
 
 }
 
+function evalFields() {
+    //in this function fields will be evaluated for an answer a button will not show up unless something is entered into the field.
+    let button = document.getElementById('submit').disabled = false;
 
+    //check for length of string & limit
+    //check for duplicate answers in the field eg: secretary of state, secretary of state.
+}
 
 function nextQuestion() {
-
     currentQuestion++;
     printQuestionNum++
     ansToEval = questions[currentQuestion - 1].A
@@ -660,11 +663,11 @@ function nextQuestion() {
     fieldCount = 0
     filterString(userInput);
     filterString(ansToEval);
-    alert('This was your answer:  '+userString+'\nThese are acceptable answers:  ' +answerString);
+    alert('This was your answer:  ' + userString + '\nThese are acceptable answers:  ' + answerString);
     resetFields()
     newQuestion();
     createForm();
- 
+
 }
 
 //limit user input in field to # of characters
