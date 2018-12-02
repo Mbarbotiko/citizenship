@@ -1,0 +1,24 @@
+{
+  "name": "citizenship",
+  "version": "1.0.0",
+  "description": "Test your ability to pass US Citizenship Test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mbarbotiko/citizenship.git"
+  },
+  "keywords": [
+    "Citizenship",
+    "Citizen",
+    "Test"
+  ],
+  "author": "Margarita Barbotiko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mbarbotiko/citizenship/issues"
+  },
+  "homepage": "https://github.com/Mbarbotiko/citizenship#readme"
+}

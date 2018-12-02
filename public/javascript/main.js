@@ -1,5 +1,5 @@
 const questions = [
-    //run a spell check plug in :
+
     {
         Q: 'What is the supreme law of the land?',
         A: ['The Constitution'],
@@ -27,7 +27,7 @@ const questions = [
     },
     {
         Q: 'What is one right or freedom from the first ammendment?',
-        A: ['Speech', 'Religion', 'Assembly', 'Press', 'Petition the Government', 'Freedom of speech', 'Freedom of religion', 'Freedom of the press', 'Freedom to petition'], //freedom of...
+        A: ['Speech', 'Religion', 'Assembly', 'Press', 'Petition the Government', 'Freedom of speech', 'Freedom of religion', 'Freedom of the press', 'Freedom to petition'], 
         N: 1
     },
     {
@@ -106,7 +106,7 @@ const questions = [
         N: 1
     },
     {
-        Q: 'We elect a US representiative for how many years?',
+        Q: 'We elect a US representative for how many years?',
         A: ['2', 'Two'],
         N: 1
     },
@@ -206,8 +206,8 @@ const questions = [
         N: 1
     },
     {
-        Q: 'Under our Constituion, some powers belong to the states. What is one power of the states?',
-        A: ['Provide schooling and education', 'Provide protection', 'Police', 'Provide safety', 'Fire deparments', 'Give a drivers license', 'Approve zoning and land use'],
+        Q: 'Under our Constitution, some powers belong to the states. What is one power of the states?',
+        A: ['Provide schooling and education', 'Provide protection', 'Police', 'Provide safety', 'Fire departments', 'Give a drivers license', 'Approve zoning and land use'],
         N: 1
     },
     {
@@ -237,7 +237,7 @@ const questions = [
     },
 
     {
-        Q: 'There are four ammendements to the Constitution about who can vote. Describe one of them',
+        Q: 'There are four amendments to the Constitution about who can vote. Describe one of them',
         A: ['Citizens 18 and older', 'Citizens eighteen and older', 'You dont have to pay to vote', 'You dont have to pay a poll tax to vote', 'Any citizen can vote', 'A male citizen of any race can vote', 'Women and men can vote'],
         N: 1
     },
@@ -359,7 +359,7 @@ const questions = [
         N: 1
     },
     {
-        Q: 'Name one war fought by thye United States in the 1800s',
+        Q: 'Name one war fought by the United States in the 1800s',
         A: ['War of 1812', 'The War of 1812', 'Mexican American War', 'The Mexican American War', 'Civil War', 'The Civil War', 'Spanish American War', 'The Spanish American War'],
         N: 1
     },
