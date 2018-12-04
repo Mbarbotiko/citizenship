@@ -638,45 +638,22 @@ function evaluateAnswer() {
         }
     }
 
-    console.log(trueCount)
 
     if (trueCount === questions[currentQuestion - 1].N) {
-        console.log(questions[currentQuestion - 1].N)
-        console.log(questions[currentQuestion - 1].Q)
+        // console.log(questions[currentQuestion - 1].Q)
+        // console.log(questions[currentQuestion - 1].A)
+        //write function to loop through correct answer to display to user in a modal, leave out the answers they already submitted show user other answers available to them
         console.log('user answered all correct')
     } else {
-        console.log(questions[currentQuestion - 1].N)
-        console.log(questions[currentQuestion - 1].Q)
+        // console.log(questions[currentQuestion - 1].Q)
+        // console.log(questions[currentQuestion - 1].A)
+          //write function to loop through correct answer to display to user in a modal
         console.log('user missed one or more display correct answer')
     }
 
+    //use blur/ out of focus to check if user either didnt put answer in OR put same answer in twice for final evaluation of users input.
+
 }
-
-
-
-
-// (4) ["achangetotheconstitution", "anadditiontotheconstitution", "achange", "anaddition"]
-// 12:08:31.941 main.js:626 (2) ["2", "5"]
-// 12:08:31.941 main.js:635 2
-// 12:08:31.941 main.js:636 achangetotheconstitution
-// 12:08:31.942 main.js:637 thesedontmatch
-// 12:08:31.942 main.js:625 (4) ["achangetotheconstitution", "anadditiontotheconstitution", "achange", "anaddition"]
-// 12:08:31.942 main.js:626 (2) ["2", "5"]
-// 12:08:31.943 main.js:635 5
-// 12:08:31.943 main.js:636 anadditiontotheconstitution
-// 12:08:31.943 main.js:637 thesedontmatch
-// 12:08:31.943 main.js:625 (4) ["achangetotheconstitution", "anadditiontotheconstitution", "achange", "anaddition"]
-// 12:08:31.944 main.js:626 (2) ["2", "5"]
-// 12:08:31.944 main.js:635 undefined
-// 12:08:31.945 main.js:636 achange
-// 12:08:31.945 main.js:637 thesedontmatch
-// 12:08:31.945 main.js:625 (4) ["achangetotheconstitution", "anadditiontotheconstitution", "achange", "anaddition"]
-// 12:08:31.945 main.js:626 (2) ["2", "5"]
-// 12:08:31.946 main.js:635 undefined
-// 12:08:31.946 main.js:636 anaddition
-// 12:08:31.946 main.js:637 thesedontmatch
-
-
 
 function resetFields() {
     userInput = [];
