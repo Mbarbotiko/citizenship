@@ -619,25 +619,40 @@ function filterString(a) {
     }
 }
 
+
+// x= answerString  y = userInput
 function evaluateAnswer() {
     //userInput vs answerString
-    for (var i = 0; i < answerString.length; i++) {
-        console.log(answerString)
-        console.log(userInput)
-        if (userInput.indexOf(answerString[i]) !== -1) {
-            console.log(userInput[i]);
-            console.log(answerString[i]);
+    let trueCount = 0;
+    for (var i = 0; i < userInput.length; i++) {
+        for (var j = 0; j < answerString.length; j++) {
 
-            console.log('wehaveamatch')
+            if (userInput[i] === answerString[j]) {
+                console.log('wehaveamatch')
+                trueCount++
 
-        } else {
-            
-            console.log(userInput[i]);//logging as undefined
-            console.log(answerString[i]);
-            console.log('thesedontmatch')
+            } else {
+                console.log('thesedontmatch')
+            }
+
         }
     }
+
+    console.log(trueCount)
+
+    if (trueCount === questions[currentQuestion - 1].N) {
+        console.log(questions[currentQuestion - 1].N)
+        console.log(questions[currentQuestion - 1].Q)
+        console.log('user answered all correct')
+    } else {
+        console.log(questions[currentQuestion - 1].N)
+        console.log(questions[currentQuestion - 1].Q)
+        console.log('user missed one or more display correct answer')
+    }
+
 }
+
+
 
 
 // (4) ["achangetotheconstitution", "anadditiontotheconstitution", "achange", "anaddition"]
