@@ -536,6 +536,7 @@ const questions = [
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
 let currentQuestion = 0;
 let printQuestionNum = 1;
+let modalTrigger = null;
 
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
 let userInput = [];
@@ -623,6 +624,7 @@ function filterString(a) {
 // x= answerString  y = userInput
 function evaluateAnswer() {
     //userInput vs answerString
+    let crossCheckEval = [];
     let trueCount = 0;
     for (var i = 0; i < userInput.length; i++) {
         for (var j = 0; j < answerString.length; j++) {
@@ -638,22 +640,31 @@ function evaluateAnswer() {
         }
     }
 
-
     if (trueCount === questions[currentQuestion - 1].N) {
+        //start with modal : correct / incorrect then print answers after
+
+        
         // console.log(questions[currentQuestion - 1].Q)
         // console.log(questions[currentQuestion - 1].A)
-        //write function to loop through correct answer to display to user in a modal, leave out the answers they already submitted show user other answers available to them
+        //write function to loop through correct answer to display to user in a modal, leave out the answers they already submitted show user other answers available to them(will be an issue, string is changed so values are easily matched against one another, could possibly do index of of changed string and use it on the original sting in QA object? they're pushed in the same order.  Example 'theconstitution = [0] of answerString, and [0] of questionsA)
+        //loop both, if math push to crosscheck if not do nothing  end display crosscheck items loop / print to modal via another function? but wont be available unless a global variable
         console.log('user answered all correct')
+        //set modal trigger to true
     } else {
         // console.log(questions[currentQuestion - 1].Q)
         // console.log(questions[currentQuestion - 1].A)
           //write function to loop through correct answer to display to user in a modal
         console.log('user missed one or more display correct answer')
+        //set modal trigger to false
     }
+
+    //if modal trigger !==null trigger modal ^^^ above decides what will be printed  //if true do this if false do this if null do nothing: close button on both should turn the trigger to null//print to modal in this function show modal in another function
 
     //use blur/ out of focus to check if user either didnt put answer in OR put same answer in twice for final evaluation of users input.
 
 }
+
+
 
 function resetFields() {
     userInput = [];
