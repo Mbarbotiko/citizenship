@@ -518,21 +518,6 @@ const questions = [
 
 ];
 
-// https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
-
-//https://www.uscis.gov/citizenship/learners/study-test
-
-//https://www.uscis.gov/citizenship/learners/study-test/study-materials-civics-test
-
-//https://www.uscis.gov/citizenship/learners/study-test/study-materials-civics-test/100-civics-questions-and-answers-mp3-audio-english-version
-
-
-//https://www.uscis.gov/sites/default/files/files/nativedocuments/Track%2001.mp3
-
-//can include track from USCIS website as well
-
-
-
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
 let currentQuestion = 0;
 let printQuestionNum = 1;
@@ -643,10 +628,10 @@ function evaluateAnswer() {
     if (trueCount === questions[currentQuestion - 1].N) {
         //start with modal : correct / incorrect then print answers after
 
-        
+
         // console.log(questions[currentQuestion - 1].Q)
         // console.log(questions[currentQuestion - 1].A)
-        //write function to loop through correct answer to display to user in a modal, leave out the answers they already submitted show user other answers available to them(will be an issue, string is changed so values are easily matched against one another, could possibly do index of of changed string and use it on the original sting in QA object? they're pushed in the same order.  Example 'theconstitution = [0] of answerString, and [0] of questionsA)
+        //write function to loop through correct answer to display to user in a modal, leave out the answers they already submitted show user other answers available to them(will be an issue, string is changed so values are easily matched against one another, could possibly do index of of changed string and use it on the original sting in QA object? they're pushed in the same order.  Example 'theconstitution = [0] of answerString, and [0] of questionsA)(use loops and if ()index of !==-1)so as index moves ahead prints the same index in array from the filtered array & the original array.
         //loop both, if math push to crosscheck if not do nothing  end display crosscheck items loop / print to modal via another function? but wont be available unless a global variable
         console.log('user answered all correct')
         //set modal trigger to true
@@ -702,11 +687,17 @@ function newButton() {
 }
 
 function evalFields() {
+    //first do a DOM check for if the fields exist; return the number of fields then add event listeners to them(return field nodes, loop through them add event listeners.)
+    //field should have atleast 1 character and no more than 75
+    //the value in the fields should not be the same 1 through 3 so user cannot write hello hello hello. 
+    //if all three fields are filled out the button should illuminate & be ready for the answer to be submitted
+    let field1 = document.getElementById('field1')
+    let field2 = document.getElementById('field1')
+    let field3 = document.getElementById('field1')
+    field1.addEventListener('blur')
     //in this function fields will be evaluated for an answer a button will not show up unless something is entered into the field.
     let button = document.getElementById('submit').disabled = false;
 
-    //check for length of string & limit
-    //check for duplicate answers in the field eg: secretary of state, secretary of state.
 }
 
 function nextQuestion() {
@@ -717,6 +708,7 @@ function nextQuestion() {
     fieldCount = 0
     filterString(userInput);
     filterString(ansToEval);
+    //insert function to check fields here out of focus/ in focus(evalFields)
     evaluateAnswer()
     alert('This was your answer:  ' + userString + '\nThese are acceptable answers:  ' + answerString);
     resetFields()
@@ -725,13 +717,26 @@ function nextQuestion() {
 
 }
 
-//limit user input in field to # of characters
-
-//ensure user doesnt enter duplicate answer in all fields
-
-
-//write a test for cross referencing the two arrays
+//finish writing tests for Mocha
 
 //For answers that are the same but phrased differently: put them within their own array so that duplicates arent entered or a different version of the same answer isnt given by the user
 
 //need end to test to summarize what was right and wrong
+
+//write a short 10 answer test to simulate test given @ naturalization test
+
+// add different states (this will be the "get ready page")
+
+
+// https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
+
+//https://www.uscis.gov/citizenship/learners/study-test
+
+//https://www.uscis.gov/citizenship/learners/study-test/study-materials-civics-test
+
+//https://www.uscis.gov/citizenship/learners/study-test/study-materials-civics-test/100-civics-questions-and-answers-mp3-audio-english-version
+
+
+//https://www.uscis.gov/sites/default/files/files/nativedocuments/Track%2001.mp3
+
+//can include track from USCIS website as well, add to questions object and display for the user to be able to click when the question is presented(imbed into page)
