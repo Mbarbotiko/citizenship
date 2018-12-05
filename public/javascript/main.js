@@ -58,7 +58,7 @@ const questions = [
     {
         Q: 'What is the "rule of the law"?\nComplete the sentences:\n_______ must follow the law.\n_______ and _______ must obey the law.\nNo one is _______ the law',
         A: ['Everyone', 'Leaders', 'Government', 'Above'],
-        N: 1
+        N: 3
     },
     {
         Q: 'Name one branch or part of the Government',
@@ -181,8 +181,8 @@ const questions = [
         N: 2
     },
     {
-        Q: 'What does the judicial branch do?',
-        A: ['reviews laws', 'explains laws', 'resolves disputes', 'resolves disagreements', 'decides if a law goes against the Constitution'],
+        Q: 'What does the judicial branch do?\nComplete the sentence:\nIt _______ laws, _______ laws and _______ disputes.',
+        A: ['reviews','explains','resolves'],
         N: 3
     },
     {
@@ -238,7 +238,7 @@ const questions = [
 
     {
         Q: 'There are four amendments to the Constitution about who can vote. Describe one of them',
-        A: ['Citizens 18 and older', 'Citizens eighteen and older', 'You dont have to pay to vote', 'You dont have to pay a poll tax to vote', 'Any citizen can vote', 'A male citizen of any race can vote', 'Women and men can vote'],
+        A: ['Citizens 18 and older', 'Citizens eighteen and older', 'You dont have to pay to vote', 'You dont have to pay a poll tax to vote', 'Any citizen can vote', 'A male citizen of any race can vote', 'Women and men can vote'],//consider changing this to sentence question with 1 answer supplied.
         N: 1
     },
     {
@@ -727,7 +727,7 @@ function nextQuestion() {
 
 // add different states (this will be the "get ready page")
 
-
+//add onkey up enter = submit
 // https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
 
 //https://www.uscis.gov/citizenship/learners/study-test
@@ -740,3 +740,5 @@ function nextQuestion() {
 //https://www.uscis.gov/sites/default/files/files/nativedocuments/Track%2001.mp3
 
 //can include track from USCIS website as well, add to questions object and display for the user to be able to click when the question is presented(imbed into page)
+
+//for end the sentences questions MAY need to supply a sentence answer, will decide much later...
