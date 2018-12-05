@@ -611,10 +611,10 @@ function evaluateAnswer() {
     //userInput vs answerString
     let crossCheckEval = [];
     let trueCount = 0;
-    for (var i = 0; i < userInput.length; i++) {
+    for (var i = 0; i < userString.length; i++) {
         for (var j = 0; j < answerString.length; j++) {
 
-            if (userInput[i] === answerString[j]) {
+            if (userString[i] === answerString[j]) {
                 console.log('wehaveamatch')
                 trueCount++
 
