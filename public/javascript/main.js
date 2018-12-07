@@ -182,7 +182,7 @@ const questions = [
     },
     {
         Q: 'What does the judicial branch do?\nComplete the sentence:\nIt _______ laws, _______ laws and _______ disputes.',
-        A: ['reviews','explains','resolves'],
+        A: ['reviews', 'explains', 'resolves'],
         N: 3
     },
     {
@@ -258,12 +258,12 @@ const questions = [
     },
     {
         Q: 'What do we show loyalty to when we say the Pledge of Allegiance?',
-        A: ['The United States', 'America', 'United States', 'The flag', 'Flag'],
+        A: ['The United States', 'America', 'United States', 'The flag', 'Flag'],//should only allow states answer and flag answer....
         N: 2
     },
     {
         Q: 'What is one promise you make when you become a United States citizen?',
-        A: ['Give up loyalty to other countries', 'Obey the laws of the United States', 'Defend the Constitution and the laws of the United States', 'Serve in the US Military', 'Serve the nation', 'Be loyal to the United States'],
+        A: ['Give up loyalty to other countries', 'Obey the laws of the United States', 'Defend the Constitution and the laws of the United States', 'Serve in the US Military', 'Serve the nation', 'Be loyal to the United States'],// consider sentence answers
         N: 1
     },
     {
@@ -273,7 +273,7 @@ const questions = [
     },
     {//55
         Q: 'What are two ways that Americans can participate in their democracy?',
-        A: ['Vote', 'Join a political party', 'Help with a campaign', 'Join a civic group', 'Join a community group', 'Give an elected official your opinion on an issue', 'Call Senators and Representatives', 'Publicly support or oppose an issue or policy', 'Run for office', 'Write to a newspaper'],
+        A: ['Vote', 'Join a political party', 'Help with a campaign', 'Join a civic group', 'Join a community group', 'Give an elected official your opinion on an issue', 'Call Senators and Representatives', 'Publicly support or oppose an issue or policy', 'Run for office', 'Write to a newspaper'],// consider sentence answers
         N: 2
     },
 
@@ -553,6 +553,8 @@ function createForm() {
         input.setAttribute('class', 'answer-fields');
         input.setAttribute('id', 'field' + fieldCount);
         answerSection.appendChild(input);
+        evalFields();
+
         // console.log(answerSection);
         //access text node here and check for user input whether or not in field, eval fields will be the function this is added to later
     }
@@ -638,7 +640,7 @@ function evaluateAnswer() {
     } else {
         // console.log(questions[currentQuestion - 1].Q)
         // console.log(questions[currentQuestion - 1].A)
-          //write function to loop through correct answer to display to user in a modal
+        //write function to loop through correct answer to display to user in a modal
         console.log('user missed one or more display correct answer')
         //set modal trigger to false
     }
@@ -686,21 +688,42 @@ function newButton() {
 
 }
 
+function fieldLengthCheck(){
+    if (this.value.length < 1||0) {
+        console.log(this.value)
+        console.log('left the field and not 1 characters')
+        this.setAttribute('class','answer-fields red')
+        this.setAttribute('placeholder','please enter something')
+    } else {
+        console.log(this.value)
+        this.setAttribute('class','answer-fields')
+    }
+}
+
+
 function evalFields() {
+    let domFields = document.getElementsByClassName('answer-fields')
+    console.log(domFields)
+    for (var i = 0; i < domFields.length; i++) {
+        domFields[i].addEventListener('blur', fieldLengthCheck)
+            
+
+    }
     //first do a DOM check for if the fields exist; return the number of fields then add event listeners to them(return field nodes, loop through them add event listeners.)
     //field should have atleast 1 character and no more than 75
     //the value in the fields should not be the same 1 through 3 so user cannot write hello hello hello. 
     //if all three fields are filled out the button should illuminate & be ready for the answer to be submitted
-    let field1 = document.getElementById('field1')
-    let field2 = document.getElementById('field1')
-    let field3 = document.getElementById('field1')
-    field1.addEventListener('blur')
+    // let field1 = document.getElementById('field1')
+    // let field2 = document.getElementById('field1')
+    // let field3 = document.getElementById('field1')
+    // field1.addEventListener('blur')
     //in this function fields will be evaluated for an answer a button will not show up unless something is entered into the field.
-    let button = document.getElementById('submit').disabled = false;
+    // let button = document.getElementById('submit').disabled = false;
 
 }
 
 function nextQuestion() {
+
     currentQuestion++;
     printQuestionNum++
     ansToEval = questions[currentQuestion - 1].A
