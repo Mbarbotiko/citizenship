@@ -547,14 +547,12 @@ function createForm() {
         let answerSection = document.querySelector('.answer-section');
         let input = document.createElement("input");
         input.setAttribute('type', 'text');
-        input.setAttribute('minlength', '1');
         input.setAttribute('maxlength', '75');//form field eval
         input.setAttribute('value', '');
         input.setAttribute('class', 'answer-fields');
         input.setAttribute('id', 'field' + fieldCount);
         answerSection.appendChild(input);
-        evalFields();
-
+        input.addEventListener('blur', evalFields)
         // console.log(answerSection);
         //access text node here and check for user input whether or not in field, eval fields will be the function this is added to later
     }
@@ -688,42 +686,51 @@ function newButton() {
 
 }
 
-function fieldLengthCheck(){
-    if (this.value.length < 1||0) {
-        console.log(this.value)
-        console.log('left the field and not 1 characters')
-        this.setAttribute('class','answer-fields red')
-        this.setAttribute('placeholder','please enter something')
-    } else {
-        console.log(this.value)
-        this.setAttribute('class','answer-fields')
-    }
-}
-
-
 function evalFields() {
-    let domFields = document.getElementsByClassName('answer-fields')
-    console.log(domFields)
-    for (var i = 0; i < domFields.length; i++) {
-        domFields[i].addEventListener('blur', fieldLengthCheck)
-            
+    if (this.value.length < 1 || 0) {
+        this.setAttribute('class', 'answer-fields red')
+        this.setAttribute('placeholder', 'please enter something')
+    } else {
+        this.setAttribute('class', 'answer-fields')
+        let domFields = document.getElementsByClassName('answer-fields')
+        console.log(domFields)
+        console.log(this.value)
+        for (var i = 0; i < domFields.length; i++) {
+            if (this.value === domFields[i].value && this.id !== domFields[i].id) {
+                console.log('same value entered twice')
+                this.setAttribute('class', 'answer-fields red')
+                domFields[i].setAttribute('class', 'answer-fields red')
+                //make all user answer in field to lowercase to avoid cheating uppercase letters
+                //this doesnt work if 2 fields are same and 1 is different: write code that checks ALL fields value's against eachother
+            }
 
+        }
     }
-    //first do a DOM check for if the fields exist; return the number of fields then add event listeners to them(return field nodes, loop through them add event listeners.)
-    //field should have atleast 1 character and no more than 75
-    //the value in the fields should not be the same 1 through 3 so user cannot write hello hello hello. 
-    //if all three fields are filled out the button should illuminate & be ready for the answer to be submitted
-    // let field1 = document.getElementById('field1')
-    // let field2 = document.getElementById('field1')
-    // let field3 = document.getElementById('field1')
-    // field1.addEventListener('blur')
-    //in this function fields will be evaluated for an answer a button will not show up unless something is entered into the field.
-    // let button = document.getElementById('submit').disabled = false;
-
 }
+
+// function evalFields() {
+//     let domFields = document.getElementsByClassName('answer-fields')
+//     console.log(domFields)
+//     for (var i = 0; i < domFields.length; i++) {
+//         if (this.value === domFields[i].value) {
+//             console.log('two of the same values')
+//         }
+
+//     }
+//first do a DOM check for if the fields exist; return the number of fields then add event listeners to them(return field nodes, loop through them add event listeners.)
+//field should have atleast 1 character and no more than 75
+//the value in the fields should not be the same 1 through 3 so user cannot write hello hello hello. 
+//if all three fields are filled out the button should illuminate & be ready for the answer to be submitted
+// let field1 = document.getElementById('field1')
+// let field2 = document.getElementById('field1')
+// let field3 = document.getElementById('field1')
+// field1.addEventListener('blur')
+//in this function fields will be evaluated for an answer a button will not show up unless something is entered into the field.
+// let button = document.getElementById('submit').disabled = false;
+
+// }
 
 function nextQuestion() {
-
     currentQuestion++;
     printQuestionNum++
     ansToEval = questions[currentQuestion - 1].A
