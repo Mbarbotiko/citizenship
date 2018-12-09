@@ -615,11 +615,11 @@ function evaluateAnswer() {
         for (var j = 0; j < answerString.length; j++) {
 
             if (userString[i] === answerString[j]) {
-                console.log('wehaveamatch')
+                // console.log('wehaveamatch')
                 trueCount++
 
             } else {
-                console.log('thesedontmatch')
+                // console.log('thesedontmatch')
             }
 
         }
@@ -687,48 +687,53 @@ function newButton() {
 }
 
 function evalFields() {
+    let fieldsArr = [];
+    let counts = [];
+    // if fields length is less than 1 or 0 change field color
+    let domFields = document.getElementsByClassName('answer-fields')
     if (this.value.length < 1 || 0) {
         this.setAttribute('class', 'answer-fields red')
         this.setAttribute('placeholder', 'please enter something')
     } else {
+        //change it back
         this.setAttribute('class', 'answer-fields')
-        let domFields = document.getElementsByClassName('answer-fields')
-        console.log(domFields)
-        console.log(this.value)
-        for (var i = 0; i < domFields.length; i++) {
-            if (this.value === domFields[i].value && this.id !== domFields[i].id) {
-                console.log('same value entered twice')
-                this.setAttribute('class', 'answer-fields red')
-                domFields[i].setAttribute('class', 'answer-fields red')
-                //make all user answer in field to lowercase to avoid cheating uppercase letters
-                //this doesnt work if 2 fields are same and 1 is different: write code that checks ALL fields value's against eachother
-            }
 
+    }
+    //loop through fields change the values to all lower case so user cannot enter upper and lower case values that equate to the same answer to move forward : push into an array
+    for (var i = 0; i < domFields.length; i++) {
+        let fieldToLower = domFields[i].value.toLowerCase().trim()
+        fieldsArr.push(fieldToLower)
+
+    }
+    console.log(counts)
+    console.log(fieldsArr)
+    //evaluate array for the same answers
+    for (var i = 0; i <= fieldsArr.length; i++) {
+        console.log(counts)
+        console.log(fieldsArr[i])
+        console.log(counts[fieldsArr[i]])
+        if (counts[fieldsArr[i]] === undefined) {
+            counts[fieldsArr[i]] = 1;
+            console.log(counts[fieldsArr[i]])
+        } else {
+            console.log('some of these match')
+            console.log(counts[fieldsArr[i]])
+            //write code here that turns fields red if they match
+            
+            return true;
         }
     }
+    console.log('none of these match')
+    console.log(counts[fieldsArr[i]])
+    //write code the turns fields back to translucent if they dont match
+    //write code here that activates the submit button
+    return false;
+
+    //if all three fields are filled out the button should illuminate & be ready for the answer to be submitted
+    //in this function fields will be evaluated for an answer a button will not show up unless something is entered into the field.
+    // let button = document.getElementById('submit').disabled = false;
+
 }
-
-// function evalFields() {
-//     let domFields = document.getElementsByClassName('answer-fields')
-//     console.log(domFields)
-//     for (var i = 0; i < domFields.length; i++) {
-//         if (this.value === domFields[i].value) {
-//             console.log('two of the same values')
-//         }
-
-//     }
-//first do a DOM check for if the fields exist; return the number of fields then add event listeners to them(return field nodes, loop through them add event listeners.)
-//field should have atleast 1 character and no more than 75
-//the value in the fields should not be the same 1 through 3 so user cannot write hello hello hello. 
-//if all three fields are filled out the button should illuminate & be ready for the answer to be submitted
-// let field1 = document.getElementById('field1')
-// let field2 = document.getElementById('field1')
-// let field3 = document.getElementById('field1')
-// field1.addEventListener('blur')
-//in this function fields will be evaluated for an answer a button will not show up unless something is entered into the field.
-// let button = document.getElementById('submit').disabled = false;
-
-// }
 
 function nextQuestion() {
     currentQuestion++;
@@ -772,3 +777,65 @@ function nextQuestion() {
 //can include track from USCIS website as well, add to questions object and display for the user to be able to click when the question is presented(imbed into page)
 
 //for end the sentences questions MAY need to supply a sentence answer, will decide much later...
+
+
+
+
+// function evalFields() {
+//     let fieldsArr = [];
+//     let fieldsArr2 = [];
+//     let trueCount = 0;
+//     let domFields = document.getElementsByClassName('answer-fields')
+//     if (this.value.length < 1 || 0) {
+//         this.setAttribute('class', 'answer-fields red')
+//         this.setAttribute('placeholder', 'please enter something')
+//     } else {
+//         this.setAttribute('class', 'answer-fields')
+
+//     }
+//     for (var i = 0; i < domFields.length; i++) {
+//         let fieldToLower = domFields[i].value.toLowerCase().trim()
+//         let thisFieldToLower = this.value.toLowerCase().trim()
+//         fieldsArr.push(fieldToLower)
+//         fieldsArr2.push(fieldToLower)
+//     }
+
+//     for (var j = 0; j < fieldsArr.length; j++) {
+//         for (var k = 0; k < fieldsArr.length; k++) {
+//             if (fieldsArr[j] === fieldsArr2[k]) {
+//                 console.log('we have a match')
+//                 trueCount++
+//                 this.setAttribute('class', 'answer-fields red')
+
+//             } else {
+//                 console.log('we dont have a match')
+//             }
+
+//         }
+//     }
+//     if (trueCount-fieldsArr.length===0) {
+//         console.log('none of these match')
+//         this.setAttribute('class', 'answer-fields')
+
+
+//     }else{
+//         console.log('change an answer because its the same')
+//         this.setAttribute('class', 'answer-fields red')
+//         //place code here to make submit button inactive, because during loop returning undefined so the fields match because user hasnt typed anything into them 
+//     }
+
+
+//     // https://www.thepolyglotdeveloper.com/2015/02/calculate-duplicates-exist-array-using-javascript/
+
+//     //first do a DOM check for if the fields exist; return the number of fields then add event listeners to them(return field nodes, loop through them add event listeners.)
+//     //field should have atleast 1 character and no more than 75
+//     //the value in the fields should not be the same 1 through 3 so user cannot write hello hello hello. 
+//     //if all three fields are filled out the button should illuminate & be ready for the answer to be submitted
+//     // let field1 = document.getElementById('field1')
+//     // let field2 = document.getElementById('field1')
+//     // let field3 = document.getElementById('field1')
+//     // field1.addEventListener('blur')
+//     //in this function fields will be evaluated for an answer a button will not show up unless something is entered into the field.
+//     // let button = document.getElementById('submit').disabled = false;
+
+// }
