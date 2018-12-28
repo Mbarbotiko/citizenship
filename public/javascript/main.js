@@ -691,7 +691,7 @@ function newButton() {
 
 //function that changes the class of the fields based on whether or not the value length is more than 0 or 1, attached as an event listener to the field that is selected/user is currently on.
 function fieldCharacters(e) {
-    let = target = e.target;
+    let target = e.target;
     if (target.value.length < 1 || 0) {
         target.setAttribute('class', 'answer-fields red')
         target.setAttribute('placeholder', 'please enter something')
@@ -706,6 +706,7 @@ function fieldCharacters(e) {
 let testContainer = document.getElementsByClassName('answer-section')[0]
 console.log(testContainer);
 testContainer.addEventListener('input', areTheseEmpty)
+
 function areTheseEmpty(){
     console.log('hi')
     let numFields = document.getElementsByClassName('answer-fields')
@@ -765,6 +766,8 @@ function checkAllFields(e) {
         //what's not working: an evaluation when a field is changed to an empty string the button stays available to submit, write code that checks for this empty string look @ areTheseEmpty was added as event listener, maybe put into this function instead.
     }
 
+    //add event listner on the enter button so submit runs when user hits the enter button on the keyboard
+    //add on page load focus on the first input field
 
 }
 
