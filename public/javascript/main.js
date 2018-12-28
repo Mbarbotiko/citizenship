@@ -527,9 +527,12 @@ let modalTrigger = null;
 let userInput = [];
 let fieldCount = 0;
 let userString = [];
+//array that holds user answer as a string with all characters from invalid to remove
 let answerString = [];
+//array to hold the correct answer string with all the characters from invalid to remove
 let ansToEval = questions[currentQuestion].A
 const invalid = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '{', '[', '}', ']', '|', ';', ':', "'", '"', '<', ',', '>', '.', '/', '?', ' ']
+//characters that will be filtered out of users answers
 
 let cleanString = '';
 let eval = null;
@@ -559,18 +562,17 @@ function createForm() {
     }
 }
 
-
-
+//function that loops through the input fields and pushes the users answers into an array to then be filtered
 function getUserInput() {
     let fieldCountNum = 0
     for (var i = 0; i < fieldCount; i++) {
         fieldCountNum++
         let userSaidWhat = document.getElementById('field' + fieldCountNum).value
         userInput.push(userSaidWhat);
-
     }
 }
 
+//function that loops through the characters in the invalid array (unwanted characters) if there is a match on what is passed as x stop the loop and start over on the next character, otherwise finish the loop.  Set eval variable to true/ false  if true create a new string adding the character that made it through the gauntlet which will later be pushed into another array for evaluating the correct answer that is filtered with the users answer that is filtered.
 function invalidFilter(x) {
     for (var i = 0; i < invalid.length; i++) {
         if (x === invalid[i]) {
@@ -585,12 +587,14 @@ function invalidFilter(x) {
     }
 }
 
+//function that finishes filtering the arrays passed and turns them into a final array to be validated against the filtered user answer and the filtered correct answer. 
 function filterString(a) {
     for (var i = 0; i < a.length; i++) {
         let string = a[i]
         let stringLow = string.toLowerCase().trim();
         for (var j = 0; j < stringLow.length; j++) {
             invalidFilter(stringLow[j])
+            //this is where invalid filter finally runs after the index of the argument string passed is changed to lowercase with excess space removed on edges. 
         }
         if (a === userInput) {
             userString.push(cleanString)
@@ -598,11 +602,10 @@ function filterString(a) {
         } else if (a === ansToEval) {
             answerString.push(cleanString)
             cleanString = '';
+            //if else is used to check what variable was passed, if userInput push to a different array from ansToEval variable.
         } else {
             console.log('Something went wrong, input argument isnt userInput or answerInput')
         }
-
-
     }
 }
 
@@ -647,10 +650,7 @@ function evaluateAnswer() {
     //if modal trigger !==null trigger modal ^^^ above decides what will be printed  //if true do this if false do this if null do nothing: close button on both should turn the trigger to null//print to modal in this function show modal in another function
 
     //use blur/ out of focus to check if user either didnt put answer in OR put same answer in twice for final evaluation of users input.
-
 }
-
-
 
 function resetFields() {
     userInput = [];
