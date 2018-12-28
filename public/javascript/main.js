@@ -544,7 +544,7 @@ function newQuestion() {
 }
 
 function createForm() {
-   
+
     //user a loop to create multiple times based on the  variable, 
     for (var i = 0; i < questions[currentQuestion].N; i++) {
         fieldCount++;
@@ -556,7 +556,9 @@ function createForm() {
         input.setAttribute('class', 'answer-fields');
         input.setAttribute('id', 'field' + fieldCount);
         answerSection.appendChild(input);
-        input.addEventListener('blur', evalFields)
+        input.addEventListener('blur', fieldCharacters)
+        input.addEventListener('input', fieldCharacters)
+        input.addEventListener('input', checkAllFields)
         // console.log(answerSection);
         //access text node here and check for user input whether or not in field, eval fields will be the function this is added to later
     }
@@ -689,8 +691,49 @@ function newButton() {
     buttonSection.appendChild(button)
 }
 
+function fieldCharacters(e) {
+    let = target = e.target;
+    console.log(target.value.length)
+    // let domFields = document.getElementsByClassName('answer-fields');
+    if (target.value.length < 1 || 0) {
+        target.setAttribute('class', 'answer-fields red')
+        target.setAttribute('placeholder', 'please enter something')
+    } else {
+        //change it back
+        target.setAttribute('class', 'answer-fields')
+    }
+}
+
+function checkAllFields(e) {
+    let target = e.target;
+    let fieldsArr = [];
+    let counts = [];
+    let domFields = document.getElementsByClassName('answer-fields')
+    for (var i = 0; i < domFields.length; i++) {
+        let fieldToLower = domFields[i].value.toLowerCase().trim()
+        fieldsArr.push(fieldToLower)
+    }
+
+    for (var i = 0; i <= fieldsArr.length; i++) {
+        if (counts[fieldsArr[i]] === undefined) {
+            //looped itself will return undefined set value to 1 so it is defined
+            counts[fieldsArr[i]] = 1;
+        } else {
+            console.log('you have a duplicate answer please change your answer to something else')
+            //return true if during loop hit  key that exists
+            return true;//stop if duplicate is found
+        }
+    }
+
+    console.log('none of the answers match submit if you dare')
+    //write code here that activates the submit button
+    document.getElementById('submit').disabled = false;
+    return false;
+
+
+}
+
 function evalFields() {
-    
     let fieldsArr = [];
     let counts = [];
     // if fields length is less than 1 or 0 change field color
