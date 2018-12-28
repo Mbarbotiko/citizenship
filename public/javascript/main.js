@@ -679,7 +679,11 @@ function newButton() {
     let button = document.createElement('button')
     button.setAttribute('type', 'button')
     button.setAttribute('id', 'submit')
-    button.setAttribute('onClick', 'nextQuestion()')
+
+    button.addEventListener('click', nextQuestion)
+    // button.setAttribute('onClick', 'nextQuestion()')//this should be an event listener
+
+
     button.setAttribute('disabled', 'true')//set this to true when the evalFields function is written
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
@@ -745,7 +749,6 @@ function nextQuestion() {
     resetFields()
     newQuestion();
     createForm();
-    
 }
 
 //finish writing tests for Mocha
