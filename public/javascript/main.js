@@ -667,6 +667,17 @@ function resetFields() {
     }
 }
 
+function whichKey(e){
+    var keyButton = e.which;
+    console.log(keyButton)
+    if ( e.which ===13){
+        alert('enterbutton got hit')
+        nextQuestion();
+    }
+}
+
+
+
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
 
 function newButton() {
@@ -704,6 +715,8 @@ function areTheseEmpty() {
     for (var i = 0; i < numFields.length; i++) {
         if (numFields[i].value.length === 0) {
             buttonChanges();
+        }else{
+            document.addEventListener('keyup', whichKey)
         }
     }
 }
@@ -740,6 +753,7 @@ function buttonChanges() {
     let submitButton = document.getElementById('submit')
     submitButton.setAttribute('class', 'enter-buttons')
     submitButton.disabled = true;
+    document.removeEventListener('keyup', whichKey)
 }
 
 function nextQuestion() {
