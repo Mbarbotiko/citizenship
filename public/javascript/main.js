@@ -538,13 +538,17 @@ let cleanString = '';
 let eval = null;
 //\
 
+//setting up event listener for the start button
+const enterButton = document.getElementById('start')
+enterButton.addEventListener('click', newButton)
+
+
 //function writes new question to the DOM
 function newQuestion() {
     document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
 }
 
 function createForm() {
-
     //user a loop to create multiple times based on the  variable, 
     for (var i = 0; i < questions[currentQuestion].N; i++) {
         fieldCount++;
@@ -609,7 +613,6 @@ function filterString(a) {
     }
 }
 
-
 // x= answerString  y = userInput
 function evaluateAnswer() {
     //userInput vs answerString
@@ -617,15 +620,12 @@ function evaluateAnswer() {
     let trueCount = 0;
     for (var i = 0; i < userString.length; i++) {
         for (var j = 0; j < answerString.length; j++) {
-
             if (userString[i] === answerString[j]) {
                 // console.log('wehaveamatch')
                 trueCount++
-
             } else {
                 // console.log('thesedontmatch')
             }
-
         }
     }
 
@@ -669,10 +669,6 @@ function resetFields() {
 
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
 
-
-const enterButton = document.getElementById('start')
-enterButton.addEventListener('click', newButton)
-
 function newButton() {
     newQuestion();
     createForm();
@@ -702,80 +698,48 @@ function fieldCharacters(e) {
     }
 }
 
-// event listener function that checks all fields while the user is typing to ensure they dont have duplicate answers.  All answers are changed to lower case and evaluated against eachother, then the submit button will become available.
-let testContainer = document.getElementsByClassName('answer-section')[0]
-console.log(testContainer);
-testContainer.addEventListener('input', areTheseEmpty)
-
-function areTheseEmpty(){
-    console.log('hi')
+//final check if user changes or deletes an answer leaving field blank
+function areTheseEmpty() {
     let numFields = document.getElementsByClassName('answer-fields')
-    console.log(numFields)
-    for (var i = 0; i<numFields.length;i++){
-        console.log(numFields[i].value.length)
-        if (numFields[i]===0){
+    for (var i = 0; i < numFields.length; i++) {
+        if (numFields[i].value.length === 0) {
             buttonChanges();
         }
     }
-    
 }
 
-function checkAllFields(e) {
-    let target = e.target;
+function checkAllFields() {
     let fieldsArr = [];
     let counts = [];
     let domFields = document.getElementsByClassName('answer-fields')
     for (var i = 0; i < domFields.length; i++) {
         let fieldToLower = domFields[i].value.toLowerCase().trim()
-        if (domFields[i] === '') {
-
+        fieldsArr.push(fieldToLower)
+        //users answer is pushed to a new array after changing to lowercase
+    }
+    for (var i = 0; i <= fieldsArr.length; i++) {
+        if (counts[fieldsArr[i]] === undefined) {
+            //looped itself will return undefined set value to 1 so it is defined
+            counts[fieldsArr[i]] = 1;
         } else {
-            fieldsArr.push(fieldToLower)
-            //users answer is pushed to a new array after changing to lowercase
-            console.log(fieldsArr);
+            console.log('you have a duplicate answer please change your answer to something else')
+            //return true if during loop hit  key that exists
+            return true;//stop if duplicate is found
         }
     }
-    if (target.value.length < 1 || 0) {
-        buttonChanges();
-    } else {
-
-        for (var i = 0; i <= fieldsArr.length; i++) {
-            console.log(fieldsArr.length)
-            console.log(domFields.length)
-            if (fieldsArr.length !== domFields.length) {
-                buttonChanges();
-            }
-            if (counts[fieldsArr[i]] === undefined) {
-                //looped itself will return undefined set value to 1 so it is defined
-                counts[fieldsArr[i]] = 1;
-            } else {
-                buttonChanges();
-                console.log('you have a duplicate answer please change your answer to something else')
-                //return true if during loop hit  key that exists
-                return true;//stop if duplicate is found
-            }
-        }
-
-        console.log('Ready to submit')
-        //activates the submit button
-        let submitButton = document.getElementById('submit')
-        submitButton.setAttribute('class', 'enter-buttons green')
-        submitButton.disabled = false;
-        
-        return false;
-        //what's not working: an evaluation when a field is changed to an empty string the button stays available to submit, write code that checks for this empty string look @ areTheseEmpty was added as event listener, maybe put into this function instead.
-    }
-
-    //add event listner on the enter button so submit runs when user hits the enter button on the keyboard
-    //add on page load focus on the first input field
-
+    console.log('Ready to submit')
+    let submitButton = document.getElementById('submit')
+    submitButton.setAttribute('class', 'enter-buttons green')
+    submitButton.disabled = false;
+    //final check to check for empty fields runs afterwards
+    areTheseEmpty()
+    return false;
 }
 
 function buttonChanges() {
     let submitButton = document.getElementById('submit')
     submitButton.setAttribute('class', 'enter-buttons')
     submitButton.disabled = true;
-
 }
 
 function nextQuestion() {
@@ -805,6 +769,9 @@ function nextQuestion() {
 // add different states (this will be the "get ready page")
 
 //add onkey up enter = submit
+
+  //add event listner on the enter button so submit runs when user hits the enter button on the keyboard
+    //add on page load focus on the first input field
 // https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
 
 //https://www.uscis.gov/citizenship/learners/study-test
