@@ -559,8 +559,6 @@ function createForm() {
         input.addEventListener('blur', fieldCharacters)
         input.addEventListener('input', fieldCharacters)
         input.addEventListener('input', checkAllFields)
-        // console.log(answerSection);
-        //access text node here and check for user input whether or not in field, eval fields will be the function this is added to later
     }
 }
 
@@ -685,23 +683,40 @@ function newButton() {
     button.setAttribute('type', 'button')
     button.setAttribute('id', 'submit')
     button.addEventListener('click', nextQuestion)
-    button.setAttribute('disabled', 'true')//set this to true when the evalFields function is written
+    button.setAttribute('disabled', 'true')
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
 }
 
+//function that changes the class of the fields based on whether or not the value length is more than 0 or 1, attached as an event listener to the field that is selected/user is currently on.
 function fieldCharacters(e) {
     let = target = e.target;
-    console.log(target.value.length)
-    // let domFields = document.getElementsByClassName('answer-fields');
     if (target.value.length < 1 || 0) {
         target.setAttribute('class', 'answer-fields red')
         target.setAttribute('placeholder', 'please enter something')
+        buttonChanges();
     } else {
         //change it back
         target.setAttribute('class', 'answer-fields')
     }
+}
+
+// event listener function that checks all fields while the user is typing to ensure they dont have duplicate answers.  All answers are changed to lower case and evaluated against eachother, then the submit button will become available.
+let testContainer = document.getElementsByClassName('answer-section')[0]
+console.log(testContainer);
+testContainer.addEventListener('input', areTheseEmpty)
+function areTheseEmpty(){
+    console.log('hi')
+    let numFields = document.getElementsByClassName('answer-fields')
+    console.log(numFields)
+    for (var i = 0; i<numFields.length;i++){
+        console.log(numFields[i].value.length)
+        if (numFields[i]===0){
+            buttonChanges();
+        }
+    }
+    
 }
 
 function checkAllFields(e) {
@@ -711,72 +726,57 @@ function checkAllFields(e) {
     let domFields = document.getElementsByClassName('answer-fields')
     for (var i = 0; i < domFields.length; i++) {
         let fieldToLower = domFields[i].value.toLowerCase().trim()
-        fieldsArr.push(fieldToLower)
-    }
+        if (domFields[i] === '') {
 
-    for (var i = 0; i <= fieldsArr.length; i++) {
-        if (counts[fieldsArr[i]] === undefined) {
-            //looped itself will return undefined set value to 1 so it is defined
-            counts[fieldsArr[i]] = 1;
         } else {
-            console.log('you have a duplicate answer please change your answer to something else')
-            //return true if during loop hit  key that exists
-            return true;//stop if duplicate is found
+            fieldsArr.push(fieldToLower)
+            //users answer is pushed to a new array after changing to lowercase
+            console.log(fieldsArr);
         }
     }
+    if (target.value.length < 1 || 0) {
+        buttonChanges();
+    } else {
 
-    console.log('none of the answers match submit if you dare')
-    //write code here that activates the submit button
-    document.getElementById('submit').disabled = false;
-    return false;
+        for (var i = 0; i <= fieldsArr.length; i++) {
+            console.log(fieldsArr.length)
+            console.log(domFields.length)
+            if (fieldsArr.length !== domFields.length) {
+                buttonChanges();
+            }
+            if (counts[fieldsArr[i]] === undefined) {
+                //looped itself will return undefined set value to 1 so it is defined
+                counts[fieldsArr[i]] = 1;
+            } else {
+                buttonChanges();
+                console.log('you have a duplicate answer please change your answer to something else')
+                //return true if during loop hit  key that exists
+                return true;//stop if duplicate is found
+            }
+        }
+
+        console.log('Ready to submit')
+        //activates the submit button
+        let submitButton = document.getElementById('submit')
+        submitButton.setAttribute('class', 'enter-buttons green')
+        submitButton.disabled = false;
+        
+        return false;
+        //what's not working: an evaluation when a field is changed to an empty string the button stays available to submit, write code that checks for this empty string look @ areTheseEmpty was added as event listener, maybe put into this function instead.
+    }
 
 
 }
 
-function evalFields() {
-    let fieldsArr = [];
-    let counts = [];
-    // if fields length is less than 1 or 0 change field color
-    let domFields = document.getElementsByClassName('answer-fields')
-    if (this.value.length < 1 || 0) {
-        this.setAttribute('class', 'answer-fields red')
-        this.setAttribute('placeholder', 'please enter something')
-    } else {
-        //change it back
-        this.setAttribute('class', 'answer-fields')
+function buttonChanges() {
+    let submitButton = document.getElementById('submit')
+    submitButton.setAttribute('class', 'enter-buttons')
+    submitButton.disabled = true;
 
-    }
-    //loop through fields change the values to all lower case so user cannot enter upper and lower case values that equate to the same answer to move forward : push into an array
-    for (var i = 0; i < domFields.length; i++) {
-        let fieldToLower = domFields[i].value.toLowerCase().trim()
-        fieldsArr.push(fieldToLower)
-    }
-
-    //evaluate array for the same answers
-    for (var i = 0; i <= fieldsArr.length; i++) {
-        if (counts[fieldsArr[i]] === undefined) {
-            //looped itself will return undefined set value to 1 so it is defined
-            counts[fieldsArr[i]] = 1;
-        } else {
-            console.log('you have a duplicate answer please change your answer to something else')
-            //return true if during loop hit  key that exists
-            return true;//stop if duplicate is found
-        }
-    }
-    // for (var i = 0; i < domFields.length; i++) {
-    //     // console.log(domFields[i])
-    //     domFields[i].setAttribute('class', 'answer-fields');
-    // }
-    console.log('none of the answers match submit if you dare')
-    //write code here that activates the submit button
-    document.getElementById('submit').disabled = false;
-    return false;
-
-    //if all three fields are filled out the button should illuminate & be ready for the answer to be submitted
-    //if one of the fields is a blank string should still show inactive button currently showing active after one entry
 }
 
 function nextQuestion() {
+    buttonChanges();
     currentQuestion++;
     printQuestionNum++
     ansToEval = questions[currentQuestion - 1].A
@@ -784,7 +784,6 @@ function nextQuestion() {
     fieldCount = 0
     filterString(userInput);
     filterString(ansToEval);
-    //insert function to check fields here out of focus/ in focus(evalFields)
     evaluateAnswer()
     alert('This was your answer:  ' + userString + '\nThese are acceptable answers:  ' + answerString);
     resetFields()
