@@ -542,7 +542,12 @@ let eval = null;
 const enterButton = document.getElementById('start')
 enterButton.addEventListener('click', newButton)
 
-
+//event listener for the document on change to focus on the first input element
+ function focusInput(){
+let inputFocus = document.getElementsByClassName('answer-fields')[0]
+inputFocus.focus();
+console.log('focus ran')
+ }
 //function writes new question to the DOM
 function newQuestion() {
     document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
@@ -667,16 +672,12 @@ function resetFields() {
     }
 }
 
+//event listener function that checks for key pressed if its the enter key runs the next question
 function whichKey(e){
-    var keyButton = e.which;
-    console.log(keyButton)
     if ( e.which ===13){
-        alert('enterbutton got hit')
         nextQuestion();
     }
 }
-
-
 
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
 
@@ -694,6 +695,7 @@ function newButton() {
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
+    focusInput();
 }
 
 //function that changes the class of the fields based on whether or not the value length is more than 0 or 1, attached as an event listener to the field that is selected/user is currently on.
@@ -770,6 +772,7 @@ function nextQuestion() {
     resetFields()
     newQuestion();
     createForm();
+    focusInput();//when this runs it also runs the placeholder on the second question
 }
 
 //finish writing tests for Mocha
@@ -782,10 +785,7 @@ function nextQuestion() {
 
 // add different states (this will be the "get ready page")
 
-//add onkey up enter = submit
-
-  //add event listner on the enter button so submit runs when user hits the enter button on the keyboard
-    //add on page load focus on the first input field
+//add on page load focus on the first input field
 // https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
 
 //https://www.uscis.gov/citizenship/learners/study-test
