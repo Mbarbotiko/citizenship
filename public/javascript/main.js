@@ -670,6 +670,9 @@ function resetFields() {
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
 
 
+const enterButton = document.getElementById('start')
+enterButton.addEventListener('click', newButton)
+
 function newButton() {
     newQuestion();
     createForm();
@@ -679,16 +682,11 @@ function newButton() {
     let button = document.createElement('button')
     button.setAttribute('type', 'button')
     button.setAttribute('id', 'submit')
-
     button.addEventListener('click', nextQuestion)
-    // button.setAttribute('onClick', 'nextQuestion()')//this should be an event listener
-
-
     button.setAttribute('disabled', 'true')//set this to true when the evalFields function is written
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
-
 }
 
 function evalFields() {
