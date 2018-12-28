@@ -125,7 +125,7 @@ html {
 }
 
 .red {
-  background: orange;
+  background: rgba(255, 165, 0, 0.25);
 }
 
 .answer-fields::placeholder {

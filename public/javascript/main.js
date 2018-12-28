@@ -566,6 +566,7 @@ function createForm() {
         input.setAttribute('id', 'field' + fieldCount);
         answerSection.appendChild(input);
         input.addEventListener('blur', fieldCharacters)
+        input.addEventListener('focus', fieldCharacters)
         input.addEventListener('input', fieldCharacters)
         input.addEventListener('input', checkAllFields)
     }
@@ -703,7 +704,7 @@ function fieldCharacters(e) {
     let target = e.target;
     if (target.value.length < 1 || 0) {
         target.setAttribute('class', 'answer-fields red')
-        target.setAttribute('placeholder', 'please enter something')
+        // target.setAttribute('placeholder', 'please enter something')
         buttonChanges();
     } else {
         //change it back
@@ -772,7 +773,8 @@ function nextQuestion() {
     resetFields()
     newQuestion();
     createForm();
-    focusInput();//when this runs it also runs the placeholder on the second question
+    focusInput();
+    //when this runs it also runs the placeholder on the second question
 }
 
 //finish writing tests for Mocha
