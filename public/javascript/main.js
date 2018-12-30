@@ -543,11 +543,10 @@ const enterButton = document.getElementById('start')
 enterButton.addEventListener('click', newButton)
 
 //event listener for the document on change to focus on the first input element
- function focusInput(){
-let inputFocus = document.getElementsByClassName('answer-fields')[0]
-inputFocus.focus();
-console.log('focus ran')
- }
+function focusInput() {
+    let inputFocus = document.getElementsByClassName('answer-fields')[0]
+    inputFocus.focus();
+}
 //function writes new question to the DOM
 function newQuestion() {
     document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
@@ -619,37 +618,41 @@ function filterString(a) {
     }
 }
 
-// x= answerString  y = userInput
+//function runs through the filtered strings for the users answer and the correct answer, then checks to see how many matched.  If the number matched is equal to the number of correct answers required the user answered correctly if less then the user answered something wrong.  Only issue is the multiple answers example: NY, NYC, New York, etc.  Will need to re-write the QA in the future  or use sub arrays.
+
 function evaluateAnswer() {
     //userInput vs answerString
-    let crossCheckEval = [];
     let trueCount = 0;
     for (var i = 0; i < userString.length; i++) {
         for (var j = 0; j < answerString.length; j++) {
             if (userString[i] === answerString[j]) {
-                // console.log('wehaveamatch')
                 trueCount++
-            } else {
-                // console.log('thesedontmatch')
             }
         }
     }
-
     if (trueCount === questions[currentQuestion - 1].N) {
-        //start with modal : correct / incorrect then print answers after
-
-
-        // console.log(questions[currentQuestion - 1].Q)
-        // console.log(questions[currentQuestion - 1].A)
-        //write function to loop through correct answer to display to user in a modal, leave out the answers they already submitted show user other answers available to them(will be an issue, string is changed so values are easily matched against one another, could possibly do index of of changed string and use it on the original sting in QA object? they're pushed in the same order.  Example 'theconstitution = [0] of answerString, and [0] of questionsA)(use loops and if ()index of !==-1)so as index moves ahead prints the same index in array from the filtered array & the original array.
-        //loop both, if math push to crosscheck if not do nothing  end display crosscheck items loop / print to modal via another function? but wont be available unless a global variable
         console.log('user answered all correct')
+        console.log(questions[currentQuestion - 1].Q)
+        let answers = questions[currentQuestion - 1].A
+        for (var i = 0; i < userInput.length; i++) {
+            console.log(userInput[i])
+        }
+        for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i])
+        }
         //set modal trigger to true
     } else {
-        // console.log(questions[currentQuestion - 1].Q)
-        // console.log(questions[currentQuestion - 1].A)
-        //write function to loop through correct answer to display to user in a modal
         console.log('user missed one or more display correct answer')
+        console.log(questions[currentQuestion - 1].Q)
+        for (var i = 0; i < userInput.length; i++) {
+            console.log(userInput[i])
+        }
+        let answers = questions[currentQuestion - 1].A
+        answers
+        for (var i = 0; i < answers.length; i++) {
+            console.log(answers[i])
+        }
+
         //set modal trigger to false
     }
 
@@ -674,8 +677,8 @@ function resetFields() {
 }
 
 //event listener function that checks for key pressed if its the enter key runs the next question
-function whichKey(e){
-    if ( e.which ===13){
+function whichKey(e) {
+    if (e.which === 13) {
         nextQuestion();
     }
 }
@@ -718,7 +721,7 @@ function areTheseEmpty() {
     for (var i = 0; i < numFields.length; i++) {
         if (numFields[i].value.length === 0) {
             buttonChanges();
-        }else{
+        } else {
             document.addEventListener('keyup', whichKey)
         }
     }
@@ -738,12 +741,11 @@ function checkAllFields() {
             //looped itself will return undefined set value to 1 so it is defined
             counts[fieldsArr[i]] = 1;
         } else {
-            console.log('you have a duplicate answer please change your answer to something else')
+            // console.log('you have a duplicate answer please change your answer to something else')
             //return true if during loop hit  key that exists
             return true;//stop if duplicate is found
         }
     }
-    console.log('Ready to submit')
     let submitButton = document.getElementById('submit')
     submitButton.setAttribute('class', 'enter-buttons green')
     submitButton.disabled = false;
@@ -769,7 +771,7 @@ function nextQuestion() {
     filterString(userInput);
     filterString(ansToEval);
     evaluateAnswer()
-    alert('This was your answer:  ' + userString + '\nThese are acceptable answers:  ' + answerString);
+    // alert('This was your answer:  ' + userString + '\nThese are acceptable answers:  ' + answerString);
     resetFields()
     newQuestion();
     createForm();
