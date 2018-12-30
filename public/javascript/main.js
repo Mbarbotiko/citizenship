@@ -499,7 +499,7 @@ const questions = [
 
     {
         Q: 'When do we celebrate Independence Day?',
-        A: ['July4', 'July 4th'],
+        A: ['July4', 'July 4th', '4th of July', ' Fourth of July'],
         N: 1
     },
 
@@ -519,7 +519,7 @@ const questions = [
 ];
 
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
-let currentQuestion = 98;
+let currentQuestion = 0;
 let printQuestionNum = 1;
 let modalTrigger = null;
 
@@ -558,8 +558,6 @@ window.addEventListener('click', function (e) {
 let numCorrectAns = 0;
 let questionsLeft = 100;
 
-//for later to get percentage
-let finalScore = numCorrectAns / 100;
 
 
 
@@ -799,15 +797,19 @@ function buttonChanges() {
 }
 
 function endFullQuiz() {
-    let testContainer = document.getElementsByClassName('container test')[0];
-    console.log(testContainer)
-    console.log(currentQuestion)
-    if (currentQuestion === 100) {
+
+    if (currentQuestion === 100) {//for later to get percentage
+        let finalScore = (numCorrectAns / 100) * 100 + '%'
+        let testContainer = document.getElementsByClassName('container test')[0];
+        console.log(testContainer)
+        testContainer.innerHTML = '<h1>You completed the test here are your results: <br>Number correct: ' + numCorrectAns + '<br>Percentage: ' + finalScore + '</h1><br><button id="retry" class="enter-buttons">Try Again</button>'
+        console.log(currentQuestion)
         console.log('show user their results in the main screen no more modal')
-       
+        let retryButton = document.getElementById('retry')
+        retryButton.addEventListener('click', function(){
+            location.reload();
+        })
     }
-
-
 }
 
 function startFullQuiz() {
