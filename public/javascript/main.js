@@ -412,7 +412,7 @@ const questions = [
     },
     {
         Q: 'Before he was President, Eisenhower was a General.  What war was he in?',
-        A: ['World War II', 'World War Two', 'World War 2'],
+        A: ['World War II', 'World War Two', 'World War 2', 'WW 2'],
         N: 1
     },
     {
@@ -476,8 +476,8 @@ const questions = [
         N: 1
     },
     {//95
-        Q: 'Where is the Status of Liberty?',
-        A: ['New York', 'New York Harbor', 'Liberty Island', 'New Jersey', 'Near New York City', 'On the Hudson River'],
+        Q: 'Where is the Statue of Liberty?',
+        A: ['New York', 'New York Harbor', 'Liberty Island', 'New Jersey', 'Near New York City', 'On the Hudson River' , 'NYC'],
         N: 1
     },
     {
@@ -521,7 +521,6 @@ const questions = [
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
 let currentQuestion = 0;
 let printQuestionNum = 1;
-let modalTrigger = null;
 
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
 let userInput = [];
@@ -542,12 +541,14 @@ let eval = null;
 const enterButton = document.getElementById('start')
 enterButton.addEventListener('click', newButton)
 
+
 //Modal
 const modal = document.getElementsByClassName('modal')[0];
 const btn = document.getElementById("myBtn");
 const span = document.getElementsByClassName("close")[0];
 span.addEventListener('click', function () {
     modal.style.display = "none";
+    //add event listener for enter button too? closes right away because already has another listener, either delay or listen for the second onkey up?
 })
 window.addEventListener('click', function (e) {
     if (e.target === modal) {
@@ -691,7 +692,7 @@ function evaluateAnswer() {
         modalFooter.textContent = 'Your answer(s) were all correct, you have answered ' + numCorrectAns + ' out of 100 correctly and you have ' + questionsLeft + ' questions left to answer.'
     } else {//can do answers/ answer and were/ was based on the # of answers then use switch statement/ or another if else
         questionsLeft--
-        modalFooter.textContent = 'One or more of your answer(s) were incorrect,  you have answered ' + numCorrectAns + ' out of 100 and you have ' + questionsLeft + ' questions left to answer.'
+        modalFooter.textContent = 'One or more of your answer(s) were incorrect,  you have answered ' + numCorrectAns + ' out of 100 correctly and you have ' + questionsLeft + ' questions left to answer.'
 
     }
 }
@@ -715,6 +716,7 @@ function resetFields() {
 function whichKey(e) {
     if (e.which === 13) {
         startFullQuiz();
+       
     }
 }
 
