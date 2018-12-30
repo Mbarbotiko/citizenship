@@ -635,6 +635,8 @@ function filterString(a) {
 
 function evaluateAnswer() {
     //userInput vs answerString
+    let modalContent = document.getElementsByClassName('modal-body')[0];
+    console.log(modalContent)
     let trueCount = 0;
     for (var i = 0; i < userString.length; i++) {
         for (var j = 0; j < answerString.length; j++) {
@@ -644,8 +646,11 @@ function evaluateAnswer() {
         }
     }
     if (trueCount === questions[currentQuestion - 1].N) {
+        modalContent.innerHTML = ('<h1>'+questions[currentQuestion - 1].Q+'</h1><br><h1>'+userInput[i]+'</h1><br><h1>'+answers[i])
+
+
         console.log('user answered all correct')
-        console.log(questions[currentQuestion - 1].Q)
+        // console.log(questions[currentQuestion - 1].Q)
         let answers = questions[currentQuestion - 1].A
         for (var i = 0; i < userInput.length; i++) {
             console.log(userInput[i])
@@ -656,8 +661,14 @@ function evaluateAnswer() {
         //set modal trigger to true
         modal.style.display = "block";
     } else {
+        modalContent.innerHTML = ('<h1>'+questions[currentQuestion - 1].Q+'</h1><br><h1>'+userInput[i]+'</h1><br><h1>'+answers[i])
+
+        //write down how this should be organized then use loops and innerHTML to change the modal.  Need to use innerHTML or text content within the loop for it to be defined.
+
+
+
         console.log('user missed one or more display correct answer')
-        console.log(questions[currentQuestion - 1].Q)
+        // console.log(questions[currentQuestion - 1].Q)
         for (var i = 0; i < userInput.length; i++) {
             console.log(userInput[i])
         }
