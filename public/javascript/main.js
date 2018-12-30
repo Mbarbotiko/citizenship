@@ -519,7 +519,7 @@ const questions = [
 ];
 
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
-let currentQuestion = 0;
+let currentQuestion = 98;
 let printQuestionNum = 1;
 let modalTrigger = null;
 
@@ -559,37 +559,50 @@ let numCorrectAns = 0;
 let questionsLeft = 100;
 
 //for later to get percentage
-let finalScore = numCorrectAns/100;
+let finalScore = numCorrectAns / 100;
 
 
 
 
 //event listener for the document on change to focus on the first input element
 function focusInput() {
-    let inputFocus = document.getElementsByClassName('answer-fields')[0]
-    inputFocus.focus();
+
+    if (currentQuestion === 100) {
+        console.log('end quiz at focusInput')
+    } else {
+        let inputFocus = document.getElementsByClassName('answer-fields')[0]
+        inputFocus.focus();
+    }
 }
 //function writes new question to the DOM
 function newQuestion() {
-    document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
+    if (currentQuestion === 100) {
+        console.log('end quiz at newQuestion')
+    } else {
+        document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
+    }
 }
 
 function createForm() {
-    //user a loop to create multiple times based on the  variable, 
-    for (var i = 0; i < questions[currentQuestion].N; i++) {
-        fieldCount++;
-        let answerSection = document.querySelector('.answer-section');
-        let input = document.createElement("input");
-        input.setAttribute('type', 'text');
-        input.setAttribute('maxlength', '75');//form field eval
-        input.setAttribute('value', '');
-        input.setAttribute('class', 'answer-fields');
-        input.setAttribute('id', 'field' + fieldCount);
-        answerSection.appendChild(input);
-        input.addEventListener('blur', fieldCharacters)
-        input.addEventListener('focus', fieldCharacters)
-        input.addEventListener('input', fieldCharacters)
-        input.addEventListener('input', checkAllFields)
+    if (currentQuestion === 100) {
+        console.log('end quiz at createForm')
+    } else {
+        //user a loop to create multiple times based on the  variable, 
+        for (var i = 0; i < questions[currentQuestion].N; i++) {
+            fieldCount++;
+            let answerSection = document.querySelector('.answer-section');
+            let input = document.createElement("input");
+            input.setAttribute('type', 'text');
+            input.setAttribute('maxlength', '75');//form field eval
+            input.setAttribute('value', '');
+            input.setAttribute('class', 'answer-fields');
+            input.setAttribute('id', 'field' + fieldCount);
+            answerSection.appendChild(input);
+            input.addEventListener('blur', fieldCharacters)
+            input.addEventListener('focus', fieldCharacters)
+            input.addEventListener('input', fieldCharacters)
+            input.addEventListener('input', checkAllFields)
+        }
     }
 }
 
@@ -649,9 +662,7 @@ function evaluateAnswer() {
     let modalContent = document.getElementsByClassName('modal-body')[0];
     let answers = questions[currentQuestion - 1].A
     let right = document.getElementById('right-answer').children[1];
-    console.log(right)
     let user = document.getElementById('user-answer').children[1];
-    console.log(user)
 
     let trueCount = 0;
     //
@@ -680,11 +691,10 @@ function evaluateAnswer() {
         numCorrectAns++
         questionsLeft--
         modalFooter.textContent = 'Your answer(s) were all correct, you have answered ' + numCorrectAns + ' out of 100 correctly and you have ' + questionsLeft + ' questions left to answer.'
-        console.log(finalScore)
     } else {//can do answers/ answer and were/ was based on the # of answers then use switch statement/ or another if else
         questionsLeft--
         modalFooter.textContent = 'One or more of your answer(s) were incorrect,  you have answered ' + numCorrectAns + ' out of 100 and you have ' + questionsLeft + ' questions left to answer.'
-    
+
     }
 }
 
@@ -706,7 +716,7 @@ function resetFields() {
 //event listener function that checks for key pressed if its the enter key runs the next question
 function whichKey(e) {
     if (e.which === 13) {
-        nextQuestion();
+        startFullQuiz();
     }
 }
 
@@ -721,7 +731,7 @@ function newButton() {
     let button = document.createElement('button')
     button.setAttribute('type', 'button')
     button.setAttribute('id', 'submit')
-    button.addEventListener('click', nextQuestion)
+    button.addEventListener('click', startFullQuiz)
     button.setAttribute('disabled', 'true')
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
@@ -788,7 +798,19 @@ function buttonChanges() {
     document.removeEventListener('keyup', whichKey)
 }
 
-function nextQuestion() {
+function endFullQuiz() {
+    let testContainer = document.getElementsByClassName('container test')[0];
+    console.log(testContainer)
+    console.log(currentQuestion)
+    if (currentQuestion === 100) {
+        console.log('show user their results in the main screen no more modal')
+       
+    }
+
+
+}
+
+function startFullQuiz() {
     buttonChanges();
     currentQuestion++;
     printQuestionNum++
@@ -798,11 +820,12 @@ function nextQuestion() {
     filterString(userInput);
     filterString(ansToEval);
     evaluateAnswer()
-    // alert('This was your answer:  ' + userString + '\nThese are acceptable answers:  ' + answerString);
-    resetFields()
-    newQuestion();
+    resetFields();
+    endFullQuiz();
+    newQuestion();//continues to run after fix @ end of the quiz
     createForm();
     focusInput();
+
     //when this runs it also runs the placeholder on the second question
 }
 
