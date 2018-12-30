@@ -549,7 +549,7 @@ const span = document.getElementsByClassName("close")[0];
 span.addEventListener('click', function () {
     modal.style.display = "none";
 })
-window.addEventListener('click', function(e){
+window.addEventListener('click', function (e) {
     if (e.target === modal) {
         modal.style.display = "none";
     }
@@ -635,9 +635,17 @@ function filterString(a) {
 
 function evaluateAnswer() {
     //userInput vs answerString
+    let modalHeader = document.getElementsByClassName('modal-header')[0];
+    let modalFooter = document.getElementsByClassName('modal-footer')[0];
     let modalContent = document.getElementsByClassName('modal-body')[0];
-    console.log(modalContent)
+    let answers = questions[currentQuestion - 1].A
+    let right = document.getElementById('right-answer').children[1];
+    console.log(right)
+    let user = document.getElementById('user-answer').children[1];
+    console.log(user)
+
     let trueCount = 0;
+
     for (var i = 0; i < userString.length; i++) {
         for (var j = 0; j < answerString.length; j++) {
             if (userString[i] === answerString[j]) {
@@ -645,46 +653,24 @@ function evaluateAnswer() {
             }
         }
     }
-    if (trueCount === questions[currentQuestion - 1].N) {
-        modalContent.innerHTML = ('<h1>'+questions[currentQuestion - 1].Q+'</h1><br><h1>'+userInput[i]+'</h1><br><h1>'+answers[i])
+    modalHeader.innerHTML = questions[currentQuestion - 1].Q;
+    right.textContent = '';
+    user.textContent = '';
 
-
-        console.log('user answered all correct')
-        // console.log(questions[currentQuestion - 1].Q)
-        let answers = questions[currentQuestion - 1].A
-        for (var i = 0; i < userInput.length; i++) {
-            console.log(userInput[i])
-        }
-        for (var i = 0; i < answers.length; i++) {
-            console.log(answers[i])
-        }
-        //set modal trigger to true
-        modal.style.display = "block";
-    } else {
-        modalContent.innerHTML = ('<h1>'+questions[currentQuestion - 1].Q+'</h1><br><h1>'+userInput[i]+'</h1><br><h1>'+answers[i])
-
-        //write down how this should be organized then use loops and innerHTML to change the modal.  Need to use innerHTML or text content within the loop for it to be defined.
-
-
-
-        console.log('user missed one or more display correct answer')
-        // console.log(questions[currentQuestion - 1].Q)
-        for (var i = 0; i < userInput.length; i++) {
-            console.log(userInput[i])
-        }
-        let answers = questions[currentQuestion - 1].A
-        answers
-        for (var i = 0; i < answers.length; i++) {
-            console.log(answers[i])
-        }
-        modal.style.display = "block";
-
-        //set modal trigger to false
+    for (var i = 0; i < userInput.length; i++) {
+        user.textContent += userInput[i]+'  |  '+'\n'
     }
+    for (var i = 0; i < answers.length; i++) {
+        right.textContent += answers[i] +'  |  '+'\n'
+    }
+    //show modal
+    modal.style.display = "block";
 
-    //if modal trigger !==null trigger modal ^^^ above decides what will be printed  //if true do this if false do this if null do nothing: close button on both should turn the trigger to null//print to modal in this function show modal in another function
-
-    //use blur/ out of focus to check if user either didnt put answer in OR put same answer in twice for final evaluation of users input.
+    if (trueCount === questions[currentQuestion - 1].N) {
+        modalFooter.innerHTML = 'Your answer(s) were all correct'
+    } else {//can do answers/ answer and were/ was based on the # of answers then use switch statement/ or another if else
+        modalFooter.innerHTML = 'One or more of your answer(s) were incorrect'
+    }
 }
 
 function resetFields() {
