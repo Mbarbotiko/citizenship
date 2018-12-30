@@ -542,6 +542,19 @@ let eval = null;
 const enterButton = document.getElementById('start')
 enterButton.addEventListener('click', newButton)
 
+//Modal
+const modal = document.getElementsByClassName('modal')[0];
+const btn = document.getElementById("myBtn");
+const span = document.getElementsByClassName("close")[0];
+span.addEventListener('click', function () {
+    modal.style.display = "none";
+})
+window.addEventListener('click', function(e){
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+})
+
 //event listener for the document on change to focus on the first input element
 function focusInput() {
     let inputFocus = document.getElementsByClassName('answer-fields')[0]
@@ -641,6 +654,7 @@ function evaluateAnswer() {
             console.log(answers[i])
         }
         //set modal trigger to true
+        modal.style.display = "block";
     } else {
         console.log('user missed one or more display correct answer')
         console.log(questions[currentQuestion - 1].Q)
@@ -652,6 +666,7 @@ function evaluateAnswer() {
         for (var i = 0; i < answers.length; i++) {
             console.log(answers[i])
         }
+        modal.style.display = "block";
 
         //set modal trigger to false
     }
@@ -778,37 +793,6 @@ function nextQuestion() {
     focusInput();
     //when this runs it also runs the placeholder on the second question
 }
-
-
-//initial modal:
-
-
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(e) {
-  if (e.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
 
 
 //finish writing tests for Mocha
