@@ -555,6 +555,15 @@ window.addEventListener('click', function (e) {
     }
 })
 
+let numCorrectAns = 0;
+let questionsLeft = 100;
+
+//for later to get percentage
+let finalScore = numCorrectAns/100;
+
+
+
+
 //event listener for the document on change to focus on the first input element
 function focusInput() {
     let inputFocus = document.getElementsByClassName('answer-fields')[0]
@@ -635,7 +644,7 @@ function filterString(a) {
 
 function evaluateAnswer() {
     //userInput vs answerString
-    let modalHeader = document.getElementsByClassName('modal-header')[0];
+    let modalHeader = document.getElementsByClassName('modal-header')[0].children[1];
     let modalFooter = document.getElementsByClassName('modal-footer')[0];
     let modalContent = document.getElementsByClassName('modal-body')[0];
     let answers = questions[currentQuestion - 1].A
@@ -645,7 +654,7 @@ function evaluateAnswer() {
     console.log(user)
 
     let trueCount = 0;
-
+    //
     for (var i = 0; i < userString.length; i++) {
         for (var j = 0; j < answerString.length; j++) {
             if (userString[i] === answerString[j]) {
@@ -658,18 +667,24 @@ function evaluateAnswer() {
     user.textContent = '';
 
     for (var i = 0; i < userInput.length; i++) {
-        user.textContent += userInput[i]+'  |  '+'\n'
+        user.textContent += userInput[i] + '  |  ' + '\n'
     }
     for (var i = 0; i < answers.length; i++) {
-        right.textContent += answers[i] +'  |  '+'\n'
+        right.textContent += answers[i] + '  |  ' + '\n'
     }
     //show modal
     modal.style.display = "block";
 
+    //writes whether or not the answers provided were correct on the modal also if correct change the number correct variable.
     if (trueCount === questions[currentQuestion - 1].N) {
-        modalFooter.innerHTML = 'Your answer(s) were all correct'
+        numCorrectAns++
+        questionsLeft--
+        modalFooter.textContent = 'Your answer(s) were all correct, you have answered ' + numCorrectAns + ' out of 100 correctly and you have ' + questionsLeft + ' questions left to answer.'
+        console.log(finalScore)
     } else {//can do answers/ answer and were/ was based on the # of answers then use switch statement/ or another if else
-        modalFooter.innerHTML = 'One or more of your answer(s) were incorrect'
+        questionsLeft--
+        modalFooter.textContent = 'One or more of your answer(s) were incorrect,  you have answered ' + numCorrectAns + ' out of 100 and you have ' + questionsLeft + ' questions left to answer.'
+    
     }
 }
 
