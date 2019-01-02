@@ -844,6 +844,8 @@ function startFullQuiz() {
 
 // add different states (this will be the "get ready page")
 
+//eval doesnt remove spaces if you type a change and achange it thinks its different.
+
 //add on page load focus on the first input field
 // https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
 
