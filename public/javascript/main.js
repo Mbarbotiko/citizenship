@@ -477,7 +477,7 @@ const questions = [
     },
     {//95
         Q: 'Where is the Statue of Liberty?',
-        A: ['New York', 'New York Harbor', 'Liberty Island', 'New Jersey', 'Near New York City', 'On the Hudson River' , 'NYC'],
+        A: ['New York', 'New York Harbor', 'Liberty Island', 'New Jersey', 'Near New York City', 'On the Hudson River', 'NYC'],
         N: 1
     },
     {
@@ -538,8 +538,11 @@ let eval = null;
 //\
 
 //setting up event listener for the start button
-const enterButton = document.getElementById('start')
+const enterButton = document.getElementById('start100')
 enterButton.addEventListener('click', newButton)
+
+const enterButtonShort = document.getElementById('start-ten')
+enterButtonShort.addEventListener('click', newButton)
 
 
 //Modal
@@ -579,6 +582,16 @@ function newQuestion() {
         console.log('end quiz at newQuestion')
     } else {
         document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
+    }
+}
+
+//function writes new question to the DOM
+function newQuestionShortTest() {
+    if (currentQuestion === 100) {
+        console.log('I ran')
+        console.log('end quiz at newQuestion')
+    } else {
+        document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[11].Q;//this will need to change to random number
     }
 }
 
@@ -716,27 +729,51 @@ function resetFields() {
 function whichKey(e) {
     if (e.which === 13) {
         startFullQuiz();
-       
+
     }
 }
 
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
 
 function newButton() {
-    newQuestion();
-    createForm();
-    let deleteButton = document.getElementById('start')
+    let deleteButton = document.getElementById('start100')
+    let deleteButton2 = document.getElementById('start-ten')
     let buttonSection = document.querySelector('.enter')
     deleteButton.parentNode.removeChild(deleteButton)
+    deleteButton2.parentNode.removeChild(deleteButton2)
     let button = document.createElement('button')
     button.setAttribute('type', 'button')
     button.setAttribute('id', 'submit')
-    button.addEventListener('click', startFullQuiz)
     button.setAttribute('disabled', 'true')
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
-    focusInput();
+    if (1 === 2) {
+        console.log('long')
+        
+        newQuestion();//this changes the HTML
+        createForm();
+        focusInput();//before deleting the buttons put logic here if this button is clicked do this, if this button is clicked do that.start-ten vs start 100
+        button.addEventListener('click', startFullQuiz)
+        
+        //run newQuestion();
+        //createForm():
+        //focusInput()
+    } else {
+        console.log('short')
+        newQuestionShortTest()
+        createForm();
+        focusInput();
+        button.addEventListener('click', startShortQuiz)
+        
+        //run newQuestionShortTest
+        //createForm()
+        //focusInput()
+    }
+    // newQuestion();//this changes the HTML
+    // createForm();
+    // focusInput();
+
 }
 
 //function that changes the class of the fields based on whether or not the value length is more than 0 or 1, attached as an event listener to the field that is selected/user is currently on.
@@ -808,13 +845,14 @@ function endFullQuiz() {
         console.log(currentQuestion)
         console.log('show user their results in the main screen no more modal')
         let retryButton = document.getElementById('retry')
-        retryButton.addEventListener('click', function(){
+        retryButton.addEventListener('click', function () {
             location.reload();
         })
     }
 }
 
 function startFullQuiz() {
+    console.log('this is the long test')
     buttonChanges();
     currentQuestion++;
     printQuestionNum++
@@ -833,6 +871,24 @@ function startFullQuiz() {
     //when this runs it also runs the placeholder on the second question
 }
 
+
+function startShortQuiz() {
+    console.log('this is the short test')
+    buttonChanges();
+    currentQuestion++;//here you will want a random function to get random question, pass current question as argument into it?
+    printQuestionNum++//here you will want a function that matches
+    ansToEval = questions[currentQuestion - 1].A// here you will want to set current question to the offset number or get it from the previous functions, maybe replace all this with one function instead that updates the global variable?
+    getUserInput();
+    fieldCount = 0
+    filterString(userInput);
+    filterString(ansToEval);
+    evaluateAnswer()
+    resetFields();
+    endFullQuiz();
+    newQuestion();//continues to run after fix @ end of the quiz
+    createForm();
+    focusInput();
+}
 
 //finish writing tests for Mocha
 
