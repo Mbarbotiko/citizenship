@@ -591,6 +591,8 @@ function newQuestionShortTest() {
         console.log('I ran')
         console.log('end quiz at newQuestion')
     } else {
+        printQuestionNum = 11;
+        currentQuestion= 11; //set number here from math random & push to array to store the question numbers already used
         document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[11].Q;//this will need to change to random number
     }
 }
@@ -750,12 +752,12 @@ function newButton() {
     buttonSection.appendChild(button)
     if (1 === 2) {
         console.log('long')
-        
+
         newQuestion();//this changes the HTML
         createForm();
         focusInput();//before deleting the buttons put logic here if this button is clicked do this, if this button is clicked do that.start-ten vs start 100
         button.addEventListener('click', startFullQuiz)
-        
+
         //run newQuestion();
         //createForm():
         //focusInput()
@@ -765,7 +767,7 @@ function newButton() {
         createForm();
         focusInput();
         button.addEventListener('click', startShortQuiz)
-        
+
         //run newQuestionShortTest
         //createForm()
         //focusInput()
@@ -853,6 +855,9 @@ function endFullQuiz() {
 
 function startFullQuiz() {
     console.log('this is the long test')
+    //instead of having if else 100 in the functions above move it here into an if else  if (current num -=100){
+        //run these functions else run those functions(cant just break statement its illegal)
+    }
     buttonChanges();
     currentQuestion++;
     printQuestionNum++
