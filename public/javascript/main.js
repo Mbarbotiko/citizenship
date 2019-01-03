@@ -538,18 +538,18 @@ let cleanString = '';
 let eval = null;
 //\
 
+let numCorrectAns = 0;
+let questionsLeft = 100;
+
+let randomArray = [];
+
+
 //setting up event listener for the start button
 const enterButton = document.getElementById('start100')
 enterButton.addEventListener('click', getTarget)
 
-
-
 const enterButtonShort = document.getElementById('start-ten')
 enterButtonShort.addEventListener('click', getTarget)
-
-
-
-
 
 //Modal
 const modal = document.getElementsByClassName('modal')[0];
@@ -565,10 +565,6 @@ window.addEventListener('click', function (e) {
     }
 })
 
-let numCorrectAns = 0;
-let questionsLeft = 100;
-
-
 //event listener for the document on change to focus on the first input element
 function focusInput() {
     let inputFocus = document.getElementsByClassName('answer-fields')[0]
@@ -581,9 +577,11 @@ function newQuestion() {
 
 //function writes new question to the DOM
 function newQuestionShortTest() {
-    // printQuestionNum = 11;
-    // currentQuestion = 11; //set number here from math random & push to array to store the question numbers already used
-    document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[11].Q;//this will need to change to random number
+    let randomNum = Math.floor(Math.random() * 100)
+    currentQuestion = randomNum;
+    randomArray.push(currentQuestion)
+    console.log(randomArray)//set number here from math random & push to array to store the question numbers already used
+    document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;//this will need to change to random number
 }
 
 function createForm() {
@@ -714,9 +712,18 @@ function resetFields() {
 
 //event listener function that checks for key pressed if its the enter key runs the next question
 function whichKey(e) {
-    if (e.which === 13) {
-        startFullQuiz();
+    if (e.which === 13){
+        console.log('clicked')
+        console.log(whichTest)
+        if(whichTest==='start100'){
+            startFullQuiz();
+        }
+        
+        else if (whichTest==='start-ten'){
+            startShortQuiz();
+        }
     }
+
 }
 
 
@@ -831,6 +838,7 @@ function endFullQuiz() {
 }
 
 function startFullQuiz() {
+    console.log(whichTest)
     console.log('this is the long test')
     console.log(currentQuestion)
     buttonChanges();
@@ -854,6 +862,7 @@ function startFullQuiz() {
 
 
 function startShortQuiz() {
+    console.log(whichTest)
     console.log('this is the short test')
     console.log(printQuestionNum)
     buttonChanges();
