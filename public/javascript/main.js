@@ -519,7 +519,7 @@ const questions = [
 ];
 
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
-let currentQuestion = 0;
+let currentQuestion = 98;
 let printQuestionNum = 1;
 
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
@@ -563,9 +563,6 @@ let numCorrectAns = 0;
 let questionsLeft = 100;
 
 
-
-
-
 //event listener for the document on change to focus on the first input element
 function focusInput() {
 
@@ -578,45 +575,32 @@ function focusInput() {
 }
 //function writes new question to the DOM
 function newQuestion() {
-    if (currentQuestion === 100) {
-        console.log('end quiz at newQuestion')
-    } else {
-        document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
-    }
+    document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
 }
 
 //function writes new question to the DOM
 function newQuestionShortTest() {
-    if (currentQuestion === 100) {
-        console.log('I ran')
-        console.log('end quiz at newQuestion')
-    } else {
-        printQuestionNum = 11;
-        currentQuestion= 11; //set number here from math random & push to array to store the question numbers already used
-        document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[11].Q;//this will need to change to random number
-    }
+    printQuestionNum = 11;
+    currentQuestion = 11; //set number here from math random & push to array to store the question numbers already used
+    document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[11].Q;//this will need to change to random number
 }
 
 function createForm() {
-    if (currentQuestion === 100) {
-        console.log('end quiz at createForm')
-    } else {
-        //user a loop to create multiple times based on the  variable, 
-        for (var i = 0; i < questions[currentQuestion].N; i++) {
-            fieldCount++;
-            let answerSection = document.querySelector('.answer-section');
-            let input = document.createElement("input");
-            input.setAttribute('type', 'text');
-            input.setAttribute('maxlength', '75');//form field eval
-            input.setAttribute('value', '');
-            input.setAttribute('class', 'answer-fields');
-            input.setAttribute('id', 'field' + fieldCount);
-            answerSection.appendChild(input);
-            input.addEventListener('blur', fieldCharacters)
-            input.addEventListener('focus', fieldCharacters)
-            input.addEventListener('input', fieldCharacters)
-            input.addEventListener('input', checkAllFields)
-        }
+    //user a loop to create multiple times based on the  variable, 
+    for (var i = 0; i < questions[currentQuestion].N; i++) {
+        fieldCount++;
+        let answerSection = document.querySelector('.answer-section');
+        let input = document.createElement("input");
+        input.setAttribute('type', 'text');
+        input.setAttribute('maxlength', '75');//form field eval
+        input.setAttribute('value', '');
+        input.setAttribute('class', 'answer-fields');
+        input.setAttribute('id', 'field' + fieldCount);
+        answerSection.appendChild(input);
+        input.addEventListener('blur', fieldCharacters)
+        input.addEventListener('focus', fieldCharacters)
+        input.addEventListener('input', fieldCharacters)
+        input.addEventListener('input', checkAllFields)
     }
 }
 
@@ -731,7 +715,6 @@ function resetFields() {
 function whichKey(e) {
     if (e.which === 13) {
         startFullQuiz();
-
     }
 }
 
@@ -750,7 +733,7 @@ function newButton() {
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
-    if (1 === 2) {
+    if (1 === 1) {
         console.log('long')
 
         newQuestion();//this changes the HTML
@@ -838,8 +821,6 @@ function buttonChanges() {
 }
 
 function endFullQuiz() {
-
-    if (currentQuestion === 100) {//for later to get percentage
         let finalScore = (numCorrectAns / 100) * 100 + '%'
         let testContainer = document.getElementsByClassName('container test')[0];
         console.log(testContainer)
@@ -850,14 +831,14 @@ function endFullQuiz() {
         retryButton.addEventListener('click', function () {
             location.reload();
         })
-    }
 }
 
 function startFullQuiz() {
     console.log('this is the long test')
+    console.log(currentQuestion)
     //instead of having if else 100 in the functions above move it here into an if else  if (current num -=100){
-        //run these functions else run those functions(cant just break statement its illegal)
-    }
+    //run these functions else run those functions(cant just break statement its illegal)
+
     buttonChanges();
     currentQuestion++;
     printQuestionNum++
@@ -868,10 +849,13 @@ function startFullQuiz() {
     filterString(ansToEval);
     evaluateAnswer()
     resetFields();
-    endFullQuiz();
-    newQuestion();//continues to run after fix @ end of the quiz
-    createForm();
-    focusInput();
+    if (currentQuestion === 100) {
+        endFullQuiz();
+    } else {
+        newQuestion();//continues to run after fix @ end of the quiz
+        createForm();
+        focusInput();
+    }
 
     //when this runs it also runs the placeholder on the second question
 }
@@ -889,10 +873,13 @@ function startShortQuiz() {
     filterString(ansToEval);
     evaluateAnswer()
     resetFields();
-    endFullQuiz();
-    newQuestion();//continues to run after fix @ end of the quiz
-    createForm();
-    focusInput();
+    if (currentQuestion === 10) {//make this a check for something else like the number of questions printed so far this wont work because it'll be all over the 100 random questions
+        endFullQuiz();
+    } else {
+        newQuestion();//continues to run after fix @ end of the quiz
+        createForm();
+        focusInput();
+    }
 }
 
 //finish writing tests for Mocha
