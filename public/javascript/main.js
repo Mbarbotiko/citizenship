@@ -305,7 +305,7 @@ const questions = [
     },
     {
         Q: 'Why did the colonists fight the British? Complete these sentences: Because of high _______  The British army stationed their _______  Because they didnt have self _______',
-        A: ['Taxes', 'Houses', 'Government'],
+        A: ['Taxes','Taxation', 'Houses', 'Homes', 'Government'],
         N: 3
     },
     {
@@ -420,12 +420,12 @@ const questions = [
         A: ['Communism'],
         N: 1
     },
-    {
+    {//85
         Q: 'What movement tried to end racial discrimination?',
         A: ['Civil rights movement', 'Civil rights'],
         N: 1
     },
-    {//85
+    {
         Q: 'What did Martin Luther King Jr do?\nComplete the sentences:\nFought for _______ rights.\nWorked for _______ for all Americans',
         A: ['Civil', 'Equality'],
         N: 2
@@ -575,12 +575,17 @@ function newQuestion() {
     document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
 }
 
-//function writes new question to the DOM
-function newQuestionShortTest() {
+function randomNumber(){
     let randomNum = Math.floor(Math.random() * 100)
     currentQuestion = randomNum;
     randomArray.push(currentQuestion)
     console.log(randomArray)//set number here from math random & push to array to store the question numbers already used
+
+}
+
+//function writes new question to the DOM
+function newQuestionShortTest() {
+    randomNumber();
     document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;//this will need to change to random number
 }
 
@@ -838,9 +843,6 @@ function endFullQuiz() {
 }
 
 function startFullQuiz() {
-    console.log(whichTest)
-    console.log('this is the long test')
-    console.log(currentQuestion)
     buttonChanges();
     currentQuestion++;
     printQuestionNum++
@@ -862,11 +864,12 @@ function startFullQuiz() {
 
 
 function startShortQuiz() {
-    console.log(whichTest)
-    console.log('this is the short test')
-    console.log(printQuestionNum)
+    console.log(currentQuestion)
+    console.log(questions[currentQuestion].Q)
+    console.log(questions[currentQuestion].A)
+    console.log(questions[currentQuestion])
     buttonChanges();
-    currentQuestion++;//here you will want a random function to get random question, pass current question as argument into it?
+    // randomNumber();
     printQuestionNum++//here you will want a function that matches
     ansToEval = questions[currentQuestion - 1].A// here you will want to set current question to the offset number or get it from the previous functions, maybe replace all this with one function instead that updates the global variable?
     getUserInput();
