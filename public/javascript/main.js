@@ -517,10 +517,7 @@ const questions = [
 
 
 ];
-var Bananas = null;
-
-
-
+let whichTest = null;
 
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
 let currentQuestion = 0;
@@ -543,12 +540,12 @@ let eval = null;
 
 //setting up event listener for the start button
 const enterButton = document.getElementById('start100')
-enterButton.addEventListener('click', waiting)
+enterButton.addEventListener('click', getTarget)
 
 
 
 const enterButtonShort = document.getElementById('start-ten')
-enterButtonShort.addEventListener('click', waiting)
+enterButtonShort.addEventListener('click', getTarget)
 
 
 
@@ -727,17 +724,15 @@ function whichKey(e) {
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
 
 //Testing anonymous function  that is added to the document to collect the ID of the button then removed when the variable is changed via the collected ID.  Added a name/ reference to the function as "thisFunction"
-function waiting() {
+function getTarget() {
     document.addEventListener('click', thisFunction = function thisFunction(e) {
-        Bananas = e.target.id
-        console.log(Bananas)
+        whichTest = e.target.id
         document.removeEventListener('click', thisFunction)
         newButton()
     })
 }
 
 function newButton() {
-    console.log(Bananas)
     let buttonSection = document.querySelector('.enter')
     let button = document.createElement('button')
     button.setAttribute('type', 'button')
@@ -752,33 +747,18 @@ function newButton() {
     deleteButton.parentNode.removeChild(deleteButton)
     deleteButton2.parentNode.removeChild(deleteButton2)
 
-    if (Bananas === 'start100') {
-        console.log('long')
-        newQuestion();//this changes the HTML
-        console.log('new question ran')
+    if (whichTest === 'start100') {
+        newQuestion();
         createForm();
-        focusInput();//before deleting the buttons put logic here if this button is clicked do this, if this button is clicked do that.start-ten vs start 100
+        focusInput();
         button.addEventListener('click', startFullQuiz)
-
-        //run newQuestion();
-        //createForm():
-        //focusInput()
     }
-    if (Bananas === 'start-ten') {
-        console.log('short')
+    if (whichTest === 'start-ten') {
         newQuestionShortTest()
         createForm();
         focusInput();
         button.addEventListener('click', startShortQuiz)
-
-        //run newQuestionShortTest
-        //createForm()
-        //focusInput()
     }
-    // newQuestion();//this changes the HTML
-    // createForm();
-    // focusInput();
-
 }
 
 //function that changes the class of the fields based on whether or not the value length is more than 0 or 1, attached as an event listener to the field that is selected/user is currently on.
@@ -843,10 +823,7 @@ function buttonChanges() {
 function endFullQuiz() {
     let finalScore = (numCorrectAns / 100) * 100 + '%'
     let testContainer = document.getElementsByClassName('container test')[0];
-    console.log(testContainer)
     testContainer.innerHTML = '<h1>You completed the test here are your results: <br>Number correct: ' + numCorrectAns + '<br>Percentage: ' + finalScore + '</h1><br><button id="retry" class="enter-buttons">Try Again</button>'
-    console.log(currentQuestion)
-    console.log('show user their results in the main screen no more modal')
     let retryButton = document.getElementById('retry')
     retryButton.addEventListener('click', function () {
         location.reload();
@@ -856,9 +833,6 @@ function endFullQuiz() {
 function startFullQuiz() {
     console.log('this is the long test')
     console.log(currentQuestion)
-    //instead of having if else 100 in the functions above move it here into an if else  if (current num -=100){
-    //run these functions else run those functions(cant just break statement its illegal)
-
     buttonChanges();
     currentQuestion++;
     printQuestionNum++
@@ -872,12 +846,10 @@ function startFullQuiz() {
     if (currentQuestion === 100) {
         endFullQuiz();
     } else {
-        newQuestion();//continues to run after fix @ end of the quiz
+        newQuestion();
         createForm();
         focusInput();
     }
-
-    //when this runs it also runs the placeholder on the second question
 }
 
 
@@ -894,10 +866,10 @@ function startShortQuiz() {
     filterString(ansToEval);
     evaluateAnswer()
     resetFields();
-    if (printQuestionNum === 11) {//make this a check for something else like the number of questions printed so far this wont work because it'll be all over the 100 random questions
+    if (printQuestionNum === 11) {
         endFullQuiz();
     } else {
-        newQuestion();//continues to run after fix @ end of the quiz
+        newQuestion();
         createForm();
         focusInput();
     }
@@ -907,16 +879,13 @@ function startShortQuiz() {
 
 //For answers that are the same but phrased differently: put them within their own array so that duplicates arent entered or a different version of the same answer isnt given by the user
 
-//need end to test to summarize what was right and wrong
-
 //write a short 10 answer test to simulate test given @ naturalization test
 
 // add different states (this will be the "get ready page")
 
-//eval doesnt remove spaces if you type a change and achange it thinks its different.
+//eval doesnt remove spaces if you type a change and a change it thinks its different.
 
-//add on page load focus on the first input field
-// https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
+//https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
 
 //https://www.uscis.gov/citizenship/learners/study-test
 
@@ -929,4 +898,3 @@ function startShortQuiz() {
 
 //can include track from USCIS website as well, add to questions object and display for the user to be able to click when the question is presented(imbed into page)
 
-//for end the sentences questions MAY need to supply a sentence answer, will decide much later...
