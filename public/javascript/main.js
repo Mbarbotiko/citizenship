@@ -517,6 +517,10 @@ const questions = [
 
 
 ];
+var Bananas = null;
+
+
+
 
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
 let currentQuestion = 0;
@@ -539,10 +543,15 @@ let eval = null;
 
 //setting up event listener for the start button
 const enterButton = document.getElementById('start100')
-enterButton.addEventListener('click', newButton)
+enterButton.addEventListener('click', waiting)
+
+
 
 const enterButtonShort = document.getElementById('start-ten')
-enterButtonShort.addEventListener('click', newButton)
+enterButtonShort.addEventListener('click', waiting)
+
+
+
 
 
 //Modal
@@ -565,8 +574,8 @@ let questionsLeft = 100;
 
 //event listener for the document on change to focus on the first input element
 function focusInput() {
-        let inputFocus = document.getElementsByClassName('answer-fields')[0]
-        inputFocus.focus();
+    let inputFocus = document.getElementsByClassName('answer-fields')[0]
+    inputFocus.focus();
 }
 //function writes new question to the DOM
 function newQuestion() {
@@ -713,14 +722,23 @@ function whichKey(e) {
     }
 }
 
+
+
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
 
+//Testing anonymous function  that is added to the document to collect the ID of the button then removed when the variable is changed via the collected ID.  Added a name/ reference to the function as "thisFunction"
+function waiting() {
+    document.addEventListener('click', thisFunction = function thisFunction(e) {
+        Bananas = e.target.id
+        console.log(Bananas)
+        document.removeEventListener('click', thisFunction)
+        newButton()
+    })
+}
+
 function newButton() {
-    let deleteButton = document.getElementById('start100')
-    let deleteButton2 = document.getElementById('start-ten')
+    console.log(Bananas)
     let buttonSection = document.querySelector('.enter')
-    deleteButton.parentNode.removeChild(deleteButton)
-    deleteButton2.parentNode.removeChild(deleteButton2)
     let button = document.createElement('button')
     button.setAttribute('type', 'button')
     button.setAttribute('id', 'submit')
@@ -728,10 +746,16 @@ function newButton() {
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
-    if (1 === 2) {
-        console.log('long')
 
+    let deleteButton = document.getElementById('start100')
+    let deleteButton2 = document.getElementById('start-ten')
+    deleteButton.parentNode.removeChild(deleteButton)
+    deleteButton2.parentNode.removeChild(deleteButton2)
+
+    if (Bananas === 'start100') {
+        console.log('long')
         newQuestion();//this changes the HTML
+        console.log('new question ran')
         createForm();
         focusInput();//before deleting the buttons put logic here if this button is clicked do this, if this button is clicked do that.start-ten vs start 100
         button.addEventListener('click', startFullQuiz)
@@ -739,7 +763,8 @@ function newButton() {
         //run newQuestion();
         //createForm():
         //focusInput()
-    } else {
+    }
+    if (Bananas === 'start-ten') {
         console.log('short')
         newQuestionShortTest()
         createForm();
@@ -816,16 +841,16 @@ function buttonChanges() {
 }
 
 function endFullQuiz() {
-        let finalScore = (numCorrectAns / 100) * 100 + '%'
-        let testContainer = document.getElementsByClassName('container test')[0];
-        console.log(testContainer)
-        testContainer.innerHTML = '<h1>You completed the test here are your results: <br>Number correct: ' + numCorrectAns + '<br>Percentage: ' + finalScore + '</h1><br><button id="retry" class="enter-buttons">Try Again</button>'
-        console.log(currentQuestion)
-        console.log('show user their results in the main screen no more modal')
-        let retryButton = document.getElementById('retry')
-        retryButton.addEventListener('click', function () {
-            location.reload();
-        })
+    let finalScore = (numCorrectAns / 100) * 100 + '%'
+    let testContainer = document.getElementsByClassName('container test')[0];
+    console.log(testContainer)
+    testContainer.innerHTML = '<h1>You completed the test here are your results: <br>Number correct: ' + numCorrectAns + '<br>Percentage: ' + finalScore + '</h1><br><button id="retry" class="enter-buttons">Try Again</button>'
+    console.log(currentQuestion)
+    console.log('show user their results in the main screen no more modal')
+    let retryButton = document.getElementById('retry')
+    retryButton.addEventListener('click', function () {
+        location.reload();
+    })
 }
 
 function startFullQuiz() {
