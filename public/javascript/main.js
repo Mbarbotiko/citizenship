@@ -519,7 +519,7 @@ const questions = [
 ];
 
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
-let currentQuestion = 98;
+let currentQuestion = 0;
 let printQuestionNum = 1;
 
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
@@ -565,13 +565,8 @@ let questionsLeft = 100;
 
 //event listener for the document on change to focus on the first input element
 function focusInput() {
-
-    if (currentQuestion === 100) {
-        console.log('end quiz at focusInput')
-    } else {
         let inputFocus = document.getElementsByClassName('answer-fields')[0]
         inputFocus.focus();
-    }
 }
 //function writes new question to the DOM
 function newQuestion() {
@@ -580,8 +575,8 @@ function newQuestion() {
 
 //function writes new question to the DOM
 function newQuestionShortTest() {
-    printQuestionNum = 11;
-    currentQuestion = 11; //set number here from math random & push to array to store the question numbers already used
+    // printQuestionNum = 11;
+    // currentQuestion = 11; //set number here from math random & push to array to store the question numbers already used
     document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[11].Q;//this will need to change to random number
 }
 
@@ -592,7 +587,7 @@ function createForm() {
         let answerSection = document.querySelector('.answer-section');
         let input = document.createElement("input");
         input.setAttribute('type', 'text');
-        input.setAttribute('maxlength', '75');//form field eval
+        input.setAttribute('maxlength', '75');
         input.setAttribute('value', '');
         input.setAttribute('class', 'answer-fields');
         input.setAttribute('id', 'field' + fieldCount);
@@ -733,7 +728,7 @@ function newButton() {
     button.setAttribute('class', 'enter-buttons')
     button.innerHTML = 'Submit'
     buttonSection.appendChild(button)
-    if (1 === 1) {
+    if (1 === 2) {
         console.log('long')
 
         newQuestion();//this changes the HTML
@@ -863,6 +858,7 @@ function startFullQuiz() {
 
 function startShortQuiz() {
     console.log('this is the short test')
+    console.log(printQuestionNum)
     buttonChanges();
     currentQuestion++;//here you will want a random function to get random question, pass current question as argument into it?
     printQuestionNum++//here you will want a function that matches
@@ -873,7 +869,7 @@ function startShortQuiz() {
     filterString(ansToEval);
     evaluateAnswer()
     resetFields();
-    if (currentQuestion === 10) {//make this a check for something else like the number of questions printed so far this wont work because it'll be all over the 100 random questions
+    if (printQuestionNum === 11) {//make this a check for something else like the number of questions printed so far this wont work because it'll be all over the 100 random questions
         endFullQuiz();
     } else {
         newQuestion();//continues to run after fix @ end of the quiz
