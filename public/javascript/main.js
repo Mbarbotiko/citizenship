@@ -305,7 +305,7 @@ const questions = [
     },
     {
         Q: 'Why did the colonists fight the British? Complete these sentences: Because of high _______  The British army stationed their _______  Because they didnt have self _______',
-        A: ['Taxes','Taxation', 'Houses', 'Homes', 'Government'],
+        A: ['Taxes', 'Taxation', 'Houses', 'Homes', 'Government'],
         N: 3
     },
     {
@@ -575,7 +575,7 @@ function newQuestion() {
     document.querySelector('.question-section h1').innerHTML = printQuestionNum + '. ' + questions[currentQuestion].Q;
 }
 
-function randomNumber(){
+function randomNumber() {
     let randomNum = Math.floor(Math.random() * 100)
     currentQuestion = randomNum;
     randomArray.push(currentQuestion)
@@ -662,7 +662,7 @@ function evaluateAnswer() {
     let modalHeader = document.getElementsByClassName('modal-header')[0].children[1];
     let modalFooter = document.getElementsByClassName('modal-footer')[0];
     let modalContent = document.getElementsByClassName('modal-body')[0];
-    let answers = questions[currentQuestion - 1].A
+    let answers = questions[currentQuestion].A
     let right = document.getElementById('right-answer').children[1];
     let user = document.getElementById('user-answer').children[1];
 
@@ -675,7 +675,9 @@ function evaluateAnswer() {
             }
         }
     }
-    modalHeader.innerHTML = questions[currentQuestion - 1].Q;
+
+    modalHeader.innerHTML = questions[currentQuestion].Q;
+    console.log('in eveluate answer : ' + currentQuestion)
     right.textContent = '';
     user.textContent = '';
 
@@ -689,7 +691,7 @@ function evaluateAnswer() {
     modal.style.display = "block";
 
     //writes whether or not the answers provided were correct on the modal also if correct change the number correct variable.
-    if (trueCount === questions[currentQuestion - 1].N) {
+    if (trueCount === questions[currentQuestion].N) {
         numCorrectAns++
         questionsLeft--
         modalFooter.textContent = 'Your answer(s) were all correct, you have answered ' + numCorrectAns + ' out of 100 correctly and you have ' + questionsLeft + ' questions left to answer.'
@@ -701,15 +703,19 @@ function evaluateAnswer() {
 }
 
 function resetFields() {
+    console.log('reset fields ran')
     userInput = [];
     userString = [];
     answerString = [];
     cleanString = '';
     document.getElementById('submit').disabled = true;
     let fieldDeleteCount = 0;
+    console.log(fieldDeleteCount)
     let offsetCurrentQ = currentQuestion - 1
-    for (var i = 0; i < questions[offsetCurrentQ].N; i++) {
+    for (var i = 0; i < questions[currentQuestion].N; i++) {
+        console.log(fieldDeleteCount)
         fieldDeleteCount++
+        console.log(fieldDeleteCount)
         let fieldToRemove = document.getElementById('field' + fieldDeleteCount)
         fieldToRemove.parentNode.removeChild(fieldToRemove)
     }
@@ -717,14 +723,14 @@ function resetFields() {
 
 //event listener function that checks for key pressed if its the enter key runs the next question
 function whichKey(e) {
-    if (e.which === 13){
+    if (e.which === 13) {
         console.log('clicked')
         console.log(whichTest)
-        if(whichTest==='start100'){
+        if (whichTest === 'start100') {
             startFullQuiz();
         }
-        
-        else if (whichTest==='start-ten'){
+
+        else if (whichTest === 'start-ten') {
             startShortQuiz();
         }
     }
@@ -843,16 +849,18 @@ function endFullQuiz() {
 }
 
 function startFullQuiz() {
+    console.log('at beginning of start quiz: ' + currentQuestion)
     buttonChanges();
-    currentQuestion++;
+    ansToEval = questions[currentQuestion].A
     printQuestionNum++
-    ansToEval = questions[currentQuestion - 1].A
     getUserInput();
     fieldCount = 0
     filterString(userInput);
     filterString(ansToEval);
     evaluateAnswer()
     resetFields();
+    currentQuestion++;
+    console.log('after ++ at start full quiz ' + currentQuestion)
     if (currentQuestion === 100) {
         endFullQuiz();
     } else {
@@ -864,27 +872,29 @@ function startFullQuiz() {
 
 
 function startShortQuiz() {
-    console.log(currentQuestion)
-    console.log(questions[currentQuestion].Q)
-    console.log(questions[currentQuestion].A)
-    console.log(questions[currentQuestion])
+    console.log(printQuestionNum)
     buttonChanges();
-    // randomNumber();
+    console.log(currentQuestion)
     printQuestionNum++//here you will want a function that matches
-    ansToEval = questions[currentQuestion - 1].A// here you will want to set current question to the offset number or get it from the previous functions, maybe replace all this with one function instead that updates the global variable?
+    ansToEval = questions[currentQuestion].A// here you will want to set current question to the offset number or get it from the previous functions, maybe replace all this with one function instead that updates the global variable?
+    console.log(ansToEval)
     getUserInput();
     fieldCount = 0
     filterString(userInput);
     filterString(ansToEval);
-    evaluateAnswer()
+    evaluateAnswer()// printing to dom here says -1 for original test, will need to change somehow, maybe use the whichTest variable to choose if else.
     resetFields();
+    randomNumber();
     if (printQuestionNum === 11) {
         endFullQuiz();
     } else {
+
         newQuestion();
         createForm();
         focusInput();
     }
+
+
 }
 
 //finish writing tests for Mocha
