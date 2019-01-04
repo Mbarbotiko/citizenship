@@ -741,30 +741,22 @@ function whichKey(e) {
 
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
 
-//Testing anonymous function  that is added to the document to collect the ID of the button then removed when the variable is changed via the collected ID.  Added a name/ reference to the function as "thisFunction"
+//Testing anonymous function  that is added to the document to collect the ID of the button then removed when the variable is changed via the collected ID.  Added a name/ reference to the function as "thisFunction" Also checks the ID and changes the howMany variable for the modal as well as the questions Left variable.
 function getTarget() {
     document.addEventListener('click', thisFunction = function thisFunction(e) {
         whichTest = e.target.id;
-        console.log(whichTest)
         if (whichTest === 'start100') {
-            console.log(whichTest)
             questionsLeft = 100;
-            console.log(questionsLeft)
             howMany=100;
             document.removeEventListener('click', thisFunction)
             newButton()
-
         }
-
         if (whichTest === 'start-ten') {
-            console.log(whichTest)
             questionsLeft = 10;
-            console.log(questionsLeft)
             howMany=10;
             document.removeEventListener('click', thisFunction)
             newButton()
         }
-
 
     })
 }
