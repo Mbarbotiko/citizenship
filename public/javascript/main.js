@@ -573,17 +573,15 @@ checkSize();
 //Resize function to change input focus based on users screen size
 function checkSize(){
     widthWindow = window.innerWidth;
-    console.log(widthWindow)
 }
+
 window.addEventListener('resize', checkSize )
 
 //event listener for the document on change to focus on the first input element
 function focusInput() {
     let inputFocus = document.getElementsByClassName('answer-fields')[0]
-    console.log(widthWindow)
     if (widthWindow>=768){
         inputFocus.focus();
-        console.log('i am focusing on this')
     }
 }
 //function writes new question to the DOM
@@ -606,7 +604,6 @@ function randomNumber() {
         randomArray.push(currentQuestion)
     }
 }
-
 
 //function writes new question to the DOM
 function newQuestionShortTest() {
@@ -935,11 +932,7 @@ function startShortQuiz() {
 
 //eval doesnt remove spaces if you type a change and a change it thinks its different.
 
-//On mobile the focus () is removing users ability to see question - add event listener to the window that removes focus/ overrides it in code
-
 // On mobile clicking out of the modal doesnt close it, only span closes it can also add event listener for screen size onclick out of modal = close modal
-
-//Modal onlick loses the input focus run it after modal close?
 
 //Remove the questions object into its own file or a JSON file & do an AJAX call for it
 
