@@ -576,15 +576,21 @@ function newQuestion() {
 }
 
 function randomNumber() {
+    let match = false;
     let randomNum = Math.floor(Math.random() * 100)
     for (var i = 0; i < randomArray.length; i++) {
-        console.log(randomArray[i])
+        if (randomNum === randomArray[i]) {
+            match = true;
+        }
     }
-    currentQuestion = randomNum;
-    randomArray.push(currentQuestion)
-    console.log(randomArray)//set number here from math random & push to array to store the question numbers already used
-
+    if (match === true) {
+        randomNumber();
+    } else {
+        currentQuestion = randomNum;
+        randomArray.push(currentQuestion)
+    }
 }
+
 
 //function writes new question to the DOM
 function newQuestionShortTest() {
