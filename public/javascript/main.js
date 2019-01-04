@@ -557,11 +557,13 @@ const btn = document.getElementById("myBtn");
 const span = document.getElementsByClassName("close")[0];
 span.addEventListener('click', function () {
     modal.style.display = "none";
+    focusInput();
     //add event listener for enter button too? closes right away because already has another listener, either delay or listen for the second onkey up?
 })
 window.addEventListener('click', function (e) {
     if (e.target === modal) {
         modal.style.display = "none";
+        focusInput();
     }
 })
 let widthWindow = null;
@@ -899,7 +901,6 @@ function startFullQuiz() {
     } else {
         newQuestion();
         createForm();
-        focusInput();
     }
 }
 
@@ -921,7 +922,6 @@ function startShortQuiz() {
 
         newQuestion();
         createForm();
-        focusInput();
     }
 
 
