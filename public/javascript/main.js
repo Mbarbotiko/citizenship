@@ -577,6 +577,9 @@ function newQuestion() {
 
 function randomNumber() {
     let randomNum = Math.floor(Math.random() * 100)
+    for (var i = 0; i < randomArray.length; i++) {
+        console.log(randomArray[i])
+    }
     currentQuestion = randomNum;
     randomArray.push(currentQuestion)
     console.log(randomArray)//set number here from math random & push to array to store the question numbers already used
@@ -677,7 +680,6 @@ function evaluateAnswer() {
     }
 
     modalHeader.innerHTML = questions[currentQuestion].Q;
-    console.log('in eveluate answer : ' + currentQuestion)
     right.textContent = '';
     user.textContent = '';
 
@@ -703,19 +705,15 @@ function evaluateAnswer() {
 }
 
 function resetFields() {
-    console.log('reset fields ran')
     userInput = [];
     userString = [];
     answerString = [];
     cleanString = '';
     document.getElementById('submit').disabled = true;
     let fieldDeleteCount = 0;
-    console.log(fieldDeleteCount)
     let offsetCurrentQ = currentQuestion - 1
     for (var i = 0; i < questions[currentQuestion].N; i++) {
-        console.log(fieldDeleteCount)
         fieldDeleteCount++
-        console.log(fieldDeleteCount)
         let fieldToRemove = document.getElementById('field' + fieldDeleteCount)
         fieldToRemove.parentNode.removeChild(fieldToRemove)
     }
@@ -724,8 +722,6 @@ function resetFields() {
 //event listener function that checks for key pressed if its the enter key runs the next question
 function whichKey(e) {
     if (e.which === 13) {
-        console.log('clicked')
-        console.log(whichTest)
         if (whichTest === 'start100') {
             startFullQuiz();
         }
@@ -849,7 +845,6 @@ function endFullQuiz() {
 }
 
 function startFullQuiz() {
-    console.log('at beginning of start quiz: ' + currentQuestion)
     buttonChanges();
     ansToEval = questions[currentQuestion].A
     printQuestionNum++
@@ -860,7 +855,6 @@ function startFullQuiz() {
     evaluateAnswer()
     resetFields();
     currentQuestion++;
-    console.log('after ++ at start full quiz ' + currentQuestion)
     if (currentQuestion === 100) {
         endFullQuiz();
     } else {
@@ -872,12 +866,9 @@ function startFullQuiz() {
 
 
 function startShortQuiz() {
-    console.log(printQuestionNum)
     buttonChanges();
-    console.log(currentQuestion)
     printQuestionNum++//here you will want a function that matches
     ansToEval = questions[currentQuestion].A// here you will want to set current question to the offset number or get it from the previous functions, maybe replace all this with one function instead that updates the global variable?
-    console.log(ansToEval)
     getUserInput();
     fieldCount = 0
     filterString(userInput);
