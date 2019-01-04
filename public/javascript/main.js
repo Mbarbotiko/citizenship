@@ -542,6 +542,8 @@ let numCorrectAns = 0;
 let questionsLeft = null;
 let randomArray = [];
 let howMany = null;
+let widthWindow = null;
+checkSize();
 
 
 //setting up event listener for the start button
@@ -560,22 +562,21 @@ span.addEventListener('click', function () {
     focusInput();
     //add event listener for enter button too? closes right away because already has another listener, either delay or listen for the second onkey up?
 })
+
 window.addEventListener('click', function (e) {
     if (e.target === modal) {
         modal.style.display = "none";
         focusInput();
     }
 })
-let widthWindow = null;
-checkSize();
+
+window.addEventListener('resize', checkSize )
 
 
 //Resize function to change input focus based on users screen size
 function checkSize(){
     widthWindow = window.innerWidth;
 }
-
-window.addEventListener('resize', checkSize )
 
 //event listener for the document on change to focus on the first input element
 function focusInput() {
@@ -711,6 +712,7 @@ function evaluateAnswer() {
     //show modal
     modal.style.display = "block";
 
+
     //writes whether or not the answers provided were correct on the modal also if correct change the number correct variable.
     if (trueCount === questions[currentQuestion].N) {
         numCorrectAns++
@@ -719,7 +721,6 @@ function evaluateAnswer() {
     } else {//can do answers/ answer and were/ was based on the # of answers then use switch statement/ or another if else
         questionsLeft--
         modalFooter.textContent = 'One or more of your answer(s) were incorrect,  you have answered ' + numCorrectAns + ' out of '+howMany+' correctly and you have ' + questionsLeft + ' questions left to answer.'
-
     }
 }
 
@@ -730,7 +731,6 @@ function resetFields() {
     cleanString = '';
     document.getElementById('submit').disabled = true;
     let fieldDeleteCount = 0;
-    let offsetCurrentQ = currentQuestion - 1
     for (var i = 0; i < questions[currentQuestion].N; i++) {
         fieldDeleteCount++
         let fieldToRemove = document.getElementById('field' + fieldDeleteCount)
@@ -744,12 +744,10 @@ function whichKey(e) {
         if (whichTest === 'start100') {
             startFullQuiz();
         }
-
         else if (whichTest === 'start-ten') {
             startShortQuiz();
         }
     }
-
 }
 
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
@@ -770,7 +768,6 @@ function getTarget() {
             document.removeEventListener('click', thisFunction)
             newButton()
         }
-
     })
 }
 
@@ -901,7 +898,6 @@ function startFullQuiz() {
     }
 }
 
-
 function startShortQuiz() {
     buttonChanges();
     printQuestionNum++//here you will want a function that matches
@@ -920,8 +916,6 @@ function startShortQuiz() {
         newQuestion();
         createForm();
     }
-
-
 }
 
 //finish writing tests for Mocha
@@ -934,7 +928,9 @@ function startShortQuiz() {
 
 // On mobile clicking out of the modal doesnt close it, only span closes it can also add event listener for screen size onclick out of modal = close modal
 
+
 //Remove the questions object into its own file or a JSON file & do an AJAX call for it
+// modal.style.display = "none"; or "block"
 
 //Style this beast, is very ugly ;)
 
