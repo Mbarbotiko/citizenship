@@ -915,13 +915,19 @@ function startShortQuiz() {
 
 //finish writing tests for Mocha
 
-//For answers that are the same but phrased differently: put them within their own array so that duplicates arent entered or a different version of the same answer isnt given by the user
-
-//write a short 10 answer test to simulate test given @ naturalization test
+//For answers that are the same but phrased differently: put them within their own array so that duplicates arent entered or a different version of the same answer isnt given by the user (sub arrays)
 
 // add different states (this will be the "get ready page")
 
 //eval doesnt remove spaces if you type a change and a change it thinks its different.
+
+//On mobile the focus () is removing users ability to see question - add event listener to the window that removes focus/ overrides it in code
+
+// On mobile clicking out of the modal doesnt close it, only span closes it can also add event listener for screen size onclick out of modal = close modal
+
+//Remove the questions object into its own file or a JSON file & do an AJAX call for it
+
+//Style this beast, is very ugly ;)
 
 //https://www.uscis.gov/sites/default/files/USCIS/Office%20of%20Citizenship/Citizenship%20Resource%20Center%20Site/Publications/100q.pdf
 
