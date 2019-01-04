@@ -539,9 +539,9 @@ let eval = null;
 //\
 
 let numCorrectAns = 0;
-let questionsLeft = 100;
-
+let questionsLeft = null;
 let randomArray = [];
+let howMany = null;
 
 
 //setting up event listener for the start button
@@ -702,10 +702,10 @@ function evaluateAnswer() {
     if (trueCount === questions[currentQuestion].N) {
         numCorrectAns++
         questionsLeft--
-        modalFooter.textContent = 'Your answer(s) were all correct, you have answered ' + numCorrectAns + ' out of 100 correctly and you have ' + questionsLeft + ' questions left to answer.'
+        modalFooter.textContent = 'Your answer(s) were all correct, you have answered ' + numCorrectAns + ' out of '+howMany+' correctly and you have ' + questionsLeft + ' questions left to answer.'
     } else {//can do answers/ answer and were/ was based on the # of answers then use switch statement/ or another if else
         questionsLeft--
-        modalFooter.textContent = 'One or more of your answer(s) were incorrect,  you have answered ' + numCorrectAns + ' out of 100 correctly and you have ' + questionsLeft + ' questions left to answer.'
+        modalFooter.textContent = 'One or more of your answer(s) were incorrect,  you have answered ' + numCorrectAns + ' out of '+howMany+' correctly and you have ' + questionsLeft + ' questions left to answer.'
 
     }
 }
@@ -739,16 +739,33 @@ function whichKey(e) {
 
 }
 
-
-
 // do not let reset fields run until the user has submitted all answers & only on click: onclick is running getUserInput();
 
 //Testing anonymous function  that is added to the document to collect the ID of the button then removed when the variable is changed via the collected ID.  Added a name/ reference to the function as "thisFunction"
 function getTarget() {
     document.addEventListener('click', thisFunction = function thisFunction(e) {
-        whichTest = e.target.id
-        document.removeEventListener('click', thisFunction)
-        newButton()
+        whichTest = e.target.id;
+        console.log(whichTest)
+        if (whichTest === 'start100') {
+            console.log(whichTest)
+            questionsLeft = 100;
+            console.log(questionsLeft)
+            howMany=100;
+            document.removeEventListener('click', thisFunction)
+            newButton()
+
+        }
+
+        if (whichTest === 'start-ten') {
+            console.log(whichTest)
+            questionsLeft = 10;
+            console.log(questionsLeft)
+            howMany=10;
+            document.removeEventListener('click', thisFunction)
+            newButton()
+        }
+
+
     })
 }
 
@@ -850,6 +867,16 @@ function endFullQuiz() {
     })
 }
 
+function endShortQuiz() {
+    let finalScore = (numCorrectAns / 10) * 100 + '%'
+    let testContainer = document.getElementsByClassName('container test')[0];
+    testContainer.innerHTML = '<h1>You completed the test here are your results: <br>Number correct: ' + numCorrectAns + '<br>Percentage: ' + finalScore + '</h1><br><button id="retry" class="enter-buttons">Try Again</button>'
+    let retryButton = document.getElementById('retry')
+    retryButton.addEventListener('click', function () {
+        location.reload();
+    })
+}
+
 function startFullQuiz() {
     buttonChanges();
     ansToEval = questions[currentQuestion].A
@@ -883,7 +910,7 @@ function startShortQuiz() {
     resetFields();
     randomNumber();
     if (printQuestionNum === 11) {
-        endFullQuiz();
+        endShortQuiz();
     } else {
 
         newQuestion();
