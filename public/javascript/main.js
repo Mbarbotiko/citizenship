@@ -919,6 +919,8 @@ function startShortQuiz() {
 
 // On mobile clicking out of the modal doesnt close it, only span closes it can also add event listener for screen size onclick out of modal = close modal
 
+// on mobile remove the auto zoom into the text box not necessary.
+
 
 //Remove the questions object into its own file or a JSON file & do an AJAX call for it
 // modal.style.display = "none"; or "block"
