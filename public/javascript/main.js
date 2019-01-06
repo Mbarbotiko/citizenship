@@ -517,50 +517,48 @@ const questions = [
 
 
 ];
+//whichTest will hold a node's ID then will tell the script to run either full test or the short test.
 let whichTest = null;
-
 //currentQuestion will keep currentQuestion of what question we are on as we move through the test
 let currentQuestion = 0;
 let printQuestionNum = 1;
-
 //this userInput array will keep user entries to cross reference against the correct answers provided in the questions object
 let userInput = [];
+//fieldCount keeps count of the number of fields to write to the DOM between questions and erase.
 let fieldCount = 0;
-let userString = [];
 //array that holds user answer as a string with all characters from invalid to remove
-let answerString = [];
+let userString = [];
 //array to hold the correct answer string with all the characters from invalid to remove
+let answerString = [];
+//ansToEval holds the answer to the current question, the users answer string is evaluated against this answer which is then turned into a string and pushed to the answer string array.
 let ansToEval = questions[currentQuestion].A
-const invalid = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '{', '[', '}', ']', '|', ';', ':', "'", '"', '<', ',', '>', '.', '/', '?', ' ']
 //characters that will be filtered out of users answers
-
+const invalid = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '{', '[', '}', ']', '|', ';', ':', "'", '"', '<', ',', '>', '.', '/', '?', ' ', '\\']
+//cleanString will hold the users answer and the correct answer in a string free of all the invalid characters.
 let cleanString = '';
+//eval is a boolean in the invalidFilter function, if true doesnt one line of code if false does another
 let eval = null;
-//\
-
+//holds the number of correct answers
 let numCorrectAns = 0;
+//holds the number of questions left, this variable changes depending on the users choice of test long or short.
 let questionsLeft = null;
+//this array holds the random numbers selected for the short test, it is evaluated in the randomNumber function to ensure the same question doesnt show up twice.
 let randomArray = [];
+//holds the count for how many questions are in the test, this changes based on what the user selected short or full test.
 let howMany = null;
+//width of window is collected in event listener to ensure focus on form element stops for media screens.
 let widthWindow = null;
+//run size of window right away when script starts to unfocus form element.
 checkSize();
-
-
-//setting up event listener for the start button
-const enterButton = document.getElementById('start100')
-enterButton.addEventListener('click', getTarget)
-
-const enterButtonShort = document.getElementById('start-ten')
-enterButtonShort.addEventListener('click', getTarget)
-
-//Modal
+//setting up event listeners for the start buttons which test will be chosen.
+document.getElementById('start100').addEventListener('click', getTarget);
+document.getElementById('start-ten').addEventListener('click', getTarget)
+//settings up the modal
 const modal = document.getElementsByClassName('modal')[0];
-const btn = document.getElementById("myBtn");
 const span = document.getElementsByClassName("close")[0];
 span.addEventListener('click', function () {
     modal.style.display = "none";
     focusInput();
-    //add event listener for enter button too? closes right away because already has another listener, either delay or listen for the second onkey up?
 })
 
 window.addEventListener('click', function (e) {
@@ -570,18 +568,16 @@ window.addEventListener('click', function (e) {
     }
 })
 
-window.addEventListener('resize', checkSize )
-
-
+//during window resize event run checkSize (which updates global variable)
+window.addEventListener('resize', checkSize)
 //Resize function to change input focus based on users screen size
-function checkSize(){
+function checkSize() {
     widthWindow = window.innerWidth;
 }
-
 //event listener for the document on change to focus on the first input element
 function focusInput() {
     let inputFocus = document.getElementsByClassName('answer-fields')[0]
-    if (widthWindow>=768){
+    if (widthWindow >= 768) {
         inputFocus.focus();
     }
 }
@@ -602,7 +598,7 @@ function randomNumber() {
         randomNumber();
     } else {
         currentQuestion = randomNum;
-        randomArray.push(currentQuestion)
+        randomArray.push(currentQuestion);
     }
 }
 
@@ -624,19 +620,19 @@ function createForm() {
         input.setAttribute('class', 'answer-fields');
         input.setAttribute('id', 'field' + fieldCount);
         answerSection.appendChild(input);
-        input.addEventListener('blur', fieldCharacters)
-        input.addEventListener('focus', fieldCharacters)
-        input.addEventListener('input', fieldCharacters)
-        input.addEventListener('input', checkAllFields)
+        input.addEventListener('blur', fieldCharacters);
+        input.addEventListener('focus', fieldCharacters);
+        input.addEventListener('input', fieldCharacters);
+        input.addEventListener('input', checkAllFields);
     }
 }
 
 //function that loops through the input fields and pushes the users answers into an array to then be filtered
 function getUserInput() {
-    let fieldCountNum = 0
+    let fieldCountNum = 0;
     for (var i = 0; i < fieldCount; i++) {
-        fieldCountNum++
-        let userSaidWhat = document.getElementById('field' + fieldCountNum).value
+        fieldCountNum++;
+        let userSaidWhat = document.getElementById('field' + fieldCountNum).value;
         userInput.push(userSaidWhat);
     }
 }
@@ -685,16 +681,15 @@ function evaluateAnswer() {
     let modalHeader = document.getElementsByClassName('modal-header')[0].children[1];
     let modalFooter = document.getElementsByClassName('modal-footer')[0];
     let modalContent = document.getElementsByClassName('modal-body')[0];
-    let answers = questions[currentQuestion].A
+    let answers = questions[currentQuestion].A;
     let right = document.getElementById('right-answer').children[1];
     let user = document.getElementById('user-answer').children[1];
-
     let trueCount = 0;
     //
     for (var i = 0; i < userString.length; i++) {
         for (var j = 0; j < answerString.length; j++) {
             if (userString[i] === answerString[j]) {
-                trueCount++
+                trueCount++;
             }
         }
     }
@@ -704,23 +699,21 @@ function evaluateAnswer() {
     user.textContent = '';
 
     for (var i = 0; i < userInput.length; i++) {
-        user.textContent += userInput[i] + '  |  ' + '\n'
+        user.textContent += userInput[i] + '  |  ' + '\n';
     }
     for (var i = 0; i < answers.length; i++) {
-        right.textContent += answers[i] + '  |  ' + '\n'
+        right.textContent += answers[i] + '  |  ' + '\n';
     }
     //show modal
     modal.style.display = "block";
-
-
     //writes whether or not the answers provided were correct on the modal also if correct change the number correct variable.
     if (trueCount === questions[currentQuestion].N) {
-        numCorrectAns++
-        questionsLeft--
-        modalFooter.textContent = 'Your answer(s) were all correct, you have answered ' + numCorrectAns + ' out of '+howMany+' correctly and you have ' + questionsLeft + ' questions left to answer.'
+        numCorrectAns++;
+        questionsLeft--;
+        modalFooter.textContent = 'Your answer(s) were all correct, you have answered ' + numCorrectAns + ' out of ' + howMany + ' correctly and you have ' + questionsLeft + ' questions left to answer.';
     } else {//can do answers/ answer and were/ was based on the # of answers then use switch statement/ or another if else
         questionsLeft--
-        modalFooter.textContent = 'One or more of your answer(s) were incorrect,  you have answered ' + numCorrectAns + ' out of '+howMany+' correctly and you have ' + questionsLeft + ' questions left to answer.'
+        modalFooter.textContent = 'One or more of your answer(s) were incorrect,  you have answered ' + numCorrectAns + ' out of ' + howMany + ' correctly and you have ' + questionsLeft + ' questions left to answer.';
     }
 }
 
@@ -732,9 +725,9 @@ function resetFields() {
     document.getElementById('submit').disabled = true;
     let fieldDeleteCount = 0;
     for (var i = 0; i < questions[currentQuestion].N; i++) {
-        fieldDeleteCount++
-        let fieldToRemove = document.getElementById('field' + fieldDeleteCount)
-        fieldToRemove.parentNode.removeChild(fieldToRemove)
+        fieldDeleteCount++;
+        let fieldToRemove = document.getElementById('field' + fieldDeleteCount);
+        fieldToRemove.parentNode.removeChild(fieldToRemove);
     }
 }
 
@@ -758,45 +751,43 @@ function getTarget() {
         whichTest = e.target.id;
         if (whichTest === 'start100') {
             questionsLeft = 100;
-            howMany=100;
-            document.removeEventListener('click', thisFunction)
-            newButton()
+            howMany = 100;
+            document.removeEventListener('click', thisFunction);
+            newButton();
         }
         if (whichTest === 'start-ten') {
             questionsLeft = 10;
-            howMany=10;
-            document.removeEventListener('click', thisFunction)
-            newButton()
+            howMany = 10;
+            document.removeEventListener('click', thisFunction);
+            newButton();
         }
     })
 }
 
 function newButton() {
-    let buttonSection = document.querySelector('.enter')
-    let button = document.createElement('button')
-    button.setAttribute('type', 'button')
-    button.setAttribute('id', 'submit')
-    button.setAttribute('disabled', 'true')
-    button.setAttribute('class', 'enter-buttons')
-    button.innerHTML = 'Submit'
-    buttonSection.appendChild(button)
-
-    let deleteButton = document.getElementById('start100')
-    let deleteButton2 = document.getElementById('start-ten')
-    deleteButton.parentNode.removeChild(deleteButton)
-    deleteButton2.parentNode.removeChild(deleteButton2)
-
+    let buttonSection = document.querySelector('.enter');
+    let button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.setAttribute('id', 'submit');
+    button.setAttribute('disabled', 'true');
+    button.setAttribute('class', 'enter-buttons');
+    button.innerHTML = 'Submit';
+    buttonSection.appendChild(button);
+    let deleteButton = document.getElementById('start100');
+    let deleteButton2 = document.getElementById('start-ten');
+    deleteButton.parentNode.removeChild(deleteButton);
+    deleteButton2.parentNode.removeChild(deleteButton2);
     if (whichTest === 'start100') {
         newQuestion();
         createForm();
         focusInput();
-        button.addEventListener('click', startFullQuiz)
+        button.addEventListener('click', startFullQuiz);
     }
     if (whichTest === 'start-ten') {
-        newQuestionShortTest()
+        newQuestionShortTest();
         createForm();
         focusInput();
-        button.addEventListener('click', startShortQuiz)
+        button.addEventListener('click', startShortQuiz);
     }
 }
 
@@ -804,23 +795,23 @@ function newButton() {
 function fieldCharacters(e) {
     let target = e.target;
     if (target.value.length < 1 || 0) {
-        target.setAttribute('class', 'answer-fields red')
+        target.setAttribute('class', 'answer-fields red');
         // target.setAttribute('placeholder', 'please enter something')
         buttonChanges();
     } else {
         //change it back
-        target.setAttribute('class', 'answer-fields')
+        target.setAttribute('class', 'answer-fields');
     }
 }
 
 //final check if user changes or deletes an answer leaving field blank
 function areTheseEmpty() {
-    let numFields = document.getElementsByClassName('answer-fields')
+    let numFields = document.getElementsByClassName('answer-fields');
     for (var i = 0; i < numFields.length; i++) {
         if (numFields[i].value.length === 0) {
             buttonChanges();
         } else {
-            document.addEventListener('keyup', whichKey)
+            document.addEventListener('keyup', whichKey);
         }
     }
 }
@@ -828,10 +819,10 @@ function areTheseEmpty() {
 function checkAllFields() {
     let fieldsArr = [];
     let counts = [];
-    let domFields = document.getElementsByClassName('answer-fields')
+    let domFields = document.getElementsByClassName('answer-fields');
     for (var i = 0; i < domFields.length; i++) {
-        let fieldToLower = domFields[i].value.toLowerCase().trim()
-        fieldsArr.push(fieldToLower)
+        let fieldToLower = domFields[i].value.toLowerCase().trim();
+        fieldsArr.push(fieldToLower);
         //users answer is pushed to a new array after changing to lowercase
     }
     for (var i = 0; i <= fieldsArr.length; i++) {
@@ -839,41 +830,42 @@ function checkAllFields() {
             //looped itself will return undefined set value to 1 so it is defined
             counts[fieldsArr[i]] = 1;
         } else {
-            // console.log('you have a duplicate answer please change your answer to something else')
-            //return true if during loop hit  key that exists
-            return true;//stop if duplicate is found
+            //return true and stop code here if values match
+            return true;
         }
     }
-    let submitButton = document.getElementById('submit')
-    submitButton.setAttribute('class', 'enter-buttons green')
+    let submitButton = document.getElementById('submit');
+    submitButton.setAttribute('class', 'enter-buttons green');
     submitButton.disabled = false;
     //final check to check for empty fields runs afterwards
-    areTheseEmpty()
+    areTheseEmpty();
+    //return false if a duplicate value doesnt exist and run this code
     return false;
+    //this needs an additional event listener/ something to rerun this code when a user deletes a character. Problem is when user has met the criteria and erases one input to match the first input box this code doesnt run again to ensure they arent duplicates.
 }
 
 function buttonChanges() {
-    let submitButton = document.getElementById('submit')
-    submitButton.setAttribute('class', 'enter-buttons')
+    let submitButton = document.getElementById('submit');
+    submitButton.setAttribute('class', 'enter-buttons');
     submitButton.disabled = true;
-    document.removeEventListener('keyup', whichKey)
+    document.removeEventListener('keyup', whichKey);
 }
 
 function endFullQuiz() {
-    let finalScore = (numCorrectAns / 100) * 100 + '%'
+    let finalScore = (numCorrectAns / 100) * 100 + '%';
     let testContainer = document.getElementsByClassName('container test')[0];
-    testContainer.innerHTML = '<h1>You completed the test here are your results: <br>Number correct: ' + numCorrectAns + '<br>Percentage: ' + finalScore + '</h1><br><button id="retry" class="enter-buttons">Try Again</button>'
-    let retryButton = document.getElementById('retry')
+    testContainer.innerHTML = '<h1>You completed the test here are your results: <br>Number correct: ' + numCorrectAns + '<br>Percentage: ' + finalScore + '</h1><br><button id="retry" class="enter-buttons">Try Again</button>';
+    let retryButton = document.getElementById('retry');
     retryButton.addEventListener('click', function () {
         location.reload();
     })
 }
 
 function endShortQuiz() {
-    let finalScore = (numCorrectAns / 10) * 100 + '%'
+    let finalScore = (numCorrectAns / 10) * 100 + '%';
     let testContainer = document.getElementsByClassName('container test')[0];
-    testContainer.innerHTML = '<h1>You completed the test here are your results: <br>Number correct: ' + numCorrectAns + '<br>Percentage: ' + finalScore + '</h1><br><button id="retry" class="enter-buttons">Try Again</button>'
-    let retryButton = document.getElementById('retry')
+    testContainer.innerHTML = '<h1>You completed the test here are your results: <br>Number correct: ' + numCorrectAns + '<br>Percentage: ' + finalScore + '</h1><br><button id="retry" class="enter-buttons">Try Again</button>';
+    let retryButton = document.getElementById('retry');
     retryButton.addEventListener('click', function () {
         location.reload();
     })
@@ -881,13 +873,13 @@ function endShortQuiz() {
 
 function startFullQuiz() {
     buttonChanges();
-    ansToEval = questions[currentQuestion].A
-    printQuestionNum++
+    ansToEval = questions[currentQuestion].A;
+    printQuestionNum++;
     getUserInput();
-    fieldCount = 0
+    fieldCount = 0;
     filterString(userInput);
     filterString(ansToEval);
-    evaluateAnswer()
+    evaluateAnswer();
     resetFields();
     currentQuestion++;
     if (currentQuestion === 100) {
@@ -912,7 +904,6 @@ function startShortQuiz() {
     if (printQuestionNum === 11) {
         endShortQuiz();
     } else {
-
         newQuestion();
         createForm();
     }
@@ -922,9 +913,9 @@ function startShortQuiz() {
 
 //For answers that are the same but phrased differently: put them within their own array so that duplicates arent entered or a different version of the same answer isnt given by the user (sub arrays)
 
-// add different states (this will be the "get ready page")
+// add different states (Wisconsin, etc) (this will be the "get ready page")
 
-//eval doesnt remove spaces if you type a change and a change it thinks its different.
+//eval doesnt remove spaces if you type a change and a change it thinks its different: checkAllFields see notation there
 
 // On mobile clicking out of the modal doesnt close it, only span closes it can also add event listener for screen size onclick out of modal = close modal
 
