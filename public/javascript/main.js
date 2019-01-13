@@ -582,10 +582,12 @@ function focusInput() {
     let inputFocus = document.getElementsByClassName('answer-fields')[0]
     if (widthWindow >= 768) {
         inputFocus.focus();
-    }else{
-        console.log('this happened')
-        inputFocus.autofocus = false;
     }
+    
+    // else{
+    //     console.log('this happened')
+    //     inputFocus.autofocus = false;
+    // }
  
 }
 //function writes new question to the DOM
@@ -626,6 +628,7 @@ function createForm() {
         input.setAttribute('value', '');
         input.setAttribute('class', 'answer-fields');
         input.setAttribute('id', 'field' + fieldCount);
+        input.setAttribute('autofocus', false);
         answerSection.appendChild(input);
         input.addEventListener('blur', fieldCharacters);
         input.addEventListener('focus', fieldCharacters);
