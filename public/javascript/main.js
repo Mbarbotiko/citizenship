@@ -581,6 +581,7 @@ function focusInput() {
         inputFocus[0].focus();
     }
     else {
+        //loop through input fields and  make min size 16px so auto focus isnt occurring on mobile devices
         for (var i = 0; i < inputFocus.length; i++) {
             inputFocus[i].style.fontSize = '16px';
         }
