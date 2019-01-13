@@ -573,13 +573,20 @@ window.addEventListener('resize', checkSize)
 //Resize function to change input focus based on users screen size
 function checkSize() {
     widthWindow = window.innerWidth;
+    console.log(widthWindow)
+    
 }
 //event listener for the document on change to focus on the first input element
 function focusInput() {
+    console.log('iran')
     let inputFocus = document.getElementsByClassName('answer-fields')[0]
     if (widthWindow >= 768) {
         inputFocus.focus();
+    }else{
+        inputFocus.blur();
+        // document.activeElement.blur();
     }
+ 
 }
 //function writes new question to the DOM
 function newQuestion() {
