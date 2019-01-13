@@ -589,7 +589,12 @@ function focusInput() {
         console.log(inputFocus.length)
         for (var i = 0; i < inputFocus.length; i++) {
             console.log(inputFocus[i])
-            inputFocus[i].style.fontSize = 16;
+            inputFocus[i].style.fontSize = '16px';
+
+//             input[type="text"]:focus, input[type="password"]:focus,
+// textarea:focus, select:focus {
+//   font-size: 16px;
+// }
     // write function that changes the css for this input, font size 16 or more
         }
     }
