@@ -583,8 +583,7 @@ function focusInput() {
     if (widthWindow >= 768) {
         inputFocus.focus();
     }else{
-        inputFocus.blur();
-        // document.activeElement.blur();
+        document.activeElement.blur();
     }
  
 }
