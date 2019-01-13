@@ -63,8 +63,12 @@ html{
     background:transparent;
     color:white;
     font-weight: bolder;
-    letter-spacing: 1px;
-    
+    letter-spacing: 1px;  
+}
+
+.answer-fields.main{
+   margin-left:33%;
+   //cheap fix for now until js is done
 }
 
 .red{

@@ -212,6 +212,10 @@ html {
   letter-spacing: 1px;
 }
 
+.answer-fields.main {
+  margin-left: 33%;
+}
+
 .red {
   background: rgba(255, 165, 0, 0.25);
 }
