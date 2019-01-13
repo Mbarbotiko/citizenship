@@ -574,21 +574,26 @@ window.addEventListener('resize', checkSize)
 function checkSize() {
     widthWindow = window.innerWidth;
     console.log(widthWindow)
-    
+
 }
 //event listener for the document on change to focus on the first input element
 function focusInput() {
     console.log('iran')
-    let inputFocus = document.getElementsByClassName('answer-fields')[0]
+    let inputFocus = document.getElementsByClassName('answer-fields')
     if (widthWindow >= 768) {
-        inputFocus.focus();
+        inputFocus[0].focus();
     }
-    
-    // else{
-    //     console.log('this happened')
-    //     inputFocus.autofocus = false;
-    // }
- 
+
+    else {
+        console.log(inputFocus)
+        console.log(inputFocus.length)
+        for (var i = 0; i < inputFocus.length; i++) {
+            console.log[i];
+            console.log(inputFocus)
+            inputFocus[i].blur();
+        }
+    }
+
 }
 //function writes new question to the DOM
 function newQuestion() {
