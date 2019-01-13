@@ -588,9 +588,9 @@ function focusInput() {
         console.log(inputFocus)
         console.log(inputFocus.length)
         for (var i = 0; i < inputFocus.length; i++) {
-            console.log[i];
-            console.log(inputFocus)
-            inputFocus[i].blur();
+            console.log(inputFocus[i])
+            inputFocus[i].style.fontSize = 16;
+    // write function that changes the css for this input, font size 16 or more
         }
     }
 
@@ -633,7 +633,6 @@ function createForm() {
         input.setAttribute('value', '');
         input.setAttribute('class', 'answer-fields');
         input.setAttribute('id', 'field' + fieldCount);
-        input.setAttribute('autofocus', false);
         answerSection.appendChild(input);
         input.addEventListener('blur', fieldCharacters);
         input.addEventListener('focus', fieldCharacters);
